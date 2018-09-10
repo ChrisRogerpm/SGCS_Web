@@ -18,9 +18,10 @@ class EntregableController extends Controller
         return view('Administrador.Entregable.RegistrarEntregableVista');
     }
 
-    public function fncEditarEntregableVista()
+    public function fncEditarEntregableVista($id)
     {
-        return view('Administrador.Entregable.EditarEntregableVista');
+        $entregable_id = $id;
+        return view('Administrador.Entregable.EditarEntregableVista',compact('entregable_id'));
     }
 
     public function fncListarEntregablesJson()

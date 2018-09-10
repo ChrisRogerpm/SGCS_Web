@@ -87,7 +87,7 @@ function ListarEntregablesFase() {
                         {
                             data: null, title: "Acción",
                             render: function (value) {
-                                return '<button type="button" class="btn btn-sm btn-success btnEditar" data-id="' + value.FAid_fase + '"><i class="glyphicon glyphicon-edit"></i> Editar</button>';
+                                return '<button type="button" class="btn btn-sm btn-success btnEditar" data-id="' + value.ENTRid_entregable + '"><i class="glyphicon glyphicon-edit"></i> Editar</button>';
                             }
                         }
 
@@ -134,7 +134,7 @@ function ListarEntregables() {
                         {
                             data: null, title: "Acción",
                             render: function (value) {
-                                return '<button type="button" class="btn btn-sm btn-success btnEditar" data-id="' + value.FAid_fase + '"><i class="glyphicon glyphicon-edit"></i> Editar</button>';
+                                return '<button type="button" class="btn btn-sm btn-success btnEditar" data-id="' + value.ENTRid_entregable + '"><i class="glyphicon glyphicon-edit"></i> Editar</button>';
                             }
                         }
 

@@ -99,7 +99,7 @@
                 </ul>
             @else
                 <ul class="nav nav-sidebar">
-                    <li><a href="#"><i class="icon-docs"></i><span>Proyectos</span></a></li>
+                    <li><a href="{{route('ProyectosEncargados')}}"><i class="icon-docs"></i><span>Proyectos</span></a></li>
                     <li><a href="#"><i class="icon-docs"></i><span>Entregables</span></a></li>
                     <li><a href="#"><i class="icon-docs"></i><span>Solicitud Cambio</span></a></li>
                     <li><a href="#"><i class="icon-docs"></i><span>Proyectos</span></a></li>

@@ -79,7 +79,7 @@ class ProyectoController extends Controller
         $proyectos = "";
         $mensaje_error = "";
         try {
-            $proyectos = Proyecto::fncModificarProyecto($request);
+            $proyectos = Proyecto::fncModificarProyecto($requesst);
             $resultado = true;
         } catch (\Exception $ex) {
             $mensaje_error = $ex;
