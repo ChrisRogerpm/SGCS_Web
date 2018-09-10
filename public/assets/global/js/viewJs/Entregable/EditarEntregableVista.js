@@ -1,5 +1,37 @@
 $(document).ready(function () {
     fncObtenerEntregable();
+    $(".btnModificar").click(function () {
+        var url = basepath + '/servicio/ModificarEntregable';
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: {
+                '_token': $('input[name=_token]').val(),
+                'ENTRid_entregable': $("#txt_id_entregable").val(),
+                'METid_metodologia': $("#txt_metodologia").val(),
+                'FAid_fase': $("#txt_fase").val(),
+                'ENTRnombre_entregable': $("#txt_nombre_entregable").val(),
+                'ENTRdescripcion_entregable': $("#txt_descripcion").val(),
+                'ENTRestado_entregable':$("#txt_estado").val()
+            },
+            success: function (response) {
+                
+                let est = response.estado;
+                if (est === true) {
+                    toastr.success('Se actualizo satisfactoriamente', 'Mensaje Servidor');
+                    // $('form[id="frmnuevo"]')[0].reset();
+                    // $("#txt_metodologia").val(0).change();
+                } else {
+                    toastr.error('Servicio no encontrado', 'Mensaje Servidor');
+                }
+            }
+        });
+    });
+
+    $(".btnVolver").click(function () {
+        let url = basepath + '/Entregable';
+        window.location.replace(url);
+    });
 });
 
 function fncObtenerEntregable() {
@@ -12,7 +44,7 @@ function fncObtenerEntregable() {
             'ENTRid_entregable': $("#txt_id_entregable").val()
         },
         success: function (response) {
-            debugger
+            
             let est = response.estado;
             let resp = response.data;
             if (est === true) {
@@ -58,7 +90,7 @@ function fncListarMetodologias(METid_metodologia) {
 
 
 function ListarFasesFiltro(METid_metodologia,FAid_fase) {
-    debugger
+    
     var dq = $.ajax({
         type: 'POST',
         url: basepath + '/servicio/ListarFasesFiltro',
@@ -67,7 +99,7 @@ function ListarFasesFiltro(METid_metodologia,FAid_fase) {
             'METid_metodologia': METid_metodologia
         },
         success: function (response) {
-            debugger
+            
             let est = response.estado;
             let resp = response.data;
             if (est === true) {

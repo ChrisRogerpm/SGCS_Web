@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    $("#txt_estado").select2();
     $(".btnRegistrar").click(function () {
         var url = basepath + '/servicio/RegistrarMetodologia';
         $.ajax({
