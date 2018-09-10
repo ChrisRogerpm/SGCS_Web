@@ -13,8 +13,11 @@ class CreateMetodologiaProyectosTable extends Migration
      */
     public function up()
     {
-        Schema::create('metodologia_proyectos', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('sgcsMETPROpMetodologiaProyecto', function (Blueprint $table) {
+            $table->increments('METPROid_metodologiaproyecto');
+            $table->unsignedInteger('PROid_proyecto');
+            $table->unsignedInteger('METid_metodologia');
+            $table->unsignedInteger('METPROestado_metodologiaproyecto');
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ class CreateMetodologiaProyectosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('metodologia_proyectos');
+        Schema::dropIfExists('sgcsMETPROpMetodologiaProyecto');
     }
 }

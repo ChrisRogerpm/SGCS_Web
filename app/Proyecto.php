@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Auth;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\Model;
@@ -53,10 +54,31 @@ class Proyecto extends Model
 
     public static function fncProyectoEncargado()
     {
+        $id_usuario_logeado = Auth::user()->USUid_usuario;
         $resultado = DB::table('sgcsprotproyecto as p')
-            ->select('p.PROid_proyecto','p.PROnombre_proyecto','u.USUnombre_usuario','u.USUapellido_usuario','p.PROfecha_inicio_proyecto','p.PROfecha_fin_proyecto','p.PROestado_proyecto')
-            ->join('sgcsusutusuario as u','u.USUid_usuario','p.USUid_usuario')
+            ->select('p.PROid_proyecto', 'p.PROnombre_proyecto', 'u.USUnombre_usuario', 'u.USUapellido_usuario', 'p.PROfecha_inicio_proyecto', 'p.PROfecha_fin_proyecto', 'p.PROestado_proyecto')
+            ->join('sgcsusutusuario as u', 'u.USUid_usuario', 'p.USUid_usuario')
+            ->where('u.USUid_usuario', $id_usuario_logeado)
             ->get();
         return $resultado;
+    }
+
+    public static function fncProyectoEncargadoInformacion(Request $request)
+    {
+        $id_usuario_logeado = Auth::user()->USUid_usuario;
+        $proyecto_id = $request->input('PROid_proyecto');
+        $resultado = DB::table('sgcsprotproyecto as p')
+            ->select('p.PROid_proyecto', 'p.PROnombre_proyecto', 'u.USUnombre_usuario', 'u.USUapellido_usuario', 'p.PROfecha_inicio_proyecto', 'p.PROfecha_fin_proyecto', 'p.PROestado_proyecto')
+            ->join('sgcsusutusuario as u', 'u.USUid_usuario', 'p.USUid_usuario')
+            ->where('p.PROid_proyecto', $proyecto_id)
+            ->where('p.USUid_usuario', $id_usuario_logeado)
+            ->first();
+        return $resultado;
+    }
+
+    public static function fncValidarProyectoMetodlogia(Request $request)
+    {
+        $proyecto_id = $request->input('PROid_proyecto');
+//        $resultado = DB::table('sgcsprotproyecto as p')
     }
 }
