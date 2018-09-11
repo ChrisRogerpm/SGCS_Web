@@ -13,8 +13,11 @@ class CreateUsuarioProyectosTable extends Migration
      */
     public function up()
     {
-        Schema::create('usuario_proyectos', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('sgcsUSUPROpUsuarioProyecto', function (Blueprint $table) {
+            $table->increments('USUPROid_usuarioproyecto');
+            $table->unsignedInteger('USUid_usuario');
+            $table->unsignedInteger('PROid_proyecto');
+            $table->boolean('USUPROestado_usuarioproyecto');
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ class CreateUsuarioProyectosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usuario_proyectos');
+        Schema::dropIfExists('sgcsUSUPROpUsuarioProyecto');
     }
 }

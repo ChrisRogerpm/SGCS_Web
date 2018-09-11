@@ -13,8 +13,13 @@ class CreateTareaEntregableHistorialsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tarea_entregable_historials', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('sgcsTAHIpTareaEntregableHistorial', function (Blueprint $table) {
+            $table->increments('TAHIid_tareaversion');
+            $table->double('TAHInumeroversion');
+            $table->string('TAHIenlace_tareaversion');
+            $table->date('TAHIfecha_emitida_tareaversion');
+            $table->boolean('TAHIestado_tareaversion');
+            $table->unsignedInteger('TAREid_revision');
             $table->timestamps();
         });
     }
@@ -26,6 +31,6 @@ class CreateTareaEntregableHistorialsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tarea_entregable_historials');
+        Schema::dropIfExists('sgcsTAHIpTareaEntregableHistorial');
     }
 }

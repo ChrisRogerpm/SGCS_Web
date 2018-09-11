@@ -13,8 +13,13 @@ class CreateTareaEntregableRevisionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tarea_entregable_revisions', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('sgcsTAREpTareaEntregableRevision', function (Blueprint $table) {
+            $table->increments('TAREid_tarearevision');
+            $table->string('TAREobservacion_tarearevision');
+            $table->string('TAREurl_tarearevision');
+            $table->date('TAREfecha_emitida_tarearevision');
+            $table->boolean('TAREestado_tarearevision');
+            $table->unsignedInteger('ATPid_asignartareaproyecto');
             $table->timestamps();
         });
     }
@@ -26,6 +31,6 @@ class CreateTareaEntregableRevisionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tarea_entregable_revisions');
+        Schema::dropIfExists('sgcsTAREpTareaEntregableRevision');
     }
 }

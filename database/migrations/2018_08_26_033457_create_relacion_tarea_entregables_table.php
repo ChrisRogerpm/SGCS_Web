@@ -13,8 +13,10 @@ class CreateRelacionTareaEntregablesTable extends Migration
      */
     public function up()
     {
-        Schema::create('relacion_tarea_entregables', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('sgcsRETApRelacionTareaEntregable', function (Blueprint $table) {
+            $table->increments('RETAid_relaciontarea');
+            $table->unsignedInteger('TAid_tarea1');
+            $table->unsignedInteger('TAid_tarea2');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreateRelacionTareaEntregablesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('relacion_tarea_entregables');
+        Schema::dropIfExists('sgcsRETApRelacionTareaEntregable');
     }
 }

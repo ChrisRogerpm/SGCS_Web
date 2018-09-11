@@ -13,8 +13,15 @@ class CreateAsignarTareaEntregablesTable extends Migration
      */
     public function up()
     {
-        Schema::create('asignar_tarea_entregables', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('sgcsATEpAsignarTareaEntregable', function (Blueprint $table) {
+            $table->increments('ATEid_asignartareaproyecto');
+            $table->unsignedInteger('TAid_tarea');
+            $table->unsignedInteger('USUPROid_usuarioproyecto');
+            $table->unsignedInteger('FAid_fase');
+            $table->unsignedInteger('ENTRPROid_entregableproyecto');
+            $table->date('ATEfecha_inicio_tareaproyecto');
+            $table->date('ATEfecha_fin_tareaproyecto');
+            $table->boolean('ATEestado_tareaproyecto');
             $table->timestamps();
         });
     }
@@ -26,6 +33,6 @@ class CreateAsignarTareaEntregablesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('asignar_tarea_entregables');
+        Schema::dropIfExists('sgcsATEpAsignarTareaEntregable');
     }
 }

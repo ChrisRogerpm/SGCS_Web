@@ -78,7 +78,16 @@ class Proyecto extends Model
 
     public static function fncValidarProyectoMetodlogia(Request $request)
     {
+        $resultado = false;
         $proyecto_id = $request->input('PROid_proyecto');
-//        $resultado = DB::table('sgcsprotproyecto as p')
+        try {
+            $Validar = MetodologiaProyecto::where('PROid_proyecto', $proyecto_id)->count();
+            if ($Validar != 0){
+                $resultado = true;
+            }
+        } catch (\Exception $ex) {
+            $va = $ex;
+        }
+        return $resultado;
     }
 }

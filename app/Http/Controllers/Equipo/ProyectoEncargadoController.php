@@ -44,16 +44,17 @@ class ProyectoEncargadoController extends Controller
     public function fncInformacionProyectoEncargadoJson(Request $request)
     {
         $resultado = false;
+        $metodologia_proyecto = false;
         $proyecto_encargado = "";
         $mensaje_error = "";
         try {
-
             $proyecto_encargado = Proyecto::fncProyectoEncargadoInformacion($request);
+            $metodologia_proyecto = Proyecto::fncValidarProyectoMetodlogia($request);
             $resultado = true;
         } catch (\Exception $ex) {
             $mensaje_error = $ex;
         }
-        return response()->json(['estado' => $resultado, 'data' => $proyecto_encargado, 'mensaje' => $mensaje_error]);
+        return response()->json(['estado' => $resultado, 'data' => $proyecto_encargado, 'mensaje' => $mensaje_error, 'metodologia_proyecto' => $metodologia_proyecto]);
     }
 
     public function fncListarMetodologiasProyectoJson()
@@ -67,6 +68,10 @@ class ProyectoEncargadoController extends Controller
         } catch (\Exception $ex) {
             $mensaje_error = $ex;
         }
-        return response()->json(['estado' => $resultado, 'data' => $Metodologia_lista, 'mensaje' => $mensaje_error]);
+        return response()->json([
+            'estado' => $resultado,
+            'data' => $Metodologia_lista,
+            'mensaje' => $mensaje_error
+        ]);
     }
 }
