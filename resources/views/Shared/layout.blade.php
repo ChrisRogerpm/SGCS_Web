@@ -15,7 +15,6 @@
     <link href="../assets/admin/layout2/css/layout.css" rel="stylesheet">
     <script src="../assets/global/plugins/modernizr/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-
     @stack('Css')
 </head>
 <!-- LAYOUT: Apply "submenu-hover" class to body element to have sidebar submenu show on mouse hover -->
@@ -60,7 +59,7 @@
             </div>
             @if(Auth::user()->USUtipo_usuario == 1)
                 <ul class="nav nav-sidebar">
-                    <li><a href="#"><i class="icon-home"></i><span>Inicio</span></a></li>
+                    {{--<li><a href="#"><i class="icon-home"></i><span>Inicio</span></a></li>--}}
                     <li class="nav-parent">
                         <a href="#"><i class="icon-docs"></i><span>Proyectos</span><span class="fa arrow"></span></a>
                         <ul class="children collapse">
@@ -200,7 +199,7 @@
 {{--<script src="../assets/global/js/plugins.js"></script> <!-- Main Plugin Initialization Script -->--}}
 <script src="../assets/global/js/application.js"></script> <!-- Main Application Script -->
 <script src="../assets/admin/layout2/js/layout.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <script src="http://momentjs.com/downloads/moment.min.js"></script>
 <script src="../assets/global/js/general.js"></script>
 @stack('Js')

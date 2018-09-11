@@ -10,7 +10,7 @@ Route::post('CerrarSesion','Autenticacion\SeguridadController@fncCerrarSesion')-
 
 Route::group(['namespace' => 'Administrador'], function () {
     //Rutas de Vistas
-    Route::get('Administrador', 'AdministradorController@fncAdministradorVista')->name('Administrador');
+//    Route::get('Administrador', 'AdministradorController@fncAdministradorVista')->name('Administrador');
     Route::get('Proyecto', 'ProyectoController@fncProyectoVista')->name('Proyecto');
     Route::get('RegistrarProyecto', 'ProyectoController@fncRegistrarProyectoVista')->name('Proyecto.Registrar');
     Route::get('EditarProyecto/{id}', 'ProyectoController@fncEditarProyectoVista')->name('Proyecto.Editar');

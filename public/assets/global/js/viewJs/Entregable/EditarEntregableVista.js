@@ -1,3 +1,4 @@
+var iniciador;
 $(document).ready(function () {
     fncObtenerEntregable();
     $(".btnModificar").click(function () {
@@ -31,6 +32,11 @@ $(document).ready(function () {
     $(".btnVolver").click(function () {
         let url = basepath + '/Entregable';
         window.location.replace(url);
+    });
+
+    $("#txt_metodologia").change(function () {
+        var METid_metodologia = $("#txt_metodologia").val();
+        fncListarFasesFiltro(METid_metodologia);
     });
 });
 
@@ -79,7 +85,8 @@ function fncListarMetodologias(METid_metodologia) {
                 $.each(resp, function (ind, dat) {
                     $("#txt_metodologia").append('<option value="' + dat.METid_metodologia + '">' + dat.METnombre_metodologia + '</option>');
                 });
-                $("#txt_metodologia").val(METid_metodologia).change();
+                //$("#txt_metodologia").val(METid_metodologia).change();
+                $("#txt_metodologia").val(METid_metodologia);
                 $("#txt_metodologia").select2();
             } else {
                 toastr.error('Servicio no encontrado', 'Mensaje Servidor');
@@ -88,7 +95,31 @@ function fncListarMetodologias(METid_metodologia) {
     })
 }
 
-
+function fncListarFasesFiltro(METid_metodologia) {
+    $.ajax({
+        type: 'POST',
+        url: basepath +'/servicio/ListarFasesFiltro',
+        data: {
+            '_token': $('input[name=_token]').val(),
+            'METid_metodologia': METid_metodologia
+        },
+        success: function (response) {
+            let est = response.estado;
+            let resp = response.data;
+            if (est === true) {
+                var contenedor = $("#txt_fase");
+                $(contenedor).empty();
+                $(contenedor).append('<option value="0">--Seleccione--</option>');
+                $.each(resp, function (ind, data) {
+                    $(contenedor).append('<option value="' + data.FAid_fase + '">' + data.FAnombre_fase + '</option>');
+                });
+                $("#txt_fase").val(0).change();
+            } else {
+                toastr.error('Servicio no encontrado', 'Mensaje Servidor');
+            }
+        },
+    })
+}
 function ListarFasesFiltro(METid_metodologia,FAid_fase) {
     
     var dq = $.ajax({

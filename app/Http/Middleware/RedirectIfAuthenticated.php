@@ -20,7 +20,7 @@ class RedirectIfAuthenticated
         if (Auth::guard($guard)->check()) {
             if(auth()->user()->tipo_usuario == 1)
             {
-                return redirect('/Administrador');
+                return redirect('/Proyecto');
             }
             elseif (auth()->user()->tipo_usuario == 2)
             {

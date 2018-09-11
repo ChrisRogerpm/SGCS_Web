@@ -59,7 +59,9 @@ class FaseController extends Controller
         $mensaje_error = "";
         try {
             $Fases = Fase::fncRegistrarFase($request);
-            $resultado = true;
+            if ($Fases != null) {
+                $resultado = true;
+            }
         } catch (\Exception $ex) {
             $mensaje_error = $ex;
         }

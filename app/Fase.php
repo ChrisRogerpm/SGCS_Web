@@ -18,21 +18,27 @@ class Fase extends Model
     {
         //$resultado = Fase::all();
         $resultado = DB::table('sgcsfatfase as fa')
-            ->select('fa.FAid_fase','met.METnombre_metodologia','fa.FAnombre_fase','fa.FAestado_fase')
-            ->join('sgcsmettmetodologia as met','met.METid_metodologia','fa.METid_metodologia')
+            ->select('fa.FAid_fase', 'met.METnombre_metodologia', 'fa.FAnombre_fase', 'fa.FAestado_fase')
+            ->join('sgcsmettmetodologia as met', 'met.METid_metodologia', 'fa.METid_metodologia')
             ->get();
         return $resultado;
     }
 
     public static function fncRegistrarFase(Request $request)
     {
-        $fase = new Fase();
-        $fase->METid_metodologia = $request->input('METid_metodologia');
-        $fase->FAnombre_fase = $request->input('FAnombre_fase');
-        $fase->FAdescripcion_fase = $request->input('FAdescripcion_fase');
-        $fase->FAestado_fase = $request->input('FAestado_fase');
-        $fase->save();
-        return $fase;
+        $nro_fases_limite = Fase::fncNumeroFasesLimiteMetodologia($request->input('METid_metodologia'));
+        $nro_fases_registradas = Fase::fncNumeroFasesRegistradas($request->input('METid_metodologia'));
+
+        if($nro_fases_registradas < $nro_fases_limite){
+            $fase = new Fase();
+            $fase->METid_metodologia = $request->input('METid_metodologia');
+            $fase->FAnombre_fase = $request->input('FAnombre_fase');
+            $fase->FAdescripcion_fase = $request->input('FAdescripcion_fase');
+            $fase->FAestado_fase = $request->input('FAestado_fase');
+            $fase->save();
+            return $fase;
+        }
+        return null;
     }
 
     public static function fncEditarFase($FAid_fase)
@@ -55,10 +61,20 @@ class Fase extends Model
     public static function fncListrarFasesFiltro(Request $request)
     {
         $resultado = DB::table('sgcsfatfase as fa')
-            ->select('fa.FAid_fase','met.METnombre_metodologia','fa.FAnombre_fase','fa.FAestado_fase')
-            ->join('sgcsmettmetodologia as met','met.METid_metodologia','fa.METid_metodologia')
-            ->where('fa.METid_metodologia',$request->input('METid_metodologia'))
+            ->select('fa.FAid_fase', 'met.METnombre_metodologia', 'fa.FAnombre_fase', 'fa.FAestado_fase')
+            ->join('sgcsmettmetodologia as met', 'met.METid_metodologia', 'fa.METid_metodologia')
+            ->where('fa.METid_metodologia', $request->input('METid_metodologia'))
             ->get();
         return $resultado;
+    }
+
+    public static function fncNumeroFasesLimiteMetodologia($METid_metodologia)
+    {
+        return Metodologia::findorfail($METid_metodologia)->METnro_fases_metodologia;
+    }
+
+    public static function fncNumeroFasesRegistradas($METid_metodologia)
+    {
+        return Fase::where('METid_metodologia',$METid_metodologia)->count();
     }
 }

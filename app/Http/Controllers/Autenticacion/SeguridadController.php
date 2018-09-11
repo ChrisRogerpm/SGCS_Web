@@ -31,7 +31,7 @@ class SeguridadController extends Controller
             'password' => $request->input('password')
         ])) {
             if (auth()->user()->USUtipo_usuario == 1) {
-                return response()->json('Administrador');
+                return response()->json('Proyecto');
             } elseif (auth()->user()->USUtipo_usuario == 2) {
                 return response()->json('Equipo');
             }

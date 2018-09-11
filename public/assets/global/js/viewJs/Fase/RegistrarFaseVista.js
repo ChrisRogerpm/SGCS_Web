@@ -15,6 +15,7 @@ $(document).ready(function () {
                 'FAestado_fase': $("#txt_estado").val()
             },
             success: function (response) {
+                debugger
                 let est = response.estado;
                 if (est === true) {
                     toastr.success('Se registro satisfactoriamente', 'Mensaje Servidor');

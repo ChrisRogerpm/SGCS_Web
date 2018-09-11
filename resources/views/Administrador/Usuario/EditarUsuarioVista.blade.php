@@ -1,5 +1,9 @@
 @extends('Shared.layout')
 
+@push('Css')
+    <link href="../assets/global/plugins/input-text/style.min.css" rel="stylesheet">
+@endpush
+
 
 @section('content')
     <div class="header">
@@ -66,6 +70,18 @@
                                     <input type="file" name="USUfoto_usuario" class="form-control" id="txt_imagen_usuario">
                                 </div>
                             </div>
+                            <div class="col-md-4">
+                                <div class="form-group pos-rel">
+                                    <p><strong>Resetear Contraseña</strong>
+                                    </p>
+                                    <div class="input-group">
+                                        <div class="icheck-inline">
+                                            <label><input type="radio" name="reiniciar" data-radio="iradio_minimal-blue" value="1"> Si</label>
+                                            <label><input type="radio" name="reiniciar" checked data-radio="iradio_minimal-blue" value="0"> No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-sm-9 col-sm-offset-3">
                                 <div class="pull-right">
                                     <button type="submit" class="btn btn-embossed btn-success m-r-20 btnModificar">Modificar
@@ -83,5 +99,6 @@
 @endsection
 
 @push('Js')
+    <script src="../assets/global/js/pages/form_icheck.js"></script>  <!-- Change Icheck Color - DEMO PURPOSE - OPTIONAL -->
     <script src="../assets/global/js/viewJs/Usuario/EditarUsuarioVista.js"></script>
 @endpush
