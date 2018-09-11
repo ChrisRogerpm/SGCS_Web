@@ -15,14 +15,28 @@ function fncListarEstructuraProyecto() {
         success:function (response) {
             debugger
             var resp = response.data;
-            if (response.estado === true){
-                $("#nombre_proyecto").val(resp.PROnombre_proyecto);
-                $("#jefe_proyecto").val(resp.USUnombre_usuario);
-                $("#fecha_inicio").val(resp.PROfecha_inicio_proyecto);
-                $("#fecha_fin").val(resp.PROfecha_fin_proyecto);
-                fncListarMetodologias();
+            var mepro = response.metodologia_proyecto;
+
+            if (mepro === true){
+                $( ".contenedor-metodologia-proyecto" ).remove();
+                if (response.estado === true){
+                    $("#nombre_proyecto").val(resp.PROnombre_proyecto);
+                    $("#jefe_proyecto").val(resp.USUnombre_usuario);
+                    $("#fecha_inicio").val(resp.PROfecha_inicio_proyecto);
+                    $("#fecha_fin").val(resp.PROfecha_fin_proyecto);
+                } else{
+                    toastr.error('Servicio no encontrado','Mensaje Servidor');
+                }
             } else{
-                toastr.error('Servicio no encontrado','Mensaje Servidor');
+                if (response.estado === true){
+                    $("#nombre_proyecto").val(resp.PROnombre_proyecto);
+                    $("#jefe_proyecto").val(resp.USUnombre_usuario);
+                    $("#fecha_inicio").val(resp.PROfecha_inicio_proyecto);
+                    $("#fecha_fin").val(resp.PROfecha_fin_proyecto);
+                    fncListarMetodologias();
+                } else{
+                    toastr.error('Servicio no encontrado','Mensaje Servidor');
+                }
             }
         },
         error:function (response) {

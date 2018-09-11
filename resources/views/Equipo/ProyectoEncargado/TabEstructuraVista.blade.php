@@ -76,19 +76,21 @@
                                                             <input type="text" class="form-control form-white" disabled id="fecha_fin">
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="form-group">
-                                                            <label>Metodologia</label>
-                                                            <select id="metodologia_id"
-                                                                    class="form-control form-white select2">
-                                                                <option value="">Seleccione</option>
-                                                            </select>
+                                                    <div class="contenedor-metodologia-proyecto">
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group">
+                                                                <label>Metodologia</label>
+                                                                <select id="metodologia_id"
+                                                                        class="form-control form-white select2">
+                                                                    <option value="">Seleccione</option>
+                                                                </select>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <button type="button" class="btn btn-primary btn-sm btn-block">
-                                                            Seleccionar Metodologia
-                                                        </button>
+                                                        <div class="col-lg-12">
+                                                            <button type="button" class="btn btn-primary btn-sm btn-block">
+                                                                Seleccionar Metodologia
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
