@@ -66,11 +66,11 @@ Route::group(['namespace' => 'Equipo'], function () {
     Route::get('Equipo', 'EquipoController@fncMostrarEquipo')->name('Equipo');
     Route::get('ProyectosEncargados','ProyectoEncargadoController@fncProyectoEncargadoVista')->name('ProyectosEncargados');
     Route::get('InformacionProyectoEncargado/{id}','ProyectoEncargadoController@fncInformacionProyectoEncargadoVista')->name('ProyectoEncargado.Informacion');
-    Route::get('EstructuraProyectoEncargado/{id}','ProyectoEncargadoController@fncEstructuraProyectoEncargadoVista')->name('ProyectoEncargado.Estructura');
 
     Route::get('servicio/ProyectosEncargados','ProyectoEncargadoController@fncProyectoEncargadoJson');
     Route::post('servicio/InformacionProyectosEncargado','ProyectoEncargadoController@fncInformacionProyectoEncargadoJson');
     Route::get('servicio/ListarMetodologiasPro', 'ProyectoEncargadoController@fncListarMetodologiasProyectoJson');
+    Route::post('servicio/ListarUsuarioProyecto','UsuarioProyectoController@fncListarUsuarioProyectoJson');
 });
 
 // 'middleware' => ['auth', 'administrador'],

@@ -20,13 +20,6 @@ class ProyectoEncargadoController extends Controller
         return view('Equipo.ProyectoEncargado.InformacionProyectoEncargado', compact('proyecto_id'));
     }
 
-    public function fncEstructuraProyectoEncargadoVista($PROid_proyecto)
-    {
-        $proyecto_id = $PROid_proyecto;
-        return view('Equipo.ProyectoEncargado.TabEstructuraVista', compact('proyecto_id'));
-    }
-
-
     public function fncProyectoEncargadoJson()
     {
         $resultado = false;

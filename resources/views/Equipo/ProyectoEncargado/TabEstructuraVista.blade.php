@@ -22,6 +22,7 @@
             <div class="panel">
                 <div class="panel-content">
                     <div class="nav-tabs3">
+                        <input type="hidden" id="id_proyecto_encargado" value="{{$proyecto_id}}">
                         <ul id="myTab6" class="nav nav-tabs">
                             <li class="active"><a href="#tab_1" data-toggle="tab" class="btnTab"><i
                                             class="icon-home"></i>Estructura</a></li>
@@ -42,7 +43,6 @@
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane fade active in" id="tab_1">
-                                <input type="hidden" id="id_proyecto_encargado" value="{{$proyecto_id}}">
                                 <div class="row">
                                     <div class="col-lg-3">
                                         <div class="panel">
