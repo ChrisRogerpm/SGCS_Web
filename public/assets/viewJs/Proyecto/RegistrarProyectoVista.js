@@ -1,9 +1,7 @@
 $(document).ready(function () {
     $("#txt_usuario").select2();
     $("#txt_estado").select2();
-    $(".b-datepicker").bootstrapDatepicker();
     ListarUsuarios();
-
     $(".btnRegistrar").click(function () {
         var url = basepath + '/servicio/RegistrarProyecto';
         $.ajax({

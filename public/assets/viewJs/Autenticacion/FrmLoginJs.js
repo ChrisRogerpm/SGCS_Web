@@ -15,7 +15,7 @@ function fncValidarLoginJs(basepath) {
             'password': $("#password").val(),
         },
         success: function (response) {
-            toastr.warning('Bienvenido ' + response + '!', 'Mensaje Servidor', {timeOut: 2000});
+            toastr.success('Bienvenido ' + response + '!', 'Mensaje Servidor', {timeOut: 2000});
             setTimeout(function () {
                 window.location.replace(basepath + '/' + response);
             }, 2200);

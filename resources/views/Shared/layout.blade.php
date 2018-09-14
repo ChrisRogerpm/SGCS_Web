@@ -68,7 +68,14 @@
                         <ul class="dropdown-menu dropdown-menu-right">
                             <li class="divider"></li>
                             <li><a href="#">Perfil</a></li>
-                            <li><a href="#">Cerrar Sesión</a></li>
+                            <li>
+                                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    Cerrar Sesión
+                                </a>
+                                <form id="logout-form" action="{{ route('CerrarSesion') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </li>
                         </ul>
                     </li>
                     <li class="visible-xs-block">
@@ -78,10 +85,12 @@
                         </a>
                     </li>
                     <li class="visible-xs-block">
-                        <a href="login-1.html">
-                            <span class="icon icon-power-off icon-lg icon-fw"></span>
-                            Cerrar Sesión
+                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <span class="icon icon-power-off icon-lg icon-fw"></span> Cerrar Sesión
                         </a>
+                        <form id="logout-form" action="{{ route('CerrarSesion') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
                     </li>
                 </ul>
             </nav>
@@ -168,6 +177,7 @@
     </div>
     <div class="layout-content">
         <div class="layout-content-body">
+            {{csrf_field()}}
             @yield('content')
         </div>
     </div>

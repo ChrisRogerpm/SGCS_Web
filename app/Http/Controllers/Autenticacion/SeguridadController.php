@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Session;
 
 class SeguridadController extends Controller
 {
@@ -42,6 +43,7 @@ class SeguridadController extends Controller
     public function fncCerrarSesion()
     {
         Auth::logout();
+        Session::flash('Logout', 'Vuelva Pronto, lo esperamos');
         return redirect('Autenticacion/login');
     }
 }

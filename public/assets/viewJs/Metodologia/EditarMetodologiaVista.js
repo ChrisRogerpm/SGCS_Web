@@ -1,6 +1,6 @@
 $(document).ready(function () {
     ObtenerMetodologia();
-
+    $("#txt_estado").select2();
     $(".btnModificar").click(function () {
         var url = basepath + '/servicio/ModificarMetodologia';
         $.ajax({

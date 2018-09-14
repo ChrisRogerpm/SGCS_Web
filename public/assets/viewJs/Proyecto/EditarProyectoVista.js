@@ -1,7 +1,6 @@
 $(document).ready(function () {
     $("#txt_usuario").select2();
     $("#txt_estado").select2();
-    $(".b-datepicker").bootstrapDatepicker();
     ObtenerProyecto();
     $(".btnModificar").click(function () {
         var url = basepath + '/servicio/ModificarProyecto';
@@ -26,7 +25,6 @@ $(document).ready(function () {
                 }
             },
             error:function (data) {
-                // debugger
                 var validar = data.responseJSON;
                 var errors = validar.errors;
                 console.log(errors.PROnombre_proyecto[0]);
