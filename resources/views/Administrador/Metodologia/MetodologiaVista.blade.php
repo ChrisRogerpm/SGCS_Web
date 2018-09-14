@@ -1,27 +1,14 @@
 @extends('Shared.layout')
 
-@push('Css')
-    <link href="../assets/global/plugins/datatables/dataTables.min.css" rel="stylesheet">
-@endpush
-
-
 @section('content')
-    <div class="header">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="panel">
-                    <div class="panel-header bg-dark text-center">
-                        <h3>LISTA DE METODOLOGIAS</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="text-center m-b">
+        <h3 class="m-b-0">LISTA DE METODOLOGIAS</h3>
     </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel">
-                <div class="panel-content pagination2 table-responsive">
-                    <table class="table table-bordered" id="tabla">
+    <div class="row gutter-xs">
+        <div class="col-xs-12">
+            <div class="card">
+                <div class="card-body">
+                    <table id="tabla" class="table table-striped table-bordered table-nowrap dataTable" cellspacing="0" width="100%">
                     </table>
                 </div>
             </div>
@@ -31,8 +18,5 @@
 
 
 @push('Js')
-    <script src="../assets/global/plugins/datatables/jquery.dataTables.min.js"></script> <!-- Tables Filtering, Sorting & Editing -->
-    <script src="../assets/global/plugins/datatables/dataTables.bootstrap.min.js"></script>
-    <script src="../assets/global/js/pages/table_dynamic.js"></script>
-    <script src="../assets/global/js/viewJs/Metodologia/MetodologiaVista.js"></script>
+    <script src="../assets/viewJs/Metodologia/MetodologiaVista.js"></script>
 @endpush
