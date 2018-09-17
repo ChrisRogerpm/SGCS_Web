@@ -70,7 +70,8 @@ Route::group(['namespace' => 'Equipo'], function () {
     Route::get('servicio/ProyectosEncargados','ProyectoEncargadoController@fncProyectoEncargadoJson');
     Route::post('servicio/InformacionProyectosEncargado','ProyectoEncargadoController@fncInformacionProyectoEncargadoJson');
     Route::get('servicio/ListarMetodologiasPro', 'ProyectoEncargadoController@fncListarMetodologiasProyectoJson');
-    Route::post('servicio/ListarUsuarioProyecto','UsuarioProyectoController@fncListarUsuarioProyectoJson');
+    Route::get('servicio/ListarUsuarioProyecto','UsuarioProyectoController@fncListarUsuarioProyectoJson');
+//    Route::get
 });
 
 // 'middleware' => ['auth', 'administrador'],

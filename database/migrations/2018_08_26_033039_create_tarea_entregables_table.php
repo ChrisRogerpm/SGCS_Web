@@ -13,7 +13,7 @@ class CreateTareaEntregablesTable extends Migration
      */
     public function up()
     {
-        Schema::create('sgcsTApTareaProyecto', function (Blueprint $table) {
+        Schema::create('sgcsTApTareaEntregable', function (Blueprint $table) {
             $table->increments('TAid_tarea');
             $table->unsignedInteger('FAid_fase');
             $table->unsignedInteger('ENTPROid_entregableproyecto');
@@ -31,6 +31,6 @@ class CreateTareaEntregablesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sgcsTApTareaProyecto');
+        Schema::dropIfExists('sgcsTApTareaEntregable');
     }
 }

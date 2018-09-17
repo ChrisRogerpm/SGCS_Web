@@ -1,10 +1,11 @@
 $(document).ready(function () {
-
     fncListarEstructuraProyecto();
     // fncListarMiembrosEquipo();
     $("#TabEstructura").click(function () {
         fncListarEstructuraProyecto();
-        fncListarMiembrosEquipo();
+    });
+    $("#TabEquipo").click(function () {
+        fncListarUsuarios();
     });
 });
 
@@ -20,7 +21,7 @@ function fncListarEstructuraProyecto() {
             'PROid_proyecto': proyecto_id
         },
         success: function (response) {
-            debugger
+
             var resp = response.data;
             var mepro = response.metodologia_proyecto;
             var usu_total = response.usuario_proyecto_total;
@@ -38,7 +39,7 @@ function fncListarEstructuraProyecto() {
                     var start = moment(resp.PROfecha_inicio_proyecto, "YYYY-MM-DD");
                     var end = moment(resp.PROfecha_fin_proyecto, "YYYY-MM-DD");
                     $("#DiasRestantes").val(moment.duration(end.diff(start)).asDays() + ' día(s)');
-                    $(".EquipoTrabajo").text();
+                    $(".EquipoTrabajo").text(usu_total);
 
                 } else {
                     toastr.error('Servicio no encontrado', 'Mensaje Servidor');
@@ -59,7 +60,7 @@ function fncListarEstructuraProyecto() {
                     '                </div>\n' +
                     '            </div>');
                 if (response.estado === true) {
-                    debugger
+
                     $("#NombreProyecto").val(resp.PROnombre_proyecto);
                     $("#JefeProyecto").val(resp.USUnombre_usuario);
                     $("#InicioProyecto").val(resp.PROfecha_inicio_proyecto);
@@ -108,17 +109,17 @@ function fncListarMiembrosEquipo() {
     $.ajax({
         type: 'POST',
         url: url,
-        cache:false,
+        cache: false,
         data: {
             '_token': $('input[name=_token]').val(),
             'PROid_proyecto': proyecto_id
         },
         success: function (response) {
-            debugger
+
             var resp = response.data;
             var cantidad = resp.length;
             if (response.estado === true) {
-                if (cantidad > 0){
+                if (cantidad > 0) {
                     var registro = "";
                     $.each(resp, function (ind, value) {
                         registro += '<tr>';
@@ -126,10 +127,33 @@ function fncListarMiembrosEquipo() {
                         registro += '</tr>';
                     });
                     $(".tablaMiembrosEquipo").empty().append(registro);
-                }else{
+                } else {
                     var registro = "<tr><td>No se ha registrado ningun miembro</td></tr>";
                     $(".tablaMiembrosEquipo").empty().append(registro);
                 }
+            }
+        },
+        error: function (response) {
+
+        }
+    });
+}
+
+function fncListarUsuarios() {
+    const url = basepath + "/servicio/ListarUsuarios";
+    $.ajax({
+        type: 'GET',
+        url: url,
+        cache: false,
+        success: function (response) {
+            // debugger
+            var resp = response.data;
+            $("#USUid_usuario").empty();
+            if (response.estado === true) {
+                $.each(resp, function (key, value) {
+                    $("#USUid_usuario").append('<option value="' + value.USUid_usuario + '">' + value.USUnombre_usuario + '"< /option>');
+                });
+                // $(".Duallistbox").bootstrapDualListbox();
             }
         },
         error: function (response) {

@@ -1,2 +1,4 @@
 var basepath = document.location.origin;
-$(".datepickerfecha").datepicker();
+$(document).ready(function () {
+    $(".datepickerfecha").datepicker();
+});
