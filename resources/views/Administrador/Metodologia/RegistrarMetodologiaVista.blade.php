@@ -5,7 +5,6 @@
     <div class="text-center m-b">
         <h3 class="m-b-0">REGISTRAR DE METODOLOGIA</h3>
     </div>
-
     <div class="card">
         <div class="card-body">
             <div class="row">

@@ -1,7 +1,6 @@
 $(document).ready(function () {
 
     fncListarMetodologiasJs();
-
     $(document).on('click', '.btnInfo', function () {
         let id = $(this).data("id");
         let url = '/InformacionProyectoEncargado/' + id;
@@ -23,14 +22,13 @@ function fncListarMetodologiasJs() {
                 $("#tabla").DataTable({
                     data: resp,
                     columns: [
-                        {data: "PROid_proyecto", title: "Id"},
                         {data: "PROnombre_proyecto", title: "Proyecto"},
                         {data: "PROfecha_inicio_proyecto", title: "Fecha de Inicio"},
                         {data: "PROfecha_inicio_proyecto", title: "Fecha de Finalización"},
                         {
                             data: null, title: "Acción",
                             render: function (value) {
-                                return '<button type="button" class="btn btn-sm btn-success btnInfo" data-id="' + value.PROid_proyecto + '"><i class="glyphicon glyphicon-plus"></i> Información</button>';
+                                return '<button type="button" class="btn btn-sm btn-success btnInfo" data-id="' + value.PROid_proyecto + '"><i class="icon icon-plus-circle"></i> Información</button>';
                             }
                         }
 
@@ -40,5 +38,5 @@ function fncListarMetodologiasJs() {
                 toastr.error('Servicio no encontrado', 'Mensaje Servidor');
             }
         },
-    })
+    });
 }

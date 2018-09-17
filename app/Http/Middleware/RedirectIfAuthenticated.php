@@ -18,11 +18,11 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            if(auth()->user()->tipo_usuario == 1)
+            if(Auth::User()->USUtipo_usuario == 1)
             {
                 return redirect('/Proyecto');
             }
-            elseif (auth()->user()->tipo_usuario == 2)
+            elseif (Auth::User()->USUtipo_usuario == 2)
             {
                 return redirect('/Equipo');
             }

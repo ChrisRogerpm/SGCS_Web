@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Equipo;
 
 use App\Metodologia;
 use App\Proyecto;
+use App\UsuarioProyecto;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -38,16 +39,24 @@ class ProyectoEncargadoController extends Controller
     {
         $resultado = false;
         $metodologia_proyecto = false;
+        $usuario_proyecto_total = "";
         $proyecto_encargado = "";
         $mensaje_error = "";
         try {
             $proyecto_encargado = Proyecto::fncProyectoEncargadoInformacion($request);
             $metodologia_proyecto = Proyecto::fncValidarProyectoMetodlogia($request);
+            $usuario_proyecto_total = UsuarioProyecto::fncUsuarioProyectoTotal($request);
             $resultado = true;
         } catch (\Exception $ex) {
             $mensaje_error = $ex;
         }
-        return response()->json(['estado' => $resultado, 'data' => $proyecto_encargado, 'mensaje' => $mensaje_error, 'metodologia_proyecto' => $metodologia_proyecto]);
+        return response()->json([
+            'estado' => $resultado,
+            'data' => $proyecto_encargado,
+            'mensaje' => $mensaje_error,
+            'usuario_proyecto_total' => $usuario_proyecto_total,
+            'metodologia_proyecto' => $metodologia_proyecto
+        ]);
     }
 
     public function fncListarMetodologiasProyectoJson()

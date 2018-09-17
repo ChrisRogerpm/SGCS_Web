@@ -1,6 +1,6 @@
 $(document).ready(function () {
     ObtenerUsuario();
-    handleiCheck();
+    $("#txt_tipo_usuario").select2();
     $("#frmNuevo").on('submit', function (e) {
         e.preventDefault();
         $.ajax({
@@ -49,29 +49,6 @@ function ObtenerUsuario() {
             } else {
                 toastr.error('Servicio no encontrado', 'Mensaje Servidor');
             }
-        }
-    });
-}
-
-function handleiCheck() {
-
-    if (!$().iCheck)  return;
-    $(':checkbox:not(.js-switch, .switch-input, .switch-iphone, .onoffswitch-checkbox, .ios-checkbox, .md-checkbox), :radio:not(.md-radio)').each(function() {
-
-        var checkboxClass = $(this).attr('data-checkbox') ? $(this).attr('data-checkbox') : 'icheckbox_minimal-grey';
-        var radioClass = $(this).attr('data-radio') ? $(this).attr('data-radio') : 'iradio_minimal-grey';
-
-        if (checkboxClass.indexOf('_line') > -1 || radioClass.indexOf('_line') > -1) {
-            $(this).iCheck({
-                checkboxClass: checkboxClass,
-                radioClass: radioClass,
-                insert: '<div class="icheck_line-icon"></div>' + $(this).attr("data-label")
-            });
-        } else {
-            $(this).iCheck({
-                checkboxClass: checkboxClass,
-                radioClass: radioClass
-            });
         }
     });
 }

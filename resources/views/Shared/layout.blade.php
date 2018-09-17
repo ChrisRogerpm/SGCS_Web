@@ -104,72 +104,89 @@
             <div class="custom-scrollbar">
                 <nav id="sidenav" class="sidenav-collapse collapse">
                     <ul class="sidenav level-1">
-                        <li class="sidenav-search">
-                            <form class="sidenav-form" action="http://demo.madebytilde.com/">
-                                <div class="form-group form-group-sm">
-                                    <div class="input-with-icon">
-                                        <input class="form-control" type="text" placeholder="Search…">
-                                        <span class="icon icon-search input-icon"></span>
-                                    </div>
-                                </div>
-                            </form>
-                        </li>
-                        <li class="sidenav-heading">Navigation</li>
-                        <li class="sidenav-item has-subnav">
-                            <a href="#" aria-haspopup="true">
-                                <span class="sidenav-icon icon icon-works">&#103;</span>
-                                <span class="sidenav-label">Proyectos</span>
-                            </a>
-                            <ul class="sidenav level-2 collapse">
-                                <li class="sidenav-heading">Proyectos</li>
-                                <li><a href="{{route('Proyecto.Registrar')}}">Registro de Proyecto</a></li>
-                                <li><a href="{{route('Proyecto')}}">Listar Proyectos</a></li>
-                            </ul>
-                        </li>
-                        <li class="sidenav-item has-subnav">
-                            <a href="#" aria-haspopup="true">
-                                <span class="sidenav-icon icon icon-works">&#103;</span>
-                                <span class="sidenav-label">Metodologia</span>
-                            </a>
-                            <ul class="sidenav level-2 collapse">
-                                <li class="sidenav-heading">Metodologia</li>
-                                <li><a href="{{route('Metodologia.Registrar')}}">Registro de Metodologia</a></li>
-                                <li><a href="{{route('Metodologia')}}">Listar Metodologia</a></li>
-                            </ul>
-                        </li>
-                        <li class="sidenav-item has-subnav">
-                            <a href="#" aria-haspopup="true">
-                                <span class="sidenav-icon icon icon-works">&#103;</span>
-                                <span class="sidenav-label">Fase</span>
-                            </a>
-                            <ul class="sidenav level-2 collapse">
-                                <li class="sidenav-heading">Fase</li>
-                                <li><a href="{{route('Fase.Registrar')}}">Registro de Fase</a></li>
-                                <li><a href="{{route('Fase')}}">Listar Fase</a></li>
-                            </ul>
-                        </li>
-                        <li class="sidenav-item has-subnav">
-                            <a href="#" aria-haspopup="true">
-                                <span class="sidenav-icon icon icon-works">&#103;</span>
-                                <span class="sidenav-label">Entregable</span>
-                            </a>
-                            <ul class="sidenav level-2 collapse">
-                                <li class="sidenav-heading">Entregable</li>
-                                <li><a href="{{route('Entregable.Registrar')}}">Registro de Entregable</a></li>
-                                <li><a href="{{route('Entregable')}}">Listar Entregable</a></li>
-                            </ul>
-                        </li>
-                        <li class="sidenav-item has-subnav">
-                            <a href="#" aria-haspopup="true">
-                                <span class="sidenav-icon icon icon-works">&#103;</span>
-                                <span class="sidenav-label">Usuario</span>
-                            </a>
-                            <ul class="sidenav level-2 collapse">
-                                <li class="sidenav-heading">Usuario</li>
-                                <li><a href="{{route('Usuario.Registrar')}}">Registro de Usuario</a></li>
-                                <li><a href="{{route('Usuario')}}">Listar Usuario</a></li>
-                            </ul>
-                        </li>
+                        <li class="sidenav-heading">MODULOS</li>
+                        @if(Auth::user()->USUtipo_usuario == 1)
+                            <li class="sidenav-item has-subnav">
+                                <a href="#" aria-haspopup="true">
+                                    <span class="sidenav-icon icon icon-works">&#103;</span>
+                                    <span class="sidenav-label">Proyectos</span>
+                                </a>
+                                <ul class="sidenav level-2 collapse">
+                                    <li class="sidenav-heading">Proyectos</li>
+                                    <li><a href="{{route('Proyecto.Registrar')}}">Registro de Proyecto</a></li>
+                                    <li><a href="{{route('Proyecto')}}">Listar Proyectos</a></li>
+                                </ul>
+                            </li>
+                            <li class="sidenav-item has-subnav">
+                                <a href="#" aria-haspopup="true">
+                                    <span class="sidenav-icon icon icon-works">&#103;</span>
+                                    <span class="sidenav-label">Metodologia</span>
+                                </a>
+                                <ul class="sidenav level-2 collapse">
+                                    <li class="sidenav-heading">Metodologia</li>
+                                    <li><a href="{{route('Metodologia.Registrar')}}">Registro de Metodologia</a></li>
+                                    <li><a href="{{route('Metodologia')}}">Listar Metodologia</a></li>
+                                </ul>
+                            </li>
+                            <li class="sidenav-item has-subnav">
+                                <a href="#" aria-haspopup="true">
+                                    <span class="sidenav-icon icon icon-works">&#103;</span>
+                                    <span class="sidenav-label">Fase</span>
+                                </a>
+                                <ul class="sidenav level-2 collapse">
+                                    <li class="sidenav-heading">Fase</li>
+                                    <li><a href="{{route('Fase.Registrar')}}">Registro de Fase</a></li>
+                                    <li><a href="{{route('Fase')}}">Listar Fase</a></li>
+                                </ul>
+                            </li>
+                            <li class="sidenav-item has-subnav">
+                                <a href="#" aria-haspopup="true">
+                                    <span class="sidenav-icon icon icon-works">&#103;</span>
+                                    <span class="sidenav-label">Entregable</span>
+                                </a>
+                                <ul class="sidenav level-2 collapse">
+                                    <li class="sidenav-heading">Entregable</li>
+                                    <li><a href="{{route('Entregable.Registrar')}}">Registro de Entregable</a></li>
+                                    <li><a href="{{route('Entregable')}}">Listar Entregable</a></li>
+                                </ul>
+                            </li>
+                            <li class="sidenav-item has-subnav">
+                                <a href="#" aria-haspopup="true">
+                                    <span class="sidenav-icon icon icon-works">&#103;</span>
+                                    <span class="sidenav-label">Usuario</span>
+                                </a>
+                                <ul class="sidenav level-2 collapse">
+                                    <li class="sidenav-heading">Usuario</li>
+                                    <li><a href="{{route('Usuario.Registrar')}}">Registro de Usuario</a></li>
+                                    <li><a href="{{route('Usuario')}}">Listar Usuario</a></li>
+                                </ul>
+                            </li>
+                        @else
+                            <li class="sidenav-item">
+                                <a href="#">
+                                    <span class="sidenav-icon icon icon-home"></span>
+                                    <span class="sidenav-label">Inicio</span>
+                                </a>
+                            </li>
+                            <li class="sidenav-item">
+                                <a href="{{route('ProyectosEncargados')}}">
+                                    <span class="sidenav-icon icon icon-home"></span>
+                                    <span class="sidenav-label">Proyectos</span>
+                                </a>
+                            </li>
+                            <li class="sidenav-item">
+                                <a href="#">
+                                    <span class="sidenav-icon icon icon-home"></span>
+                                    <span class="sidenav-label">Tareas</span>
+                                </a>
+                            </li>
+                            <li class="sidenav-item">
+                                <a href="#">
+                                    <span class="sidenav-icon icon icon-home"></span>
+                                    <span class="sidenav-label">Solicitudes</span>
+                                </a>
+                            </li>
+                        @endif
                     </ul>
                 </nav>
             </div>

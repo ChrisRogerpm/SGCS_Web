@@ -3,8 +3,20 @@ $(document).ready(function () {
         let basepath = window.location.origin;
         fncValidarLoginJs(basepath);
     });
-});
 
+    $( "#Codigo" ).keypress(function(e) {
+        if(e.which == 13) {
+            let basepath = window.location.origin;
+            fncValidarLoginJs(basepath)
+        }
+    });
+    $("#password").keypress(function (e) {
+        if (e.which == 13){
+            let basepath = window.location.origin;
+            fncValidarLoginJs(basepath)
+        }
+    })
+});
 function fncValidarLoginJs(basepath) {
     $.ajax({
         type: 'POST',
@@ -18,7 +30,7 @@ function fncValidarLoginJs(basepath) {
             toastr.success('Bienvenido ' + response + '!', 'Mensaje Servidor', {timeOut: 2000});
             setTimeout(function () {
                 window.location.replace(basepath + '/' + response);
-            }, 2200);
+            }, 1500);
         },
         error: function () {
             toastr.error('Usuario no encontrado', 'Mensaje Servidor');

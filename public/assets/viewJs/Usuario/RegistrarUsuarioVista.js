@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    $("#txt_tipo_usuario").select2();
     $("#frmNuevo").on('submit', function (e) {
         e.preventDefault();
         $.ajax({
