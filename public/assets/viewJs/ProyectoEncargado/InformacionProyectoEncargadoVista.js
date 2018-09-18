@@ -146,14 +146,13 @@ function fncListarUsuarios() {
         url: url,
         cache: false,
         success: function (response) {
-            // debugger
             var resp = response.data;
             $("#USUid_usuario").empty();
             if (response.estado === true) {
                 $.each(resp, function (key, value) {
-                    $("#USUid_usuario").append('<option value="' + value.USUid_usuario + '">' + value.USUnombre_usuario + '"< /option>');
+                    $("#USUid_usuario").append('<option value="' + value.USUid_usuario + '">' + value.USUnombre_usuario + '</option>');
                 });
-                // $(".Duallistbox").bootstrapDualListbox();
+                fncDuallistbox();
             }
         },
         error: function (response) {

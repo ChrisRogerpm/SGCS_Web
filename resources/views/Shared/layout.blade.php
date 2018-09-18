@@ -211,6 +211,6 @@
 <script src="../assets/viewJs/general.js"></script>
 <script src="http://momentjs.com/downloads/moment.min.js"></script>
 @stack('Js')
-<script src="../assets/viewJs/duallistboxcustom.js"></script>
+{{--<script src="../assets/viewJs/duallistboxcustom.js"></script>--}}
 </body>
 </html>

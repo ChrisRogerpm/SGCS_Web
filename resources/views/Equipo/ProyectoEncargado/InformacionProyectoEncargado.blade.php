@@ -1,7 +1,7 @@
 @extends('Shared.layout')
 
 @push('Css')
-    <link rel="stylesheet" href="../assets/viewJs/bootstrap-duallistbox.min.css">
+    <link rel="stylesheet" href="../assets/viewJs/bootstrap-duallistbox.css">
 @endpush
 
 

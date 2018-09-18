@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $(".Duallistbox").bootstrapDualListbox();
+    // $(".Duallistbox").bootstrapDualListbox();
     $(".Duallistbox").prop("disabled", true);
     $(".Duallistbox").prop("disabled", true);
     $(".Duallistbox").parent().find(".moveall").remove();
