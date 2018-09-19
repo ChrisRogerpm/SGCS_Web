@@ -6,6 +6,7 @@ $(document).ready(function () {
     });
     $("#TabEquipo").click(function () {
         fncListarUsuarios();
+        fncListarUsuarioProyecto();
     });
 });
 
@@ -153,6 +154,53 @@ function fncListarUsuarios() {
                     $("#USUid_usuario").append('<option value="' + value.USUid_usuario + '">' + value.USUnombre_usuario + '</option>');
                 });
                 fncDuallistbox();
+            }
+        },
+        error: function (response) {
+
+        }
+    });
+}
+
+function fncListarUsuarioProyecto() {
+    const url = basepath + "/servicio/ListarUsuarioProyecto";
+    const proyecto_id = $("#id_proyecto_encargado").val();
+    $.ajax({
+        type: 'POST',
+        url: url,
+        cache: false,
+        data: {
+            '_token': $('input[name=_token]').val(),
+            'PROid_proyecto': proyecto_id
+        },
+        success: function (response) {
+            var resp = response.data;
+            $(".contenedor-usuarios").empty();
+            if (response.estado === true) {
+                $.each(resp, function (key, value) {
+                    $(".contenedor-usuarios").append('<div class="col-md-4">\n' +
+                        '            <div class="card">\n' +
+                        '                <div class="card-body">\n' +
+                        '                    <div class="media">\n' +
+                        '                        <div class="media-middle media-left">\n' +
+                        '                      <span class="bg-white sq-64 circle">\n' +
+                        '                          <a href="#">\n' +
+                        '                                <img class="img-circle" width="60" height="60" src="../Imagenes/' + value.USUfoto_usuario + '">\n' +
+                        '                            </a>\n' +
+                        '                      </span>\n' +
+                        '                        </div>\n' +
+                        '                        <div class="media-middle media-body">\n' +
+                        '                            <h3 class="media-heading">\n' +
+                        '                                <span class="fw-l">' + value.USUnombre_usuario + ' ' + value.USUapellido_usuario + '</span>\n' +
+                        '                                <span class="fw-b fz-sm text-danger">\n' +
+                        '                        </span>\n' +
+                        '                            </h3>\n' +
+                        '                        </div>\n' +
+                        '                    </div>\n' +
+                        '                </div>\n' +
+                        '            </div>\n' +
+                        '        </div>');
+                });
             }
         },
         error: function (response) {

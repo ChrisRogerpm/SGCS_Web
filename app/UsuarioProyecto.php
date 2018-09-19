@@ -20,7 +20,7 @@ class UsuarioProyecto extends Model
     {
         $proyecto_id = $request->input('PROid_proyecto');
         $resultado = DB::table('sgcsusupropusuarioproyecto as usupro')
-            ->select('usu.USUnombre_usuario', 'usu.USUapellido_usuario')
+            ->select('usu.USUnombre_usuario', 'usu.USUapellido_usuario','usu.USUfoto_usuario')
             ->join('sgcsusutusuario as usu', 'usu.USUid_usuario', 'usupro.USUid_usuario')
             ->where('usupro.PROid_proyecto', $proyecto_id)
             ->where('usupro.USUPROestado_usuarioproyecto', '!=', '0')
