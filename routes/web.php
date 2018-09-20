@@ -71,6 +71,8 @@ Route::group(['namespace' => 'Equipo'], function () {
     Route::post('servicio/InformacionProyectosEncargado','ProyectoEncargadoController@fncInformacionProyectoEncargadoJson');
     Route::get('servicio/ListarMetodologiasPro', 'ProyectoEncargadoController@fncListarMetodologiasProyectoJson');
     Route::post('servicio/ListarUsuarioProyecto','UsuarioProyectoController@fncListarUsuarioProyectoJson');
+    Route::post('servicio/RegistrarMetodologiaProyecto','MetodologiaProyectoController@fncRegistrarMetodologiaProyecto');
+    Route::post('servicio/RegistrarUsuarioProyecto','UsuarioProyectoController@fncRegistrarUsuarioProyectoJson');
 //    Route::get
 });
 

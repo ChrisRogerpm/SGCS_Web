@@ -36,4 +36,5 @@
     <script src="../assets/viewJs/jquery.bootstrap-duallistbox.js"></script>
     <script src="../assets/viewJs/ProyectoEncargado/InformacionProyectoEncargadoVista.js"></script>
     <script src="../assets/viewJs/ProyectoEncargado/TabEstructuraVista.js"></script>
+    <script src="../assets/viewJs/ProyectoEncargado/TabEquipoTrabajoVista.js"></script>
 @endpush
