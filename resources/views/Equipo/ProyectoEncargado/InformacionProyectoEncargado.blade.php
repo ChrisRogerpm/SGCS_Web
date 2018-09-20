@@ -34,6 +34,6 @@
 
 @push('Js')
     <script src="../assets/viewJs/jquery.bootstrap-duallistbox.js"></script>
-    {{--<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>--}}
     <script src="../assets/viewJs/ProyectoEncargado/InformacionProyectoEncargadoVista.js"></script>
+    <script src="../assets/viewJs/ProyectoEncargado/TabEstructuraVista.js"></script>
 @endpush

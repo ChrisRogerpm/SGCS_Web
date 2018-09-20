@@ -7,5 +7,8 @@ use App\Http\Controllers\Controller;
 
 class MetodologiaProyectoController extends Controller
 {
-    //
+    public function fncRegistrarMetodologiaProyecto(Request $request)
+    {
+        
+    }
 }

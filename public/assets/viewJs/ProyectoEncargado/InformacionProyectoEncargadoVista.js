@@ -1,12 +1,13 @@
 $(document).ready(function () {
+
     fncListarEstructuraProyecto();
-    // fncListarMiembrosEquipo();
+
     $("#TabEstructura").click(function () {
         fncListarEstructuraProyecto();
     });
-    $("#TabEquipo").click(function () {
-        fncListarUsuarios();
-        fncListarUsuarioProyecto();
+    $(document).on('click', '.btnGuardar', function () {
+        const proyecto_id = $("#id_proyecto_encargado").val();
+        const metodologia_id = $("#metodologia_id");
     });
 });
 
@@ -57,7 +58,7 @@ function fncListarEstructuraProyecto() {
                     '            </div>\n' +
                     '            <div class="col-md-12">\n' +
                     '                <div class="form-group">\n' +
-                    '                    <button type="button" class="btn btn-primary btn-block btn-sm">Seleccionar</button>\n' +
+                    '                    <button type="button" class="btn btn-primary btn-block btn-sm btnGuardar">Seleccionar</button>\n' +
                     '                </div>\n' +
                     '            </div>');
                 if (response.estado === true) {
