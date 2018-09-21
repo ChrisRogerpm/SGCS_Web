@@ -22,14 +22,21 @@ $(document).ready(function () {
                 },
                 success: function (response) {
                     debugger
-                    // if (response.estado === true) {
-                    //     fncListarEstructuraProyecto();
-                    //     toastr.success('Se ha registrado la Metodologia exitosamente', 'Mensaje Servidor');
-                    // }
+                    if (response.estado === true) {
+                        fncListarUsuarios();
+                        fncListarUsuarioProyecto();
+                        toastr.success('Se ha registrado la Metodologia exitosamente', 'Mensaje Servidor');
+                    }
                 }
             })
         }
 
+    });
+    $(document).on('click','.img_click',function () {
+        $('#warningModalAlert').appendTo("body").modal({
+            backdrop: 'static',
+            keyboard: false
+        });
     });
 
 });
@@ -75,7 +82,7 @@ function fncListarUsuarioProyecto() {
                         '                        <div class="media-middle media-left">\n' +
                         '                      <span class="bg-white sq-64 circle">\n' +
                         '                          <a href="#">\n' +
-                        '                                <img class="img-circle" width="60" height="60" src="../Imagenes/' + value.USUfoto_usuario + '">\n' +
+                        '                                <img class="img-circle img_click" width="60" height="60" src="../Imagenes/' + value.USUfoto_usuario + '">\n' +
                         '                            </a>\n' +
                         '                      </span>\n' +
                         '                        </div>\n' +
