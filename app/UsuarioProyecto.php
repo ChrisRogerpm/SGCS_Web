@@ -41,6 +41,22 @@ class UsuarioProyecto extends Model
     public static function fncRegistrarUsuarioProyecto(Request $request)
     {
         $usuario = $request->input('USUid_usuario');
-        return count($usuario);
+        $proyecto_id = $request->input('PROid_proyecto');
+        for ($i = 0; $i < count($usuario); $i++) {
+            if (self::fncValidarUsuarioProyecto($usuario[$i]) < 1){
+                $usuario_proyecto = new UsuarioProyecto();
+                $usuario_proyecto->USUid_usuario = $usuario[$i];
+                $usuario_proyecto->PROid_proyecto = $proyecto_id;
+                $usuario_proyecto->USUPROestado_usuarioproyecto = 1;
+                $usuario_proyecto->save();
+            }
+        }
+        
+//        return count($usuario);
+    }
+
+    public static function fncValidarUsuarioProyecto($USUid_usuario)
+    {
+        return UsuarioProyecto::where('USUid_usuario',$USUid_usuario)->count();
     }
 }
