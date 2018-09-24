@@ -20,7 +20,7 @@ class UsuarioProyecto extends Model
     {
         $proyecto_id = $request->input('PROid_proyecto');
         $resultado = DB::table('sgcsusupropusuarioproyecto as usupro')
-            ->select('usu.USUnombre_usuario', 'usu.USUapellido_usuario', 'usu.USUfoto_usuario')
+            ->select('usupro.USUPROid_usuarioproyecto','usu.USUnombre_usuario', 'usu.USUapellido_usuario', 'usu.USUfoto_usuario')
             ->join('sgcsusutusuario as usu', 'usu.USUid_usuario', 'usupro.USUid_usuario')
             ->where('usupro.PROid_proyecto', $proyecto_id)
             ->where('usupro.USUPROestado_usuarioproyecto', '!=', '0')
@@ -51,12 +51,22 @@ class UsuarioProyecto extends Model
                 $usuario_proyecto->save();
             }
         }
-        
-//        return count($usuario);
     }
 
     public static function fncValidarUsuarioProyecto($USUid_usuario)
     {
         return UsuarioProyecto::where('USUid_usuario',$USUid_usuario)->count();
+    }
+
+    public static function fncDeshabilitarUsuarioProyecto(Request $request)
+    {
+        $resultado = false;
+        $usuarioproyecto = $request->input('USUPROid_usuarioproyecto');
+        try{
+            UsuarioProyecto::findorfail($usuarioproyecto)->update(['USUPROestado_usuarioproyecto' => 0]);;
+            $resultado = true;
+        }catch (\Exception $ex){
+        }
+        return $resultado;
     }
 }

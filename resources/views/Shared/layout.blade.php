@@ -16,8 +16,8 @@
 <div class="layout-header">
     <div class="navbar navbar-default">
         <div class="navbar-header">
-            <a class="navbar-brand navbar-brand-center" href="index-2.html">
-                <img class="navbar-brand-logo" src="../assets/img/logo-inverse.svg" alt="Elephant">
+            <a class="navbar-brand navbar-brand-center" href="#">
+                {{--<img class="navbar-brand-logo" src="../assets/img/logo-inverse.svg" alt="Elephant">--}}
             </a>
             <button class="navbar-toggler visible-xs-block collapsed" type="button" data-toggle="collapse"
                     data-target="#sidenav">
@@ -37,7 +37,7 @@
                 <span class="sr-only">Toggle navigation</span>
                 <span class="arrow-up"></span>
                 <span class="ellipsis ellipsis-vertical">
-              <img class="ellipsis-object" width="32" height="32" src="../assets/img/0180441436.jpg" alt="Teddy Wilson">
+              <img class="ellipsis-object" width="32" height="32" src="../Imagenes/{{Auth::user()->USUfoto_usuario}}">
             </span>
             </button>
         </div>
@@ -57,12 +57,11 @@
                 </button>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="visible-xs-block">
-                        <h4 class="navbar-text text-center">Hi, Teddy Wilson</h4>
+                        <h4 class="navbar-text text-center">{{Auth::user()->USUnombre_usuario.' '.Auth::user()->USUapellido_usuario}}</h4>
                     </li>
                     <li class="dropdown hidden-xs">
                         <button class="navbar-account-btn" data-toggle="dropdown" aria-haspopup="true">
-                            <img class="circle" width="36" height="36" src="../Imagenes/{{Auth::user()->USUfoto_usuario}}"
-                                 alt="Teddy Wilson"> {{Auth::user()->USUnombre_usuario.' '.Auth::user()->USUapellido_usuario}}
+                            <img class="circle" width="36" height="36" src="../Imagenes/{{Auth::user()->USUfoto_usuario}}"> {{Auth::user()->USUnombre_usuario.' '.Auth::user()->USUapellido_usuario}}
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-right">
@@ -163,7 +162,7 @@
                             </li>
                         @else
                             <li class="sidenav-item">
-                                <a href="#">
+                                <a href="{{route('Equipo')}}">
                                     <span class="sidenav-icon icon icon-home"></span>
                                     <span class="sidenav-label">Inicio</span>
                                 </a>

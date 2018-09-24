@@ -29,7 +29,7 @@ class Fase extends Model
         $nro_fases_limite = Fase::fncNumeroFasesLimiteMetodologia($request->input('METid_metodologia'));
         $nro_fases_registradas = Fase::fncNumeroFasesRegistradas($request->input('METid_metodologia'));
 
-        if($nro_fases_registradas < $nro_fases_limite){
+        if ($nro_fases_registradas < $nro_fases_limite) {
             $fase = new Fase();
             $fase->METid_metodologia = $request->input('METid_metodologia');
             $fase->FAnombre_fase = $request->input('FAnombre_fase');
@@ -68,6 +68,19 @@ class Fase extends Model
         return $resultado;
     }
 
+    public static function fncListrarFasesProyecto(Request $request)
+    {
+        $proyecto_id = $request->input('PROid_proyecto');
+        $metodologia_id = MetodologiaProyecto::where('PROid_proyecto', $proyecto_id)->first();
+
+        $resultado = DB::table('sgcsfatfase as fa')
+            ->select('fa.FAid_fase', 'met.METnombre_metodologia', 'fa.FAnombre_fase', 'fa.FAestado_fase')
+            ->join('sgcsmettmetodologia as met', 'met.METid_metodologia', 'fa.METid_metodologia')
+            ->where('fa.METid_metodologia', $metodologia_id->METid_metodologia)
+            ->get();
+        return $resultado;
+    }
+
     public static function fncNumeroFasesLimiteMetodologia($METid_metodologia)
     {
         return Metodologia::findorfail($METid_metodologia)->METnro_fases_metodologia;
@@ -75,6 +88,6 @@ class Fase extends Model
 
     public static function fncNumeroFasesRegistradas($METid_metodologia)
     {
-        return Fase::where('METid_metodologia',$METid_metodologia)->count();
+        return Fase::where('METid_metodologia', $METid_metodologia)->count();
     }
 }

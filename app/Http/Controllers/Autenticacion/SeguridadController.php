@@ -44,6 +44,6 @@ class SeguridadController extends Controller
     {
         Auth::logout();
         Session::flash('Logout', 'Vuelva Pronto, lo esperamos');
-        return redirect('Autenticacion/login');
+        return redirect('/');
     }
 }

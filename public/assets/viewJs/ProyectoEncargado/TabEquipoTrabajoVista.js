@@ -4,24 +4,22 @@ $(document).ready(function () {
         fncListarUsuarioProyecto();
     });
 
-    $(document).on('click','.btnAgregarEquipo',function () {
+    $(document).on('click', '.btnAgregarEquipo', function () {
         var ListaUsuarios = $("#ListaUsuarios").val();
         var proyecto_id = $("#id_proyecto_encargado").val();
         if (ListaUsuarios == null) {
             toastr.error('Seleccione almenos un Usuario', 'Mensaje Servidor');
         } else {
-            // toastr.success('Se ha registrado con éxito','Mensaje Servidor');
             $.ajax({
                 type: 'POST',
                 url: basepath + '/servicio/RegistrarUsuarioProyecto',
-                cache:false,
+                cache: false,
                 data: {
                     '_token': $('input[name=_token]').val(),
                     'PROid_proyecto': proyecto_id,
                     'USUid_usuario': ListaUsuarios
                 },
                 success: function (response) {
-                    debugger
                     if (response.estado === true) {
                         fncListarUsuarios();
                         fncListarUsuarioProyecto();
@@ -32,13 +30,36 @@ $(document).ready(function () {
         }
 
     });
-    $(document).on('click','.img_click',function () {
-        $('#warningModalAlert').appendTo("body").modal({
+    $(document).on('click', '.img_click', function () {
+        $('#ModalDeshabilitarUsuario').appendTo("body").modal({
             backdrop: 'static',
             keyboard: false
         });
+        var id_usuario_proyecto = $(this).data("id");
+        $("#txt_id_usuario_proyecto").val(id_usuario_proyecto);
     });
-
+    $('.btnSiModalUsuarioProyecto').click(function () {
+        var id_usuario_proyecto = $("#txt_id_usuario_proyecto").val();
+        $.ajax({
+            type:'POST',
+            url:basepath + "/servicio/DeshabilitarUsuarioProyecto",
+            cache:false,
+            data:{
+                '_token': $('input[name=_token]').val(),
+                'USUPROid_usuarioproyecto': id_usuario_proyecto
+            },
+            success:function (response) {
+                var resp = response.estado;
+                if (resp === true){
+                    toastr.success('Se ha deshabilitado al usuario satisfactoriamente','Mensaje Servidor');
+                    fncListarUsuarioProyecto();
+                    $('#ModalDeshabilitarUsuario').modal('hide');
+                } else{
+                    toastr.error('Error no se ha podido deshabilitar al usuario','Mensaje Servidor');
+                }
+            }
+        });
+    });
 });
 
 function fncListarUsuarios() {
@@ -59,6 +80,7 @@ function fncListarUsuarios() {
         }
     });
 }
+
 function fncListarUsuarioProyecto() {
     const url = basepath + "/servicio/ListarUsuarioProyecto";
     const proyecto_id = $("#id_proyecto_encargado").val();
@@ -82,7 +104,7 @@ function fncListarUsuarioProyecto() {
                         '                        <div class="media-middle media-left">\n' +
                         '                      <span class="bg-white sq-64 circle">\n' +
                         '                          <a href="#">\n' +
-                        '                                <img class="img-circle img_click" width="60" height="60" src="../Imagenes/' + value.USUfoto_usuario + '">\n' +
+                        '                                <img class="img-circle img_click" data-id="' + value.USUPROid_usuarioproyecto + '" width="60" height="60" src="../Imagenes/' + value.USUfoto_usuario + '">\n' +
                         '                            </a>\n' +
                         '                      </span>\n' +
                         '                        </div>\n' +
@@ -99,9 +121,6 @@ function fncListarUsuarioProyecto() {
                         '        </div>');
                 });
             }
-        },
-        error: function (response) {
-
         }
     });
 }

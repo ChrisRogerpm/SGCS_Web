@@ -36,4 +36,16 @@ class UsuarioProyectoController extends Controller
         }
         return response()->json(['estado' => $resultado, 'data' => $usuario_proyecto, 'mensaje' => $mensaje_error]);
     }
+
+    public function fncDeshabilitarUsuarioProyectoJson(Request $request)
+    {
+        $resultado = false;
+        $mensaje_error = "";
+        try {
+            $resultado = UsuarioProyecto::fncDeshabilitarUsuarioProyecto($request);
+        } catch (\Exception $ex) {
+            $mensaje_error = $ex;
+        }
+        return response()->json(['estado' => $resultado, 'mensaje' => $mensaje_error]);
+    }
 }

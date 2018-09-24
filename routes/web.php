@@ -1,10 +1,10 @@
 <?php
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
-Route::get('Autenticacion/login', 'Autenticacion\SeguridadController@fncMostrarLogin')->name('login');
+Route::get('/', 'Autenticacion\SeguridadController@fncMostrarLogin')->name('login');
 Route::post('Autenticacion/ValidarLogin', 'Autenticacion\SeguridadController@fncValidarLoginJson')->name('ValidarLogin');
 Route::post('CerrarSesion','Autenticacion\SeguridadController@fncCerrarSesion')->name('CerrarSesion');
 
@@ -73,6 +73,9 @@ Route::group(['namespace' => 'Equipo'], function () {
     Route::post('servicio/ListarUsuarioProyecto','UsuarioProyectoController@fncListarUsuarioProyectoJson');
     Route::post('servicio/RegistrarMetodologiaProyecto','MetodologiaProyectoController@fncRegistrarMetodologiaProyecto');
     Route::post('servicio/RegistrarUsuarioProyecto','UsuarioProyectoController@fncRegistrarUsuarioProyectoJson');
+    Route::post('servicio/DeshabilitarUsuarioProyecto','UsuarioProyectoController@fncDeshabilitarUsuarioProyectoJson');
+    Route::post('servicio/ListarFasesProyecto','EntregableProyectoController@fncListarFasesProyecto');
+    Route::post('servicio/ListarEntregableProyecto','EntregableProyectoController@fncListarEntregableProyecto');
 //    Route::get
 });
 

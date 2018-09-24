@@ -15,8 +15,8 @@
 <body>
 <div class="login">
     <div class="login-body">
-        <a class="login-brand" href="index-2.html">
-            <img class="img-responsive" src="../assets/img/logo.svg" alt="Elephant">
+        <a class="login-brand text-center" href="#">
+            <span class="text-info icon icon-user-secret icon-5x"></span>
         </a>
         <div class="login-form">
             <form data-toggle="validator">
@@ -30,7 +30,7 @@
                 </div>
                 <div class="form-group">
                     <label class="custom-control custom-control-primary custom-checkbox">
-                        <input class="custom-control-input" type="checkbox" checked="checked">
+                        <input class="custom-control-input" type="checkbox">
                         <span class="custom-control-indicator"></span>
                         <span class="custom-control-label">Recuerdame</span>
                     </label>
