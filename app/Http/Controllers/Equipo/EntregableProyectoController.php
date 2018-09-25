@@ -9,11 +9,10 @@ use App\Http\Controllers\Controller;
 
 class EntregableProyectoController extends Controller
 {
-    public function fncListarEntregableProyecto(Request $request)
+    public function fncListarEntregableProyectoJson(Request $request)
     {
         $resultado = false;
         $entregable_proyecto = "";
-        $fases_proyecto = "";
         $mensaje_error = "";
         try {
             $entregable_proyecto = EntregableProyecto::fncListarEntregableProyecto($request);
@@ -24,7 +23,7 @@ class EntregableProyectoController extends Controller
         return response()->json(['estado' => $resultado, 'data' => $entregable_proyecto, 'mensaje' => $mensaje_error]);
     }
 
-    public function fncListarFasesProyecto(Request $request)
+    public function fncListarFasesProyectoJson(Request $request)
     {
         $resultado = false;
         $fases_proyecto = "";
@@ -36,5 +35,17 @@ class EntregableProyectoController extends Controller
             $mensaje_error = $ex;
         }
         return response()->json(['estado' => $resultado, 'data' => $fases_proyecto, 'mensaje' => $mensaje_error]);
+    }
+
+    public function fncRegistrarEntregableProyectoJson(Request $request)
+    {
+        $resultado = false;
+        $mensaje_error = "";
+        try {
+            $resultado = EntregableProyecto::fncRegistrarEntregableProyecto($request);
+        } catch (\Exception $ex) {
+            $mensaje_error = $ex;
+        }
+        return response()->json(['estado' => $resultado, 'mensaje' => $mensaje_error]);
     }
 }
