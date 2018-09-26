@@ -77,6 +77,7 @@ Route::group(['namespace' => 'Equipo'], function () {
     Route::post('servicio/ListarFasesProyecto','EntregableProyectoController@fncListarFasesProyectoJson');
     Route::post('servicio/ListarEntregableProyecto','EntregableProyectoController@fncListarEntregableProyectoJson');
     Route::post('servicio/RegistrarEntregableProyecto','EntregableProyectoController@fncRegistrarEntregableProyectoJson');
+    Route::post('servicio/CambiarEstadoEntregableProyecto','EntregableProyectoController@fncCambiarEstadoEntregableProyectoJson');
 //    Route::get
 });
 

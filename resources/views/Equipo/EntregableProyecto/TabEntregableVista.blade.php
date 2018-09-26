@@ -9,7 +9,7 @@
                 <strong>Entregables Disponibles</strong>
             </div>
             <div class="card-body TablaEntregableDisponible">
-                <table id="tablaentregableproyecto" class="table table-hover table-bordered table-striped">
+                <table id="TablaEntregableDisponible" class="table table-hover table-bordered table-striped">
                     <thead>
                     <tr>
                         <th class="text-left">Entregable</th>
@@ -26,5 +26,6 @@
     </div>
     <div class="col-md-8">
         <label for="">Lista de Entregables - Proyecto</label>
+        <div class="ListaEntregableProyecto"></div>
     </div>
 </div>

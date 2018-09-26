@@ -40,9 +40,23 @@ class EntregableProyectoController extends Controller
     public function fncRegistrarEntregableProyectoJson(Request $request)
     {
         $resultado = false;
+        $entregable_proyecto = "";
         $mensaje_error = "";
         try {
-            $resultado = EntregableProyecto::fncRegistrarEntregableProyecto($request);
+            $entregable_proyecto = EntregableProyecto::fncRegistrarEntregableProyecto($request);
+            $resultado = true;
+        } catch (\Exception $ex) {
+            $mensaje_error = $ex;
+        }
+        return response()->json(['estado' => $resultado, 'data' => $entregable_proyecto, 'mensaje' => $mensaje_error]);
+    }
+
+    public function fncCambiarEstadoEntregableProyectoJson(Request $request)
+    {
+        $resultado = false;
+        $mensaje_error = "";
+        try {
+            $resultado = EntregableProyecto::fncCambiarEstadoEntregableProyecto($request);
         } catch (\Exception $ex) {
             $mensaje_error = $ex;
         }

@@ -12,7 +12,15 @@
                 <li class="active"><a href="#Tab1" id="TabEstructura" data-toggle="tab">Estructura</a></li>
                 <li><a href="#Tab2" id="TabEquipo" data-toggle="tab">Equipo de Trabajo</a></li>
                 <li><a href="#Tab3" id="TabEntregables" data-toggle="tab">Entregables</a></li>
-                <li><a href="#Tab4" id="TabTareas" data-toggle="tab">Tareas</a></li>
+                {{--<li><a href="#Tab4" id="TabTareas" data-toggle="tab">Tareas</a></li>--}}
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tareas</a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#TabRegistroTarea" tabindex="-1" data-toggle="tab">Registrar Tarea</a></li>
+                        <li><a href="#TabRelacionTarea" tabindex="-1" data-toggle="tab">Relacionar Tarea</a></li>
+                        <li><a href="#TabAsignarTarea" tabindex="-1" data-toggle="tab">Asignar Tarea</a></li>
+                    </ul>
+                </li>
                 <li><a href="#Tab5" id="TabComite" data-toggle="tab">Comite de Cambio</a></li>
                 <li><a href="#Tab6" id="TabAvance" data-toggle="tab">Avance de Proyecto</a></li>
                 <li><a href="#Tab7" id="TabSolicitudesRevision" data-toggle="tab">Solicitudes Revision</a></li>
@@ -29,8 +37,14 @@
                 <div class="tab-pane fade" id="Tab3">
                     @include('Equipo.EntregableProyecto.TabEntregableVista')
                 </div>
-                <div class="tab-pane fade" id="Tab4">
+                <div class="tab-pane fade" id="TabRegistroTarea">
                     @include('Equipo.Tareas.TabTareaVista')
+                </div>
+                <div class="tab-pane fade" id="TabRelacionTarea">
+                    @include('Equipo.Tareas.TabRelacionTareaVista')
+                </div>
+                <div class="tab-pane fade" id="TabAsignarTarea">
+                    @include('Equipo.Tareas.TabAsignarTareaVista')
                 </div>
             </div>
         </div>

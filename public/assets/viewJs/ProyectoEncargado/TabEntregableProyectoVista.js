@@ -1,8 +1,11 @@
 $(document).ready(function () {
     fncListarFasesProyecto();
+    fncListarEntregableProyecto();
     $("#FaseEntregableProyecto").select2();
     $("#TabEntregables").click(function () {
         fncListarFasesProyecto();
+        fncListarEntregableProyecto();
+        $("#TablaEntregableDisponible tbody").empty();
     });
     $("#FaseEntregableProyecto").change(function () {
         var id_fase = $("#FaseEntregableProyecto").val();
@@ -17,9 +20,9 @@ $(document).ready(function () {
                 let est = response.estado;
                 let resp = response.data;
                 if (est === true) {
-                    $("#tablaentregableproyecto tbody").empty();
+                    $("#TablaEntregableDisponible tbody").empty();
                     $.each(resp, function (key, value) {
-                        $("#tablaentregableproyecto tbody").append('<tr>\n' +
+                        $("#TablaEntregableDisponible tbody").append('<tr>\n' +
                             '                        <td class="text-left">' + value.ENTRnombre_entregable + '</td>\n' +
                             '                        <td class="text-center">\n' +
                             '                            <input type="checkbox" class="entregablechk" value="' + value.ENTRid_entregable + '">\n' +
@@ -36,7 +39,8 @@ $(document).ready(function () {
     $(".btnAgregarEntregableProyecto").click(function () {
         var entregable_id = [];
         var proyecto_id = $("#id_proyecto_encargado").val();
-        $("#tablaentregableproyecto input:checkbox:checked").map(function () {
+        var fase_id = $("#FaseEntregableProyecto").val();
+        $("#TablaEntregableDisponible input:checkbox:checked").map(function () {
             entregable_id.push($(this).val());
         });
 
@@ -47,25 +51,58 @@ $(document).ready(function () {
                 data: {
                     '_token': $('input[name=_token]').val(),
                     'PROid_proyecto': proyecto_id,
-                    'ENTRid_entregable':entregable_id
+                    'FAid_fase': fase_id,
+                    'ENTRid_entregable': entregable_id
                 },
                 success: function (response) {
+                    debugger
                     var est = response.estado;
-                    if (est === true){
-                        toastr.success('Se ha registrado exitosamente','Mensaje Servidor');
-                    } else{
-                        toastr.error('Error','Mensaje Servidor');
+                    if (est === true) {
+                        toastr.success('Se ha registrado exitosamente', 'Mensaje Servidor');
+                        fncListarEntregableProyecto();
+                        $("#TablaEntregableDisponible input:checkbox").attr('checked', false);
+                    } else {
+                        toastr.error('Error', 'Mensaje Servidor');
                     }
                 }
             });
         } else {
-            toastr.error('Seleccione un Entregable','Mensaje Servidor');
+            toastr.error('Seleccione un Entregable', 'Mensaje Servidor');
         }
     });
 
+    $(document).on('change', '.CheckEstadoEntregable', function () {
+        if ($(this).is(':checked')) {
+            var EntregableProyectoId = $(this).val();
+            var Estado = 1;
+            fncCambiarEstadoEntregableProyecto(EntregableProyectoId,Estado);
+        } else {
+            var EntregableProyectoId = $(this).val();
+            var Estado = 0;
+            fncCambiarEstadoEntregableProyecto(EntregableProyectoId,Estado);
+        }
+    })
+
 });
-
-
+function fncCambiarEstadoEntregableProyecto(EntregableProyectoId,Estado) {
+    $.ajax({
+        type: 'POST',
+        url: basepath + '/servicio/CambiarEstadoEntregableProyecto',
+        data: {
+            '_token': $('input[name=_token]').val(),
+            'ENTRPROid_entregableproyecto': EntregableProyectoId,
+            'ENTRPROestado_entregable_proyecto': Estado
+        },
+        success: function (response) {
+            var est = response.estado;
+            if (est===true){
+                toastr.success('Se ha actualizado exitosamente','Mensaje Servidor');
+            }else{
+                toastr.error('Servicio no encontrado','Mensaje Servidor');
+            }
+        }
+    });
+}
 function fncListarFasesProyecto() {
     const proyecto_id = $("#id_proyecto_encargado").val();
     $.ajax({
@@ -94,15 +131,44 @@ function fncListarEntregableProyecto() {
     $.ajax({
         type: 'POST',
         url: basepath + "/servicio/ListarEntregableProyecto",
+        cache: false,
         data: {
             '_token': $('input[name=_token]').val(),
             'PROid_proyecto': proyecto_id
         },
         success: function (response) {
+            debugger
             var resp = response.data;
-            $(".contenedor_fase_entregable").empty().append('<label class="form-check-label">\n' +
-                '                <input class="form-check-input" type="checkbox" name="ENTRid_entregable" value="' + resp.das + '">\n' +
-                '                ' + resp.dqwd + '   </label>')
+            var est = response.estado;
+            if (est === true) {
+                $(".ListaEntregableProyecto").empty().append('<table id="TablaEntregableProyecto" class="table table-striped  table-bordered table-nowrap dataTable" cellspacing="0" width="100%">\n' +
+                    '        </table>');
+                $("#TablaEntregableProyecto").DataTable({
+                    data: resp,
+                    columns: [
+                        {data: "ENTRPROid_entregableproyecto", title: "Id"},
+                        {data: "ENTRnombre_entregable", title: "Entregable"},
+                        {
+                            data: null, title: "Estado",
+                            render: function (value) {
+                                if (value.ENTRPROestado_entregable_proyecto === 1) {
+                                    return '<label class="switch switch-primary">\n' +
+                                        '            <input class="switch-input CheckEstadoEntregable" type="checkbox" value="' + value.ENTRPROid_entregableproyecto + '" checked="checked">\n' +
+                                        '            <span class="switch-track"></span>\n' +
+                                        '            <span class="switch-thumb"></span>\n' +
+                                        '        </label>';
+                                } else {
+                                    return '<label class="switch switch-primary">\n' +
+                                        '            <input class="switch-input CheckEstadoEntregable" type="checkbox" value="' + value.ENTRPROid_entregableproyecto + '">\n' +
+                                        '            <span class="switch-track"></span>\n' +
+                                        '            <span class="switch-thumb"></span>\n' +
+                                        '        </label>';
+                                }
+                            }
+                        }
+                    ]
+                });
+            }
         }
     })
 }
