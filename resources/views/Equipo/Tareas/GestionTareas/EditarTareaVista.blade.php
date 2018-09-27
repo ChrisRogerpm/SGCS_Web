@@ -1,5 +1,6 @@
+
 <div class="form-group">
-    <label for="">Fase</label>
+    <label for="">Fase Editar</label>
     <select class="form-control select2" id="">
         <option value="">--Seleccione--</option>
     </select>

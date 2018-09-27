@@ -55,7 +55,7 @@ $(document).ready(function () {
                     'ENTRid_entregable': entregable_id
                 },
                 success: function (response) {
-                    debugger
+                    
                     var est = response.estado;
                     if (est === true) {
                         toastr.success('Se ha registrado exitosamente', 'Mensaje Servidor');
@@ -137,7 +137,7 @@ function fncListarEntregableProyecto() {
             'PROid_proyecto': proyecto_id
         },
         success: function (response) {
-            debugger
+            
             var resp = response.data;
             var est = response.estado;
             if (est === true) {
