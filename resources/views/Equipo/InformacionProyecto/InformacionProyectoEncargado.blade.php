@@ -58,4 +58,5 @@
     <script src="../assets/viewJs/ProyectoEncargado/TabEstructuraVista.js"></script>
     <script src="../assets/viewJs/ProyectoEncargado/TabEquipoTrabajoVista.js"></script>
     <script src="../assets/viewJs/ProyectoEncargado/TabEntregableProyectoVista.js"></script>
+    <script src="../assets/viewJs/ProyectoEncargado/TabGestionarTareaEntregableVista.js"></script>
 @endpush
