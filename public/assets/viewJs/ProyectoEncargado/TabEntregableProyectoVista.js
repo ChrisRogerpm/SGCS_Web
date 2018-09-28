@@ -55,7 +55,7 @@ $(document).ready(function () {
                     'ENTRid_entregable': entregable_id
                 },
                 success: function (response) {
-                    
+                    debugger
                     var est = response.estado;
                     if (est === true) {
                         toastr.success('Se ha registrado exitosamente', 'Mensaje Servidor');
