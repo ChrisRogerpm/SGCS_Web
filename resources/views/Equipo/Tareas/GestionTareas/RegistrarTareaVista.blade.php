@@ -1,12 +1,12 @@
 <div class="form-group">
     <label for="">Fase Registrar</label>
-    <select class="form-control select2" id="">
+    <select class="form-control select2" id="FaseEntregableTarea">
         <option value="">--Seleccione--</option>
     </select>
 </div>
 <div class="form-group">
     <label for="">Entregable</label>
-    <select class="form-control select2" id="">
+    <select class="form-control select2" id="EntregableTarea">
         <option value="">--Seleccione--</option>
     </select>
 </div>
