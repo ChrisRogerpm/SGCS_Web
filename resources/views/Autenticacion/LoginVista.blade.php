@@ -1,52 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sistema de Gestion de la configuración de Software</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
-    <meta name="theme-color" content="#ffffff">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700">
-    <link rel="stylesheet" href="../assets/css/vendor.min.css">
-    <link rel="stylesheet" href="../assets/css/elephant.min.css">
-    <link rel="stylesheet" href="../assets/css/login-2.min.css">
-    {{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">--}}
-</head>
-<body>
-<div class="login">
-    <div class="login-body">
-        <a class="login-brand text-center" href="#">
-            <span class="text-info icon icon-user-secret icon-5x"></span>
-        </a>
-        <div class="login-form">
-            <form data-toggle="validator">
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input class="form-control" type="email" id="Codigo" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Contraseña</label>
-                    <input class="form-control" type="password" id="password" required>
-                </div>
-                <div class="form-group">
-                    <label class="custom-control custom-control-primary custom-checkbox">
-                        <input class="custom-control-input" type="checkbox">
-                        <span class="custom-control-indicator"></span>
-                        <span class="custom-control-label">Recuerdame</span>
-                    </label>
 
+    <!-- Global stylesheets -->
+    <link href="../../../../../fonts.googleapis.com/css1381.css?family=Roboto:400,300,100,500,700,900" rel="stylesheet"
+          type="text/css">
+    <link href="../assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+    <link href="../assets/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="../assets/css/core.css" rel="stylesheet" type="text/css">
+    <link href="../assets/css/components.css" rel="stylesheet" type="text/css">
+    <link href="../assets/css/colors.css" rel="stylesheet" type="text/css">
+    <!-- /global stylesheets -->
+
+    <link rel="stylesheet" href="../assets/toastr.min.css">
+
+    <!-- Core JS files -->
+    <script type="text/javascript" src="../assets/js/plugins/loaders/pace.min.js"></script>
+    <script type="text/javascript" src="../assets/js/core/libraries/jquery.min.js"></script>
+    <script type="text/javascript" src="../assets/js/core/libraries/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../assets/js/plugins/loaders/blockui.min.js"></script>
+    <script type="text/javascript" src="../assets/js/plugins/ui/nicescroll.min.js"></script>
+    <script type="text/javascript" src="../assets/js/plugins/ui/drilldown.js"></script>
+    <!-- /core JS files -->
+
+    <!-- Theme JS files -->
+    <script type="text/javascript" src="../assets/js/core/app.js"></script>
+    <!-- /theme JS files -->
+
+</head>
+
+<body class="login-container">
+
+<!-- Main navbar -->
+<div class="navbar navbar-inverse">
+    <div class="navbar-header">
+        {{--<a class="navbar-brand" href="#"><img src="../assets/images/logo_light.png" alt=""></a>--}}
+        {{--<ul class="nav navbar-nav pull-right visible-xs-block">--}}
+        {{--<li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>--}}
+        {{--</ul>--}}
+    </div>
+</div>
+<!-- /main navbar -->
+
+
+<!-- Page container -->
+<div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+        <!-- Main content -->
+        <div class="content-wrapper">
+
+            <!-- Simple login form -->
+            <form action="#">
+                <div class="panel panel-body login-form">
+                    <div class="text-center">
+                        <div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>
+                        <h5 class="content-group">Ingrese a su cuenta
+                            <small class="display-block">Introduzca sus credenciales a continuación</small>
+                        </h5>
+                    </div>
+                    {{csrf_field()}}
+                    <div class="form-group has-feedback has-feedback-left">
+                        <input type="text" class="form-control" id="Codigo" placeholder="Email">
+                        <div class="form-control-feedback">
+                            <i class="icon-user text-muted"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group has-feedback has-feedback-left">
+                        <input type="password" class="form-control" id="password" placeholder="Contraseña">
+                        <div class="form-control-feedback">
+                            <i class="icon-lock2 text-muted"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary btn-block">Iniciar Sesión <i
+                                    class="icon-circle-right2 position-right"></i></button>
+                    </div>
                 </div>
-                <button class="btn btn-primary btn-block btnIniciarSesion" type="button">Iniciar Sesión</button>
             </form>
         </div>
     </div>
-    <div class="login-footer">
-        <span>Copyright © 2018 </span><span>Gestión de la Configuración de Software</span>.<span> All rights reserved.</span>
-    </div>
 </div>
-<script src="../assets/js/vendor.min.js"></script>
-<script src="../assets/js/elephant.min.js"></script>
-{{--<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>--}}
-<script src="../assets/viewJs/Autenticacion/FrmLoginJs.js"></script>
+<div class="footer text-muted text-center">
+    &copy; 2018. <a href="#">Gestión de la Configuración de Software</a> by <a href="#" target="_blank">Team Tree</a>
+</div>
+
+<script src="../assets/toastr.min.js"></script>
+<script src="../viewJs/Autenticacion/FrmLoginJs.js"></script>
+
 </body>
 </html>
