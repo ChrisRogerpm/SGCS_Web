@@ -7,7 +7,6 @@ $(document).ready(function () {
         let url = '/EditarProyecto/' + id;
         window.location.replace(url);
     });
-
 });
 
 function ListarProyectos() {
