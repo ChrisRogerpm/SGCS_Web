@@ -56,16 +56,19 @@ class FaseController extends Controller
     {
         $resultado = false;
         $Fases = "";
+        $mensaje_validar = "Se ha excedido la cantidad de Fases permitidas";
         $mensaje_error = "";
         try {
-            $Fases = Fase::fncRegistrarFase($request);
+            //$Fases = Fase::fncRegistrarFase($request);
+            $Fases = Fase::ValidarNroFasesRegistradas($request);
             if ($Fases != null) {
+                Fase::fncRegistrarFase($request);
                 $resultado = true;
             }
         } catch (\Exception $ex) {
             $mensaje_error = $ex;
         }
-        return response()->json(['estado' => $resultado, 'data' => $Fases, 'mensaje' => $mensaje_error]);
+        return response()->json(['estado' => $resultado, 'data' => $Fases, 'mensaje' => $mensaje_error, 'validar' => $mensaje_validar]);
 
     }
 

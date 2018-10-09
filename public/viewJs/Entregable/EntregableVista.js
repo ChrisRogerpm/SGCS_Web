@@ -15,11 +15,12 @@ $(document).ready(function () {
     });
 
     $(".btnTodo").click(function () {
-       ListarEntregables();
+        ListarEntregables();
     });
 
-    $(".btnBuscar").click(function () {
-        ListarEntregablesFase();
+    $("#txt_fase").change(function () {
+        var id_fase = $(this).val();
+        ListarEntregablesFase(id_fase);
     });
 
     $(document).on('click', '.btnEditar', function () {
@@ -51,13 +52,13 @@ function ListarMetodologias() {
     })
 }
 
-function ListarEntregablesFase() {
+function ListarEntregablesFase(id_fase) {
     $.ajax({
         type: 'POST',
         url: 'servicio/ListarEntregablesFaseFiltro',
         data: {
             '_token': $('input[name=_token]').val(),
-            'FAid_fase': $("#txt_fase").val()
+            'FAid_fase': id_fase
         },
         success: function (response) {
             let est = response.estado;

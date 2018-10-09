@@ -1,40 +1,51 @@
 @extends('Shared.layout')
 
-@section('content')
-    <div class="text-center m-b">
-        <h3 class="m-b-0">LISTA DE FASES</h3>
+@section('content-header')
+    <div class="page-header">
+        <div class="page-header-content">
+            <div class="page-title">
+                <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Fases</span></h4>
+                <ul class="breadcrumb breadcrumb-caret position-right">
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Fases</a></li>
+                    <li class="active">Lista de Fases</li>
+                </ul>
+            </div>
+            <div class="heading-elements">
+                <div class="heading-btn-group">
+                    <a href="{{route('Fase.Registrar')}}" class="btn btn-primary btnNuevo"><i
+                                class="icon-plus-circle2 position-left"></i> Nueva Fase</a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="card">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-lg-4">
+@stop
+@section('content')
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="panel panel-flat">
+                <div class="panel-body">
                     <div class="form-group">
                         <label for="">Metodologia</label>
                         <select id="txt_metodologia" class="form-control"></select>
                     </div>
-                </div>
-                <div class="col-sm-9 col-sm-offset-3">
                     <div class="pull-right">
-                        <button type="button" class="btn btn-embossed btn-primary m-r-20 btnBuscar">Buscar
                         </button>
                         <button type="button" class="btn btn-embossed btn-warning m-r-20 btnTodo">Mostrar Todo</button>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row gutter-xs">
-        <div class="col-xs-12">
-            <div class="card">
-                <div class="card-body container-table">
-                    <table id="tabla" class="table table-striped table-bordered table-nowrap dataTable" cellspacing="0" width="100%"></table>
+        <div class="col-lg-8">
+            <div class="panel panel-flat">
+                <div class="panel-body container-table">
+                    <table class="table table-bordered" id="tabla"></table>
                 </div>
             </div>
         </div>
     </div>
 @endsection
 
-
 @push('Js')
-    <script src="../assets/viewJs/Fase/FaseVista.js"></script>
+    <script src="../viewJs/Fase/FaseVista.js"></script>
 @endpush

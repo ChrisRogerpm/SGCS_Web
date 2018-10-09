@@ -1,15 +1,30 @@
 @extends('Shared.layout')
 
-@section('content')
-    <div class="text-center m-b">
-        <h3 class="m-b-0">LISTA DE METODOLOGIAS</h3>
+@section('content-header')
+    <div class="page-header">
+        <div class="page-header-content">
+            <div class="page-title">
+                <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Metodologias</span></h4>
+                <ul class="breadcrumb breadcrumb-caret position-right">
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Metodologias</a></li>
+                    <li class="active">Lista de Metodologias</li>
+                </ul>
+            </div>
+            <div class="heading-elements">
+                <div class="heading-btn-group">
+                    <a href="{{route('Metodologia.Registrar')}}" class="btn btn-primary btnNuevo"><i class="icon-plus-circle2 position-left"></i> Nueva Metodologia</a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="row gutter-xs">
+@stop
+@section('content')
+    <div class="row">
         <div class="col-xs-12">
-            <div class="card">
-                <div class="card-body">
-                    <table id="tabla" class="table table-striped table-bordered table-nowrap dataTable" cellspacing="0" width="100%">
-                    </table>
+            <div class="panel panel-flat">
+                <div class="panel-body">
+                    <table class="table table-bordered" id="tabla"></table>
                 </div>
             </div>
         </div>
@@ -18,5 +33,5 @@
 
 
 @push('Js')
-    <script src="../assets/viewJs/Metodologia/MetodologiaVista.js"></script>
+    <script src="../viewJs/Metodologia/MetodologiaVista.js"></script>
 @endpush

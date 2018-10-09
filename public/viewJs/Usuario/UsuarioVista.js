@@ -24,9 +24,11 @@ function ListarProyectos() {
                     data: resp,
                     columns: [
                         {data: "USUid_usuario", title: "Id"},
-                        {data: null, title: "Nombre Completo",render:function (value) {
+                        {
+                            data: null, title: "Nombre Completo", render: function (value) {
                                 return value.USUnombre_usuario + ' ' + value.USUapellido_usuario;
-                            }},
+                            }
+                        },
                         {data: "USUemail_usuario", title: "Email"},
                         {
                             data: null, title: "Acción",

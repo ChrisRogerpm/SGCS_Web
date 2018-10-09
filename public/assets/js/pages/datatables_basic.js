@@ -19,15 +19,15 @@ $(function() {
     $.extend( $.fn.dataTable.defaults, {
         autoWidth: false,
         columnDefs: [{ 
-            orderable: false,
+            orderable: true,
             width: '100px',
-            targets: [ 5 ]
+            targets: [ 3 ]
         }],
         dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
         language: {
-            search: '<span>Filter:</span> _INPUT_',
-            searchPlaceholder: 'Type to filter...',
-            lengthMenu: '<span>Show:</span> _MENU_',
+            search: '<span>Buscar:</span> _INPUT_',
+            searchPlaceholder: 'Buscar...',
+            lengthMenu: '<span>Mostrar:</span> _MENU_',
             paginate: { 'first': 'First', 'last': 'Last', 'next': '&rarr;', 'previous': '&larr;' }
         },
         drawCallback: function () {

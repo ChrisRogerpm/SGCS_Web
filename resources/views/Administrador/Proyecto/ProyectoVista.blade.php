@@ -22,7 +22,9 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="panel panel-flat">
-                <table class="table table-bordered" id="tabla"></table>
+                <div class="panel-body">
+                    <table class="table table-bordered" id="tabla"></table>
+                </div>
             </div>
         </div>
     </div>

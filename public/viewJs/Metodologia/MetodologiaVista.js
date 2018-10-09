@@ -13,7 +13,7 @@ $(document).ready(function () {
 function ListarMetodologias() {
     $.ajax({
         type: 'GET',
-        url: 'servicio/ListarMetodologias',
+        url: basepath + '/servicio/ListarMetodologias',
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (response) {
@@ -30,10 +30,10 @@ function ListarMetodologias() {
                             data: "METestado_metodologia", title: "Estado",
                             render: function (value) {
                                 if (value === 1) {
-                                    return '<span class="label label-primary">Habilitado</span>'
+                                    return '<span class="label label-primary">Habilitado</span>';
 
                                 } else {
-                                    return '<span class="label label-danger">Deshabilitado</span>'
+                                    return '<span class="label label-danger">Deshabilitado</span>';
                                 }
                             }
                         },
@@ -43,7 +43,6 @@ function ListarMetodologias() {
                                 return '<button type="button" class="btn btn-sm btn-success btnEditar" data-id="' + value.METid_metodologia + '"><i class="glyphicon glyphicon-edit"></i> Editar</button>';
                             }
                         }
-
                     ]
                 });
             } else {

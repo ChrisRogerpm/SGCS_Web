@@ -70,7 +70,7 @@
                         </div>
 
                         <div class="text-right">
-                            <button type="button" class="btn bg-warning btnModificar">Modificar Proyecto <i
+                            <button type="button" class="btn btn-success btnModificar">Modificar Proyecto <i
                                         class="icon-arrow-right14 position-right"></i></button>
                         </div>
                     </div>

@@ -7,12 +7,12 @@ $(document).ready(function () {
         let url = '/EditarFase/' + id;
         window.location.replace(url);
     });
-    $(".btnBuscar").click(function () {
-       ListarFasesFiltro();
-    });
-
     $(".btnTodo").click(function () {
-       ListarFases();
+        ListarFases();
+    });
+    $("#txt_metodologia").change(function () {
+        var id_metodologia = $(this).val();
+        ListarFasesFiltro(id_metodologia);
     });
 
 });
@@ -29,7 +29,7 @@ function ListarFases() {
             if (est === true) {
                 var contenedor = $(".container-table");
                 $(contenedor).empty();
-                $(contenedor).append('<table id="tabla" class="table table-striped table-bordered table-nowrap dataTable" cellspacing="0" width="100%"></table>');
+                $(contenedor).append('<table class="table table-bordered" id="tabla"></table>');
                 $("#tabla").DataTable({
                     data: resp,
                     columns: [
@@ -84,13 +84,14 @@ function ListarMetodologias() {
     })
 }
 
-function ListarFasesFiltro() {
+function ListarFasesFiltro(id_metodologia) {
     $.ajax({
         type: 'POST',
         url: 'servicio/ListarFasesFiltro',
+        destroy: true,
         data: {
             '_token': $('input[name=_token]').val(),
-            'METid_metodologia': $("#txt_metodologia").val()
+            'METid_metodologia': id_metodologia
         },
         success: function (response) {
             let est = response.estado;
@@ -98,7 +99,7 @@ function ListarFasesFiltro() {
             if (est === true) {
                 var contenedor = $(".container-table");
                 $(contenedor).empty();
-                $(contenedor).append('<table id="tabla" class="table table-striped table-bordered table-nowrap dataTable" cellspacing="0" width="100%"></table>');
+                $(contenedor).append('<table class="table table-bordered" id="tabla"></table>');
                 $("#tabla").DataTable({
                     data: resp,
                     columns: [

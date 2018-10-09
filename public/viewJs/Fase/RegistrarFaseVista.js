@@ -16,10 +16,11 @@ $(document).ready(function () {
             },
             success: function (response) {
                 let est = response.estado;
+                let vald = response.validar;
                 if (est === true) {
                     toastr.success('Se registro satisfactoriamente', 'Mensaje Servidor');
                 } else {
-                    toastr.error('Servicio no encontrado', 'Mensaje Servidor');
+                    toastr.error(vald, 'Mensaje Servidor');
                 }
             }
         });

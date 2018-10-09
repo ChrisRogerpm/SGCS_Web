@@ -1,6 +1,9 @@
 $(document).ready(function () {
     ObtenerUsuario();
     $("#txt_tipo_usuario").select2();
+    $(".styled").uniform({
+        radioClass: 'choice'
+    });
     $("#frmNuevo").on('submit', function (e) {
         e.preventDefault();
         $.ajax({

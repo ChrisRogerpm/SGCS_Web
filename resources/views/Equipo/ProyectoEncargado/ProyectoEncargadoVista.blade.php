@@ -1,20 +1,25 @@
 @extends('Shared.layout')
 
-@push('Css')
-    <link href="../assets/global/plugins/datatables/dataTables.min.css" rel="stylesheet">
-@endpush
-
-
-@section('content')
-    <div class="text-center m-b">
-        <h3 class="m-b-0">LISTA DE PROYECTOS ENCARGADOS</h3>
+@section('content-header')
+    <div class="page-header">
+        <div class="page-header-content">
+            <div class="page-title">
+                <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Mis Proyectos</span></h4>
+                <ul class="breadcrumb breadcrumb-caret position-right">
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Mis Proyectos</a></li>
+                    <li class="active">Lista de Proyectos Encargados</li>
+                </ul>
+            </div>
+        </div>
     </div>
-    <div class="row gutter-xs">
+@stop
+@section('content')
+    <div class="row">
         <div class="col-xs-12">
-            <div class="card">
-                <div class="card-body table-responsive">
-                    <table id="tabla" class="table table-striped  table-bordered table-nowrap dataTable" cellspacing="0" width="100%">
-                    </table>
+            <div class="panel panel-flat">
+                <div class="panel-body">
+                    <table class="table table-bordered" id="tabla"></table>
                 </div>
             </div>
         </div>
@@ -23,5 +28,5 @@
 
 
 @push('Js')
-    <script src="../assets/viewJs/ProyectoEncargado/ProyectoEncargadoVista.js"></script>
+    <script src="../viewJs/ProyectoEncargado/ProyectoEncargadoVista.js"></script>
 @endpush

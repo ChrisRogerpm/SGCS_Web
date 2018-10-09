@@ -1,7 +1,5 @@
 $(document).ready(function () {
-
     fncListarMetodologias();
-    
     $("#txt_metodologia").change(function () {
         const METid_metodologia = $("#txt_metodologia").val();
         fncListarFasesFiltro(METid_metodologia);
@@ -10,7 +8,6 @@ $(document).ready(function () {
         let url = basepath + '/Entregable';
         window.location.replace(url);
     });
-
     $("#txt_metodologia").select2();
     $("#txt_fase").select2();
     $("#txt_estado").select2();
@@ -33,7 +30,6 @@ $(document).ready(function () {
                 let est = response.estado;
                 if (est === true) {
                     toastr.success('Se registro satisfactoriamente', 'Mensaje Servidor');
-                    $('form[id="frmnuevo"]')[0].reset();
                     $("#txt_metodologia").val(0).change();
                 } else {
                     toastr.error('Servicio no encontrado', 'Mensaje Servidor');

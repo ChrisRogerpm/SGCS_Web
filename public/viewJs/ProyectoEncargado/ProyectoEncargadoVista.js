@@ -24,7 +24,7 @@ function fncListarMetodologiasJs() {
                     columns: [
                         {data: "PROnombre_proyecto", title: "Proyecto"},
                         {data: "PROfecha_inicio_proyecto", title: "Fecha de Inicio"},
-                        {data: "PROfecha_inicio_proyecto", title: "Fecha de Finalización"},
+                        {data: "PROfecha_fin_proyecto", title: "Fecha de Finalización"},
                         {
                             data: null, title: "Acción",
                             render: function (value) {
