@@ -15,6 +15,7 @@
     <link href="../assets/css/core.css" rel="stylesheet" type="text/css">
     <link href="../assets/css/components.css" rel="stylesheet" type="text/css">
     <link href="../assets/css/colors.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../css/modifytcss.css">
     <!-- /global stylesheets -->
 
     <link rel="stylesheet" href="../assets/toastr.min.css">
@@ -43,7 +44,7 @@
 </head>
 
 <body>
-<div class="navbar navbar-inverse">
+<div class="navbar navbar-inverse bg-indigo-800">
     <div class="navbar-header">
         <a class="navbar-brand" href="#"><img src="../assets/images/logo_light.png" alt=""></a>
         <ul class="nav navbar-nav pull-right visible-xs-block">

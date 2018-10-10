@@ -15,6 +15,7 @@
     <link href="../assets/css/core.css" rel="stylesheet" type="text/css">
     <link href="../assets/css/components.css" rel="stylesheet" type="text/css">
     <link href="../assets/css/colors.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../css/modifytcss.css">
     <!-- /global stylesheets -->
 
     <link rel="stylesheet" href="../assets/toastr.min.css">
@@ -37,7 +38,7 @@
 <body class="login-container">
 
 <!-- Main navbar -->
-<div class="navbar navbar-inverse">
+<div class="navbar navbar-inverse bg-indigo-800">
     <div class="navbar-header">
         {{--<a class="navbar-brand" href="#"><img src="../assets/images/logo_light.png" alt=""></a>--}}
         {{--<ul class="nav navbar-nav pull-right visible-xs-block">--}}
@@ -59,23 +60,23 @@
 
             <!-- Simple login form -->
             <form action="#">
-                <div class="panel panel-body login-form">
+                <div class="panel panel-body login-form border-slate-800">
                     <div class="text-center">
-                        <div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>
+                        <div class="icon-object border-slate-800 text-slate-800"><i class="icon-reading"></i></div>
                         <h5 class="content-group">Ingrese a su cuenta
-                            <small class="display-block">Introduzca sus credenciales a continuación</small>
+                            <small class="display-block text-slate-800 ">Introduzca sus credenciales a continuación</small>
                         </h5>
                     </div>
                     {{csrf_field()}}
                     <div class="form-group has-feedback has-feedback-left">
-                        <input type="text" class="form-control" id="Codigo" placeholder="Email">
+                        <input type="text" class="form-control border-slate-800 text-slate-800" id="Codigo" placeholder="Email">
                         <div class="form-control-feedback">
                             <i class="icon-user text-muted"></i>
                         </div>
                     </div>
 
                     <div class="form-group has-feedback has-feedback-left">
-                        <input type="password" class="form-control" id="password" placeholder="Contraseña">
+                        <input type="password" class="form-control border-slate-800 text-slate-800" id="password" placeholder="Contraseña">
                         <div class="form-control-feedback">
                             <i class="icon-lock2 text-muted"></i>
                         </div>
