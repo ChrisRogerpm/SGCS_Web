@@ -3,7 +3,6 @@ $(document).ready(function () {
         fncListarUsuarios();
         fncListarUsuarioProyecto();
     });
-
     $(document).on('click', '.btnAgregarEquipo', function () {
         var ListaUsuarios = $("#ListaUsuarios").val();
         var proyecto_id = $("#id_proyecto_encargado").val();
@@ -41,25 +40,38 @@ $(document).ready(function () {
     $('.btnSiModalUsuarioProyecto').click(function () {
         var id_usuario_proyecto = $("#txt_id_usuario_proyecto").val();
         $.ajax({
-            type:'POST',
-            url:basepath + "/servicio/DeshabilitarUsuarioProyecto",
-            cache:false,
-            data:{
+            type: 'POST',
+            url: basepath + "/servicio/DeshabilitarUsuarioProyecto",
+            cache: false,
+            data: {
                 '_token': $('input[name=_token]').val(),
                 'USUPROid_usuarioproyecto': id_usuario_proyecto
             },
-            success:function (response) {
+            success: function (response) {
                 var resp = response.estado;
-                if (resp === true){
-                    toastr.success('Se ha deshabilitado al usuario satisfactoriamente','Mensaje Servidor');
+                if (resp === true) {
+                    toastr.success('Se ha deshabilitado al usuario satisfactoriamente', 'Mensaje Servidor');
                     fncListarUsuarioProyecto();
                     $('#ModalDeshabilitarUsuario').modal('hide');
-                } else{
-                    toastr.error('Error no se ha podido deshabilitar al usuario','Mensaje Servidor');
+                } else {
+                    toastr.error('Error no se ha podido deshabilitar al usuario', 'Mensaje Servidor');
                 }
             }
         });
     });
+
+    $(document).on('change', '.check_change', function () {
+        if ($(this).is(':checked')) {
+            var SubTipoServicioClausulaId = $(this).val();
+            var Estado = true;
+            CambiarEstadoSubTipoServicioClausula(SubTipoServicioClausulaId, Estado);
+        } else {
+            var SubTipoServicioClausulaId = $(this).val();
+            var Estado = false;
+            CambiarEstadoSubTipoServicioClausula(SubTipoServicioClausulaId, Estado);
+        }
+    });
+
 });
 
 function fncListarUsuarios() {
@@ -70,12 +82,13 @@ function fncListarUsuarios() {
         cache: false,
         success: function (response) {
             var resp = response.data;
-            $(".contenedor-lista").empty().append('<select multiple="multiple" size="10" class="Duallistbox" id="ListaUsuarios"></select>');
+            $(".contenedor-lista").empty().append('<select multiple="multiple" size="10" class="listbox" id="ListaUsuarios"></select>');
             if (response.estado === true) {
                 $.each(resp, function (key, value) {
                     $("#ListaUsuarios").append('<option value="' + value.USUid_usuario + '">' + value.USUnombre_usuario + '</option>');
                 });
-                fncDuallistbox();
+                //fncDuallistbox();
+                $(".listbox").bootstrapDualListbox();
             }
         }
     });
@@ -87,7 +100,6 @@ function fncListarUsuarioProyecto() {
     $.ajax({
         type: 'POST',
         url: url,
-        cache: false,
         data: {
             '_token': $('input[name=_token]').val(),
             'PROid_proyecto': proyecto_id
@@ -96,31 +108,38 @@ function fncListarUsuarioProyecto() {
             var resp = response.data;
             $(".contenedor-usuarios").empty();
             if (response.estado === true) {
-                $.each(resp, function (key, value) {
-                    $(".contenedor-usuarios").append('<div class="col-md-4">\n' +
-                        '            <div class="card">\n' +
-                        '                <div class="card-body">\n' +
-                        '                    <div class="media">\n' +
-                        '                        <div class="media-middle media-left">\n' +
-                        '                      <span class="bg-white sq-64 circle">\n' +
-                        '                          <a href="#">\n' +
-                        '                                <img class="img-circle img_click" data-id="' + value.USUPROid_usuarioproyecto + '" width="60" height="60" src="../Imagenes/' + value.USUfoto_usuario + '">\n' +
-                        '                            </a>\n' +
-                        '                      </span>\n' +
-                        '                        </div>\n' +
-                        '                        <div class="media-middle media-body">\n' +
-                        '                            <h3 class="media-heading">\n' +
-                        '                                <span class="fw-l">' + value.USUnombre_usuario + ' ' + value.USUapellido_usuario + '</span>\n' +
-                        '                                <span class="fw-b fz-sm text-danger">\n' +
-                        '                        </span>\n' +
-                        '                            </h3>\n' +
-                        '                        </div>\n' +
-                        '                    </div>\n' +
-                        '                </div>\n' +
-                        '            </div>\n' +
-                        '        </div>');
+                $(".contenedor-usuarios").append('<table class="table table-bordered" id="tabla_usuarios_equipo"></table>');
+                $("#tabla_usuarios_equipo").DataTable({
+                    "bDestroy": true,
+                    "bSort": false,
+                    "scrollCollapse": true,
+                    "scrollX": false,
+                    "paging": true,
+                    "autoWidth": false,
+                    "bProcessing": true,
+                    "bDeferRender": true,
+                    data: resp,
+                    columns: [
+                        {data: "USUPROid_usuarioproyecto", title: "Id"},
+                        {
+                            data: null, title: "Integrante",
+                            render: function (value) {
+                                return value.USUnombre_usuario + ' ' + value.USUapellido_usuario;
+                            }
+                        },
+                        {
+                            data: null, title: "Acción",
+                            render: function (value) {
+                                return '<input type="checkbox" class="switch check_change" data-on-text="On" data-off-text="Off" data-on-color="success"  checked="checked" va>';
+                            }
+                        }
+                    ],
+                    "drawCallback": function( settings ) {
+                        $(".switch").bootstrapSwitch();
+                    }
                 });
             }
+
         }
     });
 }

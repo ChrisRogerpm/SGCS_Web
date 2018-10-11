@@ -28,14 +28,14 @@ function fncListarMetodologiasJs() {
                         {
                             data: null, title: "Acción",
                             render: function (value) {
-                                return '<button type="button" class="btn btn-sm btn-success btnInfo" data-id="' + value.PROid_proyecto + '"><i class="icon-eye-plus"></i> Información</button>';
+                                return '<button type="button" class="btn btn-xs btn-success btnInfo" data-id="' + value.PROid_proyecto + '"><i class="icon-eye-plus"></i></button>';
                             }
                         }
 
                     ]
                 });
-                $('.btnHistorial').tooltip({
-                   title: "Historial"
+                $('.btnInfo').tooltip({
+                   title: "Info Proyecto"
                 });
             } else {
                 toastr.error('Servicio no encontrado', 'Mensaje Servidor');

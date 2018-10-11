@@ -20,8 +20,8 @@ $(function() {
         autoWidth: false,
         columnDefs: [{ 
             orderable: true,
-            width: '100px',
-            targets: [ 3 ]
+            width: '180px',
+            targets: [ 2 ]
         }],
         dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
         language: {
@@ -30,12 +30,12 @@ $(function() {
             lengthMenu: '<span>Mostrar:</span> _MENU_',
             paginate: { 'first': 'First', 'last': 'Last', 'next': '&rarr;', 'previous': '&larr;' }
         },
-        drawCallback: function () {
-            $(this).find('tbody tr').slice(-3).find('.dropdown, .btn-group').addClass('dropup');
-        },
-        preDrawCallback: function() {
-            $(this).find('tbody tr').slice(-3).find('.dropdown, .btn-group').removeClass('dropup');
-        }
+        // drawCallback: function () {
+        //     $(this).find('tbody tr').slice(-3).find('.dropdown, .btn-group').addClass('dropup');
+        // },
+        // preDrawCallback: function() {
+        //     $(this).find('tbody tr').slice(-3).find('.dropdown, .btn-group').removeClass('dropup');
+        // }
     });
 
 

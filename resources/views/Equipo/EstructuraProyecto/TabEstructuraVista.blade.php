@@ -4,8 +4,8 @@
             <div class="form-group">
                 <label for="">Nombre de Proyecto</label>
                 <div class="input-group">
-                    <span class="input-group-addon"><i class="icon icon-info-circle"></i></span>
-                    <input class="form-control" disabled type="text" id="NombreProyecto">
+                    <span class="input-group-addon"><i class="icon icon-info22"></i></span>
+                    <input class="form-control" disabled type="text" id="NombreProyecto" />
                 </div>
             </div>
         </div>
@@ -50,141 +50,55 @@
         </div>
     </div>
 </div>
-<div class="col-md-4">
-    <div class="card bg-info">
-        <div class="card-body">
-            <div class="media">
-                <div class="media-middle media-left">
-                      <span class="bg-info-inverse circle sq-48">
-                        <span class="icon icon-user-plus"></span>
-                      </span>
-                </div>
-                <div class="media-middle media-body">
-                    <h6 class="media-heading">Equipo de Trabajo</h6>
-                    <h3 class="media-heading">
-                        <span class="fw-l EquipoTrabajo"></span>
-                    </h3>
-                </div>
+<div class="col-sm-6 col-md-4">
+    <div class="panel panel-body bg-danger-400 has-bg-image">
+        <div class="media no-margin">
+            <div class="media-body">
+                <h3 class="no-margin EquipoTrabajo"> - </h3>
+                <span class="text-uppercase text-size-mini">Miembros de Equipo</span>
+            </div>
+            <div class="media-right media-middle">
+                <i class="icon-user icon-3x opacity-75"></i>
             </div>
         </div>
     </div>
 </div>
-<div class="col-md-4">
-    <div class="card bg-info">
-        <div class="card-body">
-            <div class="media">
-                <div class="media-middle media-left">
-                      <span class="bg-info-inverse circle sq-48">
-                        <span class="icon icon-file-word-o"></span>
-                      </span>
-                </div>
-                <div class="media-middle media-body">
-                    <h6 class="media-heading">Tareas</h6>
-                    <h3 class="media-heading">
-                        <span class="fw-l">1,256 Items</span>
-                    </h3>
-                </div>
+<div class="col-sm-6 col-md-4">
+    <div class="panel panel-body bg-success-400 has-bg-image">
+        <div class="media no-margin">
+            <div class="media-body">
+                <h3 class="no-margin EquipoTrabajo"> - </h3>
+                <span class="text-uppercase text-size-mini">Tareas</span>
+            </div>
+            <div class="media-right media-middle">
+                <i class="icon-file-empty icon-3x opacity-75"></i>
             </div>
         </div>
     </div>
 </div>
-<div class="col-md-4">
-    <div class="card bg-info">
-        <div class="card-body">
-            <div class="media">
-                <div class="media-middle media-left">
-                      <span class="bg-info-inverse circle sq-48">
-                        <span class="icon icon-user-plus"></span>
-                      </span>
-                </div>
-                <div class="media-middle media-body">
-                    <h6 class="media-heading">Miembros Comite</h6>
-                    <h3 class="media-heading">
-                        <span class="fw-l">1,256 Items</span>
-                    </h3>
-                </div>
+<div class="col-sm-6 col-md-4">
+    <div class="panel panel-body bg-indigo-300 has-bg-image">
+        <div class="media no-margin">
+            <div class="media-body">
+                <h3 class="no-margin EquipoTrabajo"> - </h3>
+                <span class="text-uppercase text-size-mini">Miembros Comite</span>
+            </div>
+            <div class="media-right media-middle">
+                <i class="icon-user-check icon-3x opacity-75"></i>
             </div>
         </div>
     </div>
 </div>
-<div class="col-md-4">
-    <div class="card bg-info">
-        <div class="card-body">
-            <div class="media">
-                <div class="media-middle media-left">
-                      <span class="bg-info-inverse circle sq-48">
-                        <span class="icon icon-calendar"></span>
-                      </span>
-                </div>
-                <div class="media-middle media-body">
-                    <h6 class="media-heading">Solicitudes</h6>
-                    <h3 class="media-heading">
-                        <span class="fw-l ItemsSoli"></span>
-                    </h3>
-                </div>
+<div class="col-sm-6 col-md-4">
+    <div class="panel panel-body bg-warning-300 has-bg-image">
+        <div class="media no-margin">
+            <div class="media-body">
+                <h3 class="no-margin EquipoTrabajo"> - </h3>
+                <span class="text-uppercase text-size-mini">Solicitudes</span>
             </div>
-        </div>
-    </div>
-</div>
-<div class="col-md-8">
-    <div class="card">
-        <div class="card-header bg-info">
-            <strong>Progreso de Proyecto</strong>
-        </div>
-        <div class="card-body" data-toggle="match-height">
-            <ul class="list-group list-group-divided">
-                <li class="list-group-item">
-                    <div class="media">
-                        <div class="media-middle media-body">
-                            <h6 class="media-heading">
-                                <span>Direct</span>
-                            </h6>
-                            <h4 class="media-heading">67%
-                                <small>124,029</small>
-                            </h4>
-                        </div>
-                        <div class="media-middle media-right">
-                              <span class="bg-primary circle sq-40">
-                                <span class="icon icon-arrow-right"></span>
-                              </span>
-                        </div>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    <div class="media">
-                        <div class="media-middle media-body">
-                            <h6 class="media-heading">
-                                <span>Referrals</span>
-                            </h6>
-                            <h4 class="media-heading">21%
-                                <small>38,875</small>
-                            </h4>
-                        </div>
-                        <div class="media-middle media-right">
-                              <span class="bg-primary circle sq-40">
-                                <span class="icon icon-link"></span>
-                              </span>
-                        </div>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    <div class="media">
-                        <div class="media-middle media-body">
-                            <h6 class="media-heading">
-                                <span>Search Engines</span>
-                            </h6>
-                            <h4 class="media-heading">12%
-                                <small>22,214</small>
-                            </h4>
-                        </div>
-                        <div class="media-middle media-right">
-                              <span class="bg-primary circle sq-40">
-                                <span class="icon icon-search"></span>
-                              </span>
-                        </div>
-                    </div>
-                </li>
-            </ul>
+            <div class="media-right media-middle">
+                <i class="icon-file-eye icon-3x opacity-75"></i>
+            </div>
         </div>
     </div>
 </div>

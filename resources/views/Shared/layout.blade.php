@@ -32,13 +32,18 @@
     <!-- Theme JS files -->
     <script type="text/javascript" src="../assets/js/plugins/forms/selects/select2.min.js"></script>
     <script type="text/javascript" src="../assets/js/plugins/forms/styling/uniform.min.js"></script>
+    <script type="text/javascript" src="../assets/js/plugins/forms/styling/switchery.min.js"></script>
+    <script type="text/javascript" src="../assets/js/plugins/forms/styling/switch.min.js"></script>
     <script type="text/javascript" src="../assets/js/plugins/notifications/sweet_alert.min.js"></script>
     <script type="text/javascript" src="../assets/js/plugins/tables/datatables/datatables.min.js"></script>
+    <script type="text/javascript" src="../assets/js/plugins/forms/inputs/duallistbox.min.js"></script>
 
 
     <script type="text/javascript" src="../assets/js/core/app.js"></script>
     <script type="text/javascript" src="../assets/js/pages/datatables_basic.js"></script>
     <script type="text/javascript" src="../assets/js/pages/components_modals.js"></script>
+    <script type="text/javascript" src="../assets/js/pages/form_dual_listboxes.js"></script>
+    {{--<script type="text/javascript" src="../assets/js/pages/form_checkboxes_radios.js"></script>--}}
     <!-- /theme JS files -->
 
 </head>
