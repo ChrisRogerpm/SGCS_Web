@@ -21,6 +21,9 @@ class ProyectoEncargadoController extends Controller
         return view('Equipo.InformacionProyecto.InformacionProyectoEncargado', compact('proyecto_id'));
     }
 
+    public function fncProyectoEncargadoMenuDetalleVista($PROid_proyecto){
+        return view('Equipo.ProyectoEncargado.ProyectoEncargadoMenuDetalle',compact('PROid_proyecto'));
+    }
     public function fncProyectoEncargadoJson()
     {
         $resultado = false;
@@ -76,4 +79,5 @@ class ProyectoEncargadoController extends Controller
             'mensaje' => $mensaje_error
         ]);
     }
+
 }

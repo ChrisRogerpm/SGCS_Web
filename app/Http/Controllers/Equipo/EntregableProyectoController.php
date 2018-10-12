@@ -9,6 +9,11 @@ use App\Http\Controllers\Controller;
 
 class EntregableProyectoController extends Controller
 {
+    public function fncEntregableProyectoVista($PROid_proyecto)
+    {
+        return view('Equipo.EntregableProyecto.EntregableProyectoVista',compact('PROid_proyecto'));
+    }
+
     public function fncListarEntregableProyectoJson(Request $request)
     {
         $resultado = false;

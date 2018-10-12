@@ -8,7 +8,11 @@ use App\Http\Controllers\Controller;
 
 class UsuarioProyectoController extends Controller
 {
-    //
+    public function fncEquipoTrabajoVista($PROid_proyecto)
+    {
+        return view('Equipo.EquipoTrabajo.EquipoTrabajoVista', compact('PROid_proyecto'));
+    }
+
     public function fncListarUsuarioProyectoJson(Request $request)
     {
         $resultado = false;

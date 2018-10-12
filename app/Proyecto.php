@@ -90,4 +90,19 @@ class Proyecto extends Model
         }
         return $resultado;
     }
+
+    public static function fncCambiarEstadoSeleccionProyectoEncargado(Request $request)
+    {
+        $proyecto_encargado_id = $request->input('PROid_proyecto');
+        $estado_proyecto_encargado = $request->input('PROestado_proyecto');
+
+        $proyecto = Proyecto::findorfail($proyecto_encargado_id);
+        $proyecto->PROestado_proyecto = $estado_proyecto_encargado;
+        $proyecto->save();
+
+        ItemTable::where('item_type_id', '=', 1)->update(['color' => 'black']);
+
+
+
+    }
 }

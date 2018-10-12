@@ -3,10 +3,10 @@ $(document).ready(function () {
     fncListarMetodologiasJs();
     $(document).on('click', '.btnInfo', function () {
         let id = $(this).data("id");
-        let url = '/InformacionProyectoEncargado/' + id;
+        // let url = '/InformacionProyectoEncargado/' + id;
+        let url = '/ProyectoEncargadoMenuDetalle/' + id;
         window.location.replace(url);
     });
-
 });
 
 function fncListarMetodologiasJs() {
@@ -22,6 +22,7 @@ function fncListarMetodologiasJs() {
                 $("#tabla").DataTable({
                     data: resp,
                     columns: [
+                        {data: "PROid_proyecto", title: 'Id'},
                         {data: "PROnombre_proyecto", title: "Proyecto"},
                         {data: "PROfecha_inicio_proyecto", title: "Fecha de Inicio"},
                         {data: "PROfecha_fin_proyecto", title: "Fecha de Finalización"},
@@ -31,11 +32,12 @@ function fncListarMetodologiasJs() {
                                 return '<button type="button" class="btn btn-xs btn-success btnInfo" data-id="' + value.PROid_proyecto + '"><i class="icon-eye-plus"></i></button>';
                             }
                         }
-
-                    ]
-                });
-                $('.btnInfo').tooltip({
-                   title: "Info Proyecto"
+                    ],
+                    "drawCallback": function (settings) {
+                        $('.btnInfo').tooltip({
+                            title: "Info Proyecto"
+                        });
+                    }
                 });
             } else {
                 toastr.error('Servicio no encontrado', 'Mensaje Servidor');
