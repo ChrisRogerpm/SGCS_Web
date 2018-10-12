@@ -37,12 +37,12 @@ class UsuarioProyectoController extends Controller
         return response()->json(['estado' => $resultado, 'data' => $usuario_proyecto, 'mensaje' => $mensaje_error]);
     }
 
-    public function fncDeshabilitarUsuarioProyectoJson(Request $request)
+    public function fncCambiarEstadoUsuarioProyectoJson(Request $request)
     {
         $resultado = false;
         $mensaje_error = "";
         try {
-            $resultado = UsuarioProyecto::fncDeshabilitarUsuarioProyecto($request);
+            $resultado = UsuarioProyecto::fncCambiarEstadoUsuarioProyecto($request);
         } catch (\Exception $ex) {
             $mensaje_error = $ex;
         }

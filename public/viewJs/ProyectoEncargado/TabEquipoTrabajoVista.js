@@ -29,51 +29,39 @@ $(document).ready(function () {
         }
 
     });
-    $(document).on('click', '.img_click', function () {
-        $('#ModalDeshabilitarUsuario').appendTo("body").modal({
-            backdrop: 'static',
-            keyboard: false
-        });
-        var id_usuario_proyecto = $(this).data("id");
-        $("#txt_id_usuario_proyecto").val(id_usuario_proyecto);
-    });
-    $('.btnSiModalUsuarioProyecto').click(function () {
-        var id_usuario_proyecto = $("#txt_id_usuario_proyecto").val();
-        $.ajax({
-            type: 'POST',
-            url: basepath + "/servicio/DeshabilitarUsuarioProyecto",
-            cache: false,
-            data: {
-                '_token': $('input[name=_token]').val(),
-                'USUPROid_usuarioproyecto': id_usuario_proyecto
-            },
-            success: function (response) {
-                var resp = response.estado;
-                if (resp === true) {
-                    toastr.success('Se ha deshabilitado al usuario satisfactoriamente', 'Mensaje Servidor');
-                    fncListarUsuarioProyecto();
-                    $('#ModalDeshabilitarUsuario').modal('hide');
-                } else {
-                    toastr.error('Error no se ha podido deshabilitar al usuario', 'Mensaje Servidor');
-                }
-            }
-        });
-    });
-
-    $(document).on('change', '.check_change', function () {
+    $(document).on('change', '.styled', function () {
         if ($(this).is(':checked')) {
-            var SubTipoServicioClausulaId = $(this).val();
-            var Estado = true;
-            CambiarEstadoSubTipoServicioClausula(SubTipoServicioClausulaId, Estado);
+            var Id_UsuarioProyecto = $(this).val();
+            var Estado = 1;
+            fncCambiarEstadoUsuarioProyecto(Id_UsuarioProyecto,Estado);
         } else {
-            var SubTipoServicioClausulaId = $(this).val();
-            var Estado = false;
-            CambiarEstadoSubTipoServicioClausula(SubTipoServicioClausulaId, Estado);
+            var Id_UsuarioProyecto = $(this).val();
+            var Estado = 0;
+            fncCambiarEstadoUsuarioProyecto(Id_UsuarioProyecto,Estado);
         }
     });
 
 });
-
+function fncCambiarEstadoUsuarioProyecto(IdUsuarioProyecto,Estado) {
+    $.ajax({
+        type: 'POST',
+        url: basepath + "/servicio/CambiarEstadoUsuarioProyecto",
+        cache: false,
+        data: {
+            '_token': $('input[name=_token]').val(),
+            'USUPROid_usuarioproyecto': IdUsuarioProyecto,
+            'USUPROestado_usuarioproyecto':Estado
+        },
+        success: function (response) {
+            var resp = response.estado;
+            if (resp === true) {
+                toastr.success('Se ha actualizado el usuario satisfactoriamente', 'Mensaje Servidor');
+            } else {
+                toastr.error('Error no se ha podido deshabilitar al usuario', 'Mensaje Servidor');
+            }
+        }
+    });
+}
 function fncListarUsuarios() {
     const url = basepath + "/servicio/ListarUsuarios";
     $.ajax({
@@ -93,7 +81,6 @@ function fncListarUsuarios() {
         }
     });
 }
-
 function fncListarUsuarioProyecto() {
     const url = basepath + "/servicio/ListarUsuarioProyecto";
     const proyecto_id = $("#id_proyecto_encargado").val();
@@ -128,14 +115,21 @@ function fncListarUsuarioProyecto() {
                             }
                         },
                         {
-                            data: null, title: "Acción",
+                            data: null, title: "Estado",
                             render: function (value) {
-                                return '<input type="checkbox" class="switch check_change" data-on-text="On" data-off-text="Off" data-on-color="success"  checked="checked" va>';
+                                if (value.USUPROestado_usuarioproyecto === 1) {
+                                    return '<input type="checkbox" class="styled" checked="checked" value="' + value.USUPROid_usuarioproyecto + '">';
+                                } else {
+                                    return '<input type="checkbox" class="styled"  value="' + value.USUPROid_usuarioproyecto + '">';
+                                }
+
                             }
                         }
                     ],
-                    "drawCallback": function( settings ) {
-                        $(".switch").bootstrapSwitch();
+                    "drawCallback": function (settings) {
+                        $(".styled, .multiselect-container input").uniform({
+                            radioClass: 'choice'
+                        });
                     }
                 });
             }

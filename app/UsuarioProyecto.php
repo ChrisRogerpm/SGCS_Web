@@ -20,10 +20,9 @@ class UsuarioProyecto extends Model
     {
         $proyecto_id = $request->input('PROid_proyecto');
         $resultado = DB::table('sgcsusupropusuarioproyecto as usupro')
-            ->select('usupro.USUPROid_usuarioproyecto','usu.USUnombre_usuario', 'usu.USUapellido_usuario', 'usu.USUfoto_usuario')
+            ->select('usupro.USUPROid_usuarioproyecto','usu.USUnombre_usuario', 'usu.USUapellido_usuario', 'usu.USUfoto_usuario','USUPROestado_usuarioproyecto')
             ->join('sgcsusutusuario as usu', 'usu.USUid_usuario', 'usupro.USUid_usuario')
             ->where('usupro.PROid_proyecto', $proyecto_id)
-            ->where('usupro.USUPROestado_usuarioproyecto', '!=', '0')
             ->get();
         return $resultado;
     }
@@ -58,12 +57,15 @@ class UsuarioProyecto extends Model
         return UsuarioProyecto::where('USUid_usuario',$USUid_usuario)->count();
     }
 
-    public static function fncDeshabilitarUsuarioProyecto(Request $request)
+    public static function fncCambiarEstadoUsuarioProyecto(Request $request)
     {
         $resultado = false;
         $usuarioproyecto = $request->input('USUPROid_usuarioproyecto');
+        $usuario_estado = $request->input('USUPROestado_usuarioproyecto');
         try{
-            UsuarioProyecto::findorfail($usuarioproyecto)->update(['USUPROestado_usuarioproyecto' => 0]);;
+            $usupro = UsuarioProyecto::findorfail($usuarioproyecto);
+            $usupro->USUPROestado_usuarioproyecto = $usuario_estado;
+            $usupro->save();
             $resultado = true;
         }catch (\Exception $ex){
         }

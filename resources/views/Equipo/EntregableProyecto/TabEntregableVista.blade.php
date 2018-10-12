@@ -2,7 +2,7 @@
     <div class="col-md-4">
         <div class="form-group">
             <label for="">Fases</label>
-            <select class="form-control select2" id="FaseEntregableProyecto"></select>
+            <select class="form-control" id="FaseEntregableProyecto"></select>
         </div>
         <div class="card">
             <div class="card-header">

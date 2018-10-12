@@ -14,7 +14,7 @@ function fncListarEstructuraProyecto() {
             'PROid_proyecto': proyecto_id
         },
         success: function (response) {
-            debugger
+            
             var resp = response.data;
             var mepro = response.metodologia_proyecto;
             var usu_total = response.usuario_proyecto_total;

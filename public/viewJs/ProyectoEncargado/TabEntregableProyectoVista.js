@@ -1,12 +1,15 @@
 $(document).ready(function () {
-    fncListarFasesProyecto();
+    ListarFasesProyecto();
     fncListarEntregableProyecto();
-    $("#FaseEntregableProyecto").select2();
+
     $("#TabEntregables").click(function () {
-        fncListarFasesProyecto();
+        ListarFasesProyecto();
         fncListarEntregableProyecto();
         $("#TablaEntregableDisponible tbody").empty();
     });
+
+    $("#FaseEntregableProyecto").select2();
+
     $("#FaseEntregableProyecto").change(function () {
         var id_fase = $("#FaseEntregableProyecto").val();
         $.ajax({
@@ -25,7 +28,7 @@ $(document).ready(function () {
                         $("#TablaEntregableDisponible tbody").append('<tr>\n' +
                             '                        <td class="text-left">' + value.ENTRnombre_entregable + '</td>\n' +
                             '                        <td class="text-center">\n' +
-                            '                            <input type="checkbox" class="entregablechk" value="' + value.ENTRid_entregable + '">\n' +
+                            '                            <input type="checkbox" class="style_entregable" value="' + value.ENTRid_entregable + '">\n' +
                             '                        </td>\n' +
                             '                    </tr>');
                     });
@@ -33,9 +36,12 @@ $(document).ready(function () {
                     toastr.error('Servicio no encontrado', 'Mensaje Servidor');
                 }
             }
+
+        });
+        $("#TablaEntregableDisponible tbody .style_entregable:checkbox").uniform({
+            radioClass: 'choice'
         });
     });
-
     $(".btnAgregarEntregableProyecto").click(function () {
         var entregable_id = [];
         var proyecto_id = $("#id_proyecto_encargado").val();
@@ -70,7 +76,6 @@ $(document).ready(function () {
             toastr.error('Seleccione un Entregable', 'Mensaje Servidor');
         }
     });
-
     $(document).on('change', '.CheckEstadoEntregable', function () {
         if ($(this).is(':checked')) {
             var EntregableProyectoId = $(this).val();
@@ -81,8 +86,11 @@ $(document).ready(function () {
             var Estado = 0;
             fncCambiarEstadoEntregableProyecto(EntregableProyectoId,Estado);
         }
-    })
+    });
 
+    $(".style_entregable").uniform({
+        radioClass: 'choice'
+    });
 });
 function fncCambiarEstadoEntregableProyecto(EntregableProyectoId,Estado) {
     $.ajax({
@@ -103,7 +111,7 @@ function fncCambiarEstadoEntregableProyecto(EntregableProyectoId,Estado) {
         }
     });
 }
-function fncListarFasesProyecto() {
+function ListarFasesProyecto() {
     const proyecto_id = $("#id_proyecto_encargado").val();
     $.ajax({
         type: 'POST',
@@ -117,16 +125,17 @@ function fncListarFasesProyecto() {
             let resp = response.data;
             if (est === true) {
                 $("#FaseEntregableProyecto").empty();
-                $("#FaseEntregableProyecto").append('<option value="">--Seleccione una Fase--</option>')
+                $("#FaseEntregableProyecto").append('<option value="">--Seleccione una Fase--</option>');
                 $.each(resp, function (key, value) {
                     $("#FaseEntregableProyecto").append('<option value="' + value.FAid_fase + '">' + value.FAnombre_fase + '</option>')
-                })
+                });
+
             }
         }
     })
 }
-
 function fncListarEntregableProyecto() {
+    debugger
     const proyecto_id = $("#id_proyecto_encargado").val();
     $.ajax({
         type: 'POST',
