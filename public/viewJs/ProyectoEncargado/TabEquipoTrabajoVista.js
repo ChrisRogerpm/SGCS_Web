@@ -1,8 +1,6 @@
 $(document).ready(function () {
-    $("#TabEquipo").click(function () {
-        fncListarUsuarios();
-        fncListarUsuarioProyecto();
-    });
+    fncListarUsuarios();
+    fncListarUsuarioProyecto();
     $(document).on('click', '.btnAgregarEquipo', function () {
         var ListaUsuarios = $("#ListaUsuarios").val();
         var proyecto_id = $("#id_proyecto_encargado").val();
@@ -19,6 +17,7 @@ $(document).ready(function () {
                     'USUid_usuario': ListaUsuarios
                 },
                 success: function (response) {
+                    debugger
                     if (response.estado === true) {
                         fncListarUsuarios();
                         fncListarUsuarioProyecto();
@@ -29,20 +28,9 @@ $(document).ready(function () {
         }
 
     });
-    $(document).on('change', '.styled', function () {
-        if ($(this).is(':checked')) {
-            var Id_UsuarioProyecto = $(this).val();
-            var Estado = 1;
-            fncCambiarEstadoUsuarioProyecto(Id_UsuarioProyecto,Estado);
-        } else {
-            var Id_UsuarioProyecto = $(this).val();
-            var Estado = 0;
-            fncCambiarEstadoUsuarioProyecto(Id_UsuarioProyecto,Estado);
-        }
-    });
-
 });
-function fncCambiarEstadoUsuarioProyecto(IdUsuarioProyecto,Estado) {
+
+function fncCambiarEstadoUsuarioProyecto(IdUsuarioProyecto, Estado) {
     $.ajax({
         type: 'POST',
         url: basepath + "/servicio/CambiarEstadoUsuarioProyecto",
@@ -50,7 +38,7 @@ function fncCambiarEstadoUsuarioProyecto(IdUsuarioProyecto,Estado) {
         data: {
             '_token': $('input[name=_token]').val(),
             'USUPROid_usuarioproyecto': IdUsuarioProyecto,
-            'USUPROestado_usuarioproyecto':Estado
+            'USUPROestado_usuarioproyecto': Estado
         },
         success: function (response) {
             var resp = response.estado;
@@ -62,6 +50,7 @@ function fncCambiarEstadoUsuarioProyecto(IdUsuarioProyecto,Estado) {
         }
     });
 }
+
 function fncListarUsuarios() {
     const url = basepath + "/servicio/ListarUsuarios";
     $.ajax({
@@ -75,12 +64,12 @@ function fncListarUsuarios() {
                 $.each(resp, function (key, value) {
                     $("#ListaUsuarios").append('<option value="' + value.USUid_usuario + '">' + value.USUnombre_usuario + '</option>');
                 });
-                //fncDuallistbox();
                 $(".listbox").bootstrapDualListbox();
             }
         }
     });
 }
+
 function fncListarUsuarioProyecto() {
     const url = basepath + "/servicio/ListarUsuarioProyecto";
     const proyecto_id = $("#id_proyecto_encargado").val();
@@ -118,17 +107,25 @@ function fncListarUsuarioProyecto() {
                             data: null, title: "Estado",
                             render: function (value) {
                                 if (value.USUPROestado_usuarioproyecto === 1) {
-                                    return '<input type="checkbox" class="styled" checked="checked" value="' + value.USUPROid_usuarioproyecto + '">';
+                                    return '<input type="checkbox" class="switch" data-on-text="Activo" data-off-text="Inactivo" data-on-color="primary" data-off-color="success" checked="checked" value="' + value.USUPROid_usuarioproyecto + '">';
                                 } else {
-                                    return '<input type="checkbox" class="styled"  value="' + value.USUPROid_usuarioproyecto + '">';
+                                    return '<input type="checkbox" class="switch" data-on-text="Activo" data-off-text="Inactivo" data-on-color="primary" data-off-color="success" value="' + value.USUPROid_usuarioproyecto + '">';
                                 }
-
                             }
                         }
                     ],
                     "drawCallback": function (settings) {
-                        $(".styled, .multiselect-container input").uniform({
-                            radioClass: 'choice'
+                        $(".switch").bootstrapSwitch();
+                        $('.switch').on('switchChange.bootstrapSwitch', function (event, state) {
+                            if (state) {
+                                var Id_UsuarioProyecto = $(this).val();
+                                var Estado = 1;
+                                fncCambiarEstadoUsuarioProyecto(Id_UsuarioProyecto, Estado);
+                            } else {
+                                var Id_UsuarioProyecto = $(this).val();
+                                var Estado = 0;
+                                fncCambiarEstadoUsuarioProyecto(Id_UsuarioProyecto, Estado);
+                            }
                         });
                     }
                 });

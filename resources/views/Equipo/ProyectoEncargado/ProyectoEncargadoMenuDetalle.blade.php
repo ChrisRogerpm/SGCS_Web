@@ -4,7 +4,7 @@
     <div class="page-header">
         <div class="page-header-content">
             <div class="page-title">
-                <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Mis Proyectos</span>
+                <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Menu de Opciones</span>
                 </h4>
                 <ul class="breadcrumb breadcrumb-caret position-right">
                     <li><a href="#">Inicio</a></li>
@@ -63,7 +63,7 @@
             </a>
         </div>
         <div class="col-sm-4 col-md-4">
-            <a href="#">
+            <a href="{{route('TareaEntregable',$PROid_proyecto)}}">
                 <div class="panel panel-body bg-success-400 has-bg-image">
                     <div class="media no-margin">
                         <div class="media-body">

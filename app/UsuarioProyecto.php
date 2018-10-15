@@ -20,7 +20,7 @@ class UsuarioProyecto extends Model
     {
         $proyecto_id = $request->input('PROid_proyecto');
         $resultado = DB::table('sgcsusupropusuarioproyecto as usupro')
-            ->select('usupro.USUPROid_usuarioproyecto','usu.USUnombre_usuario', 'usu.USUapellido_usuario', 'usu.USUfoto_usuario','USUPROestado_usuarioproyecto')
+            ->select('usupro.USUPROid_usuarioproyecto', 'usu.USUnombre_usuario', 'usu.USUapellido_usuario', 'usu.USUfoto_usuario', 'USUPROestado_usuarioproyecto')
             ->join('sgcsusutusuario as usu', 'usu.USUid_usuario', 'usupro.USUid_usuario')
             ->where('usupro.PROid_proyecto', $proyecto_id)
             ->get();
@@ -42,7 +42,7 @@ class UsuarioProyecto extends Model
         $usuario = $request->input('USUid_usuario');
         $proyecto_id = $request->input('PROid_proyecto');
         for ($i = 0; $i < count($usuario); $i++) {
-            if (self::fncValidarUsuarioProyecto($usuario[$i]) < 1){
+            if (self::fncValidarUsuarioProyecto($usuario[$i], $proyecto_id) < 1) {
                 $usuario_proyecto = new UsuarioProyecto();
                 $usuario_proyecto->USUid_usuario = $usuario[$i];
                 $usuario_proyecto->PROid_proyecto = $proyecto_id;
@@ -52,22 +52,27 @@ class UsuarioProyecto extends Model
         }
     }
 
-    public static function fncValidarUsuarioProyecto($USUid_usuario)
+    public static function fncValidarUsuarioProyecto($USUid_usuario, $PROid_proyecto)
     {
-        return UsuarioProyecto::where('USUid_usuario',$USUid_usuario)->count();
+        $resultado = DB::table('sgcsusupropusuarioproyecto')
+            ->where('USUid_usuario', $USUid_usuario)
+            ->where('PROid_proyecto', $PROid_proyecto)
+            ->count();
+        return $resultado;
     }
 
-    public static function fncCambiarEstadoUsuarioProyecto(Request $request)
+    public
+    static function fncCambiarEstadoUsuarioProyecto(Request $request)
     {
         $resultado = false;
         $usuarioproyecto = $request->input('USUPROid_usuarioproyecto');
         $usuario_estado = $request->input('USUPROestado_usuarioproyecto');
-        try{
+        try {
             $usupro = UsuarioProyecto::findorfail($usuarioproyecto);
             $usupro->USUPROestado_usuarioproyecto = $usuario_estado;
             $usupro->save();
             $resultado = true;
-        }catch (\Exception $ex){
+        } catch (\Exception $ex) {
         }
         return $resultado;
     }

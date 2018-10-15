@@ -65,11 +65,11 @@ Route::group(['namespace' => 'Administrador'], function () {
 Route::group(['namespace' => 'Equipo'], function () {
     Route::get('Equipo', 'EquipoController@fncMostrarEquipo')->name('Equipo');
     Route::get('ProyectosEncargados','ProyectoEncargadoController@fncProyectoEncargadoVista')->name('ProyectosEncargados');
-    Route::get('ProyectoEncargadoMenuDetalle/{id}','ProyectoEncargadoController@fncProyectoEncargadoMenuDetalleVista');
-
+    Route::get('ProyectoEncargadoMenuDetalle/{id}','ProyectoEncargadoController@fncProyectoEncargadoMenuDetalleVista')->name('ProyectoEncargadoMenuDetalle');
     Route::get('InformacionProyectoEncargado/{id}','ProyectoEncargadoController@fncInformacionProyectoEncargadoVista')->name('ProyectoEncargado.Informacion');
     Route::get('EquipoTrabajo/{id}','UsuarioProyectoController@fncEquipoTrabajoVista')->name('EquipoTrabajo');
     Route::get('EntregableProyecto/{id}','EntregableProyectoController@fncEntregableProyectoVista')->name('EntregableProyecto');
+    Route::get('TareaEntregable/{id}','TareaEntregableController@fncTareaEntregableVista')->name('TareaEntregable');
 
 
     Route::get('servicio/ProyectosEncargados','ProyectoEncargadoController@fncProyectoEncargadoJson');

@@ -2,9 +2,8 @@ $(document).ready(function () {
 
     fncListarMetodologiasJs();
     $(document).on('click', '.btnInfo', function () {
-        let id = $(this).data("id");
-        // let url = '/InformacionProyectoEncargado/' + id;
-        let url = '/ProyectoEncargadoMenuDetalle/' + id;
+        var id = $(this).data("id");
+        var url = '/ProyectoEncargadoMenuDetalle/' + id;
         window.location.replace(url);
     });
 });
@@ -33,7 +32,7 @@ function fncListarMetodologiasJs() {
                             }
                         }
                     ],
-                    "drawCallback": function (settings) {
+                    "drawCallback": function () {
                         $('.btnInfo').tooltip({
                             title: "Info Proyecto"
                         });

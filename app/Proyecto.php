@@ -82,13 +82,18 @@ class Proyecto extends Model
         $proyecto_id = $request->input('PROid_proyecto');
         try {
             $Validar = MetodologiaProyecto::where('PROid_proyecto', $proyecto_id)->count();
-            if ($Validar != 0){
+            if ($Validar != 0) {
                 $resultado = true;
             }
         } catch (\Exception $ex) {
             $va = $ex;
         }
         return $resultado;
+    }
+
+    public static function fncInformacionProyecto($PROid_proyecto)
+    {
+        return Proyecto::findorfail($PROid_proyecto);
     }
 
     public static function fncCambiarEstadoSeleccionProyectoEncargado(Request $request)
@@ -101,7 +106,6 @@ class Proyecto extends Model
         $proyecto->save();
 
         ItemTable::where('item_type_id', '=', 1)->update(['color' => 'black']);
-
 
 
     }

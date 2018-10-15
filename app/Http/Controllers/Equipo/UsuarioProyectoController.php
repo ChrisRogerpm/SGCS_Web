@@ -38,7 +38,7 @@ class UsuarioProyectoController extends Controller
         } catch (\Exception $ex) {
             $mensaje_error = $ex;
         }
-        return response()->json(['estado' => $resultado, 'data' => $usuario_proyecto, 'mensaje' => $mensaje_error]);
+        return response()->json(['estado' => $resultado, 'data' =>$usuario_proyecto, 'mensaje' => $mensaje_error]);
     }
 
     public function fncCambiarEstadoUsuarioProyectoJson(Request $request)
