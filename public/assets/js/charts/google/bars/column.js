@@ -26,16 +26,20 @@ function drawColumn() {
         ['Year', 'Sales', 'Expenses'],
         ['2004',  1000,      400],
         ['2005',  1170,      460],
+        ['2006',  660,       2500],
+        ['20011',  1030,      540],
+        ['2004',  1000,      400],
+        ['2005',  1170,      460],
         ['2006',  660,       1120],
-        ['2007',  1030,      540]
+        ['20011',  1030,      540],
     ]);
 
 
     // Options
     var options_column = {
-        fontName: 'Roboto',
+        fontName: 'Consola',
         height: 400,
-        fontSize: 12,
+        fontSize: 13,
         chartArea: {
             left: '5%',
             width: '90%',
@@ -43,12 +47,12 @@ function drawColumn() {
         },
         tooltip: {
             textStyle: {
-                fontName: 'Roboto',
+                fontName: 'Consola',
                 fontSize: 13
             }
         },
         vAxis: {
-            title: 'Sales and Expenses',
+            title: 'Avances de Proyectos',
             titleTextStyle: {
                 fontSize: 13,
                 italic: false

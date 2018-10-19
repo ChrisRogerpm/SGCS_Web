@@ -37,13 +37,13 @@
     <script type="text/javascript" src="../assets/js/plugins/notifications/sweet_alert.min.js"></script>
     <script type="text/javascript" src="../assets/js/plugins/tables/datatables/datatables.min.js"></script>
     <script type="text/javascript" src="../assets/js/plugins/forms/inputs/duallistbox.min.js"></script>
-
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
     <script type="text/javascript" src="../assets/js/core/app.js"></script>
     <script type="text/javascript" src="../assets/js/pages/datatables_basic.js"></script>
     <script type="text/javascript" src="../assets/js/pages/components_modals.js"></script>
     <script type="text/javascript" src="../assets/js/pages/form_dual_listboxes.js"></script>
-    {{--<script type="text/javascript" src="../assets/js/pages/form_checkboxes_radios.js"></script>--}}
+    <script type="text/javascript" src="../assets/js/charts/google/bars/column.js"></script>
     <!-- /theme JS files -->
 
 </head>
