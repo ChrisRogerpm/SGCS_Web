@@ -34,7 +34,7 @@ function fncListarMetodologiasJs() {
                     ],
                     "drawCallback": function () {
                         $('.btnInfo').tooltip({
-                            title: "Info Proyecto"
+                            title: "Menu de Opciones"
                         });
                     }
                 });

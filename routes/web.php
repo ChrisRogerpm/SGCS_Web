@@ -70,6 +70,8 @@ Route::group(['namespace' => 'Equipo'], function () {
     Route::get('EquipoTrabajo/{id}','UsuarioProyectoController@fncEquipoTrabajoVista')->name('EquipoTrabajo');
     Route::get('EntregableProyecto/{id}','EntregableProyectoController@fncEntregableProyectoVista')->name('EntregableProyecto');
     Route::get('TareaEntregable/{id}','TareaEntregableController@fncTareaEntregableVista')->name('TareaEntregable');
+    Route::get('RegistrarTareaEntregable/{id}','TareaEntregableController@fncRegistrarTareaEntregableVista')->name('TareaEntregable.Registrar');
+    Route::get('EditarTareaEntregable/{id}','TareaEntregableController@fncEditarTareaEntregableVista')->name('TareaEntregable.Editar');
 
 
     Route::get('servicio/ProyectosEncargados','ProyectoEncargadoController@fncProyectoEncargadoJson');
@@ -83,7 +85,14 @@ Route::group(['namespace' => 'Equipo'], function () {
     Route::post('servicio/ListarEntregableProyecto','EntregableProyectoController@fncListarEntregableProyectoJson');
     Route::post('servicio/RegistrarEntregableProyecto','EntregableProyectoController@fncRegistrarEntregableProyectoJson');
     Route::post('servicio/CambiarEstadoEntregableProyecto','EntregableProyectoController@fncCambiarEstadoEntregableProyectoJson');
+    Route::post('servicio/ListarEntregableFaseProyecto','EntregableProyectoController@fncListarEntregableFaseProyectoJson');
+    Route::post('servicio/ListarTareaFiltroEntregble','TareaEntregableController@fncListarTareaFiltroEntregbleJson');
 
+
+    Route::post('servicio/TareaEntregable','TareaEntregableController@fncListarTareaEntregableJson');
+    Route::post('servicio/RegistrarTareaEntregable','TareaEntregableController@fncRegistrarTareaEntregableJson');
+    Route::post('servicio/ModificarTareaEntregable','TareaEntregableController@fncModificarTareaEntregableJson');
+    Route::post('servicio/ObtenerTareaEntregable','TareaEntregableController@fncObtenerTareaEntregableJson');
     Route::get('servicio/MostrarRegistrarTareaVista','TareaEntregableController@fncRegistrarTareaVista');
     Route::get('servicio/MostrarEditarTareaVista','TareaEntregableController@fncEditarTareaVista');
 //    Route::get

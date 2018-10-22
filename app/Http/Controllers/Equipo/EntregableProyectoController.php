@@ -11,7 +11,7 @@ class EntregableProyectoController extends Controller
 {
     public function fncEntregableProyectoVista($PROid_proyecto)
     {
-        return view('Equipo.EntregableProyecto.EntregableProyectoVista',compact('PROid_proyecto'));
+        return view('Equipo.EntregableProyecto.EntregableProyectoVista', compact('PROid_proyecto'));
     }
 
     public function fncListarEntregableProyectoJson(Request $request)
@@ -66,5 +66,19 @@ class EntregableProyectoController extends Controller
             $mensaje_error = $ex;
         }
         return response()->json(['estado' => $resultado, 'mensaje' => $mensaje_error]);
+    }
+
+    public function fncListarEntregableFaseProyectoJson(Request $request)
+    {
+        $resultado = false;
+        $entregable_proyecto = "";
+        $mensaje_error = "";
+        try {
+            $entregable_proyecto = EntregableProyecto::fncListarEntregableFaseProyecto($request);
+            $resultado = true;
+        } catch (\Exception $ex) {
+            $mensaje_error = $ex;
+        }
+        return response()->json(['estado' => $resultado, 'data' => $entregable_proyecto, 'mensaje' => $mensaje_error]);
     }
 }

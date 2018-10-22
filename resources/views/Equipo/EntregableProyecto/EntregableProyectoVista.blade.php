@@ -4,7 +4,7 @@
     <div class="page-header">
         <div class="page-header-content">
             <div class="page-title">
-                <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Equipo de Trabajo</span>
+                <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Entregables de Proyecto</span>
                 </h4>
                 <ul class="breadcrumb breadcrumb-caret position-right">
                     <li><a href="#">Inicio</a></li>

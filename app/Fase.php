@@ -26,23 +26,17 @@ class Fase extends Model
 
     public static function fncRegistrarFase(Request $request)
     {
-//        $nro_fases_limite = Fase::fncNumeroFasesLimiteMetodologia($request->input('METid_metodologia'));
-//        $nro_fases_registradas = Fase::fncNumeroFasesRegistradas($request->input('METid_metodologia'));
-
-//        if ($nro_fases_registradas < $nro_fases_limite) {
-            $fase = new Fase();
-            $fase->METid_metodologia = $request->input('METid_metodologia');
-            $fase->FAnombre_fase = $request->input('FAnombre_fase');
-            $fase->FAdescripcion_fase = $request->input('FAdescripcion_fase');
-            $fase->FAestado_fase = $request->input('FAestado_fase');
-            $fase->save();
-//            return $fase;
-//        }
-//        return null;
+        $fase = new Fase();
+        $fase->METid_metodologia = $request->input('METid_metodologia');
+        $fase->FAnombre_fase = $request->input('FAnombre_fase');
+        $fase->FAdescripcion_fase = $request->input('FAdescripcion_fase');
+        $fase->FAestado_fase = $request->input('FAestado_fase');
+        $fase->save();
         return $fase;
     }
 
-    public static function ValidarNroFasesRegistradas(Request $request){
+    public static function ValidarNroFasesRegistradas(Request $request)
+    {
         $resultado = false;
         $nro_fases_limite = Fase::fncNumeroFasesLimiteMetodologia($request->input('METid_metodologia'));
         $nro_fases_registradas = Fase::fncNumeroFasesRegistradas($request->input('METid_metodologia'));
@@ -92,6 +86,8 @@ class Fase extends Model
             ->get();
         return $resultado;
     }
+
+
 
     public static function fncNumeroFasesLimiteMetodologia($METid_metodologia)
     {

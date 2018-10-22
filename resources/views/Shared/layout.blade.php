@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sistema de Gestion de la configuración de Software</title>
+    <link rel="shortcut icon" href="../viewJs/xampp.ico">
 
     <!-- Global stylesheets -->
     <link href="../../../../../fonts.googleapis.com/css1381.css?family=Roboto:400,300,100,500,700,900" rel="stylesheet"
@@ -37,15 +38,19 @@
     <script type="text/javascript" src="../assets/js/plugins/notifications/sweet_alert.min.js"></script>
     <script type="text/javascript" src="../assets/js/plugins/tables/datatables/datatables.min.js"></script>
     <script type="text/javascript" src="../assets/js/plugins/forms/inputs/duallistbox.min.js"></script>
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
 
     <script type="text/javascript" src="../assets/js/core/app.js"></script>
     <script type="text/javascript" src="../assets/js/pages/datatables_basic.js"></script>
     <script type="text/javascript" src="../assets/js/pages/components_modals.js"></script>
     <script type="text/javascript" src="../assets/js/pages/form_dual_listboxes.js"></script>
-    <script type="text/javascript" src="../assets/js/charts/google/bars/column.js"></script>
     <!-- /theme JS files -->
-
+    <style>
+        .sweet-alert button.cancel {
+            background-color: #ea5f0e;
+            color: #fff;
+        }
+    </style>
 </head>
 
 <body>

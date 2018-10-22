@@ -140,7 +140,4 @@
 @push('Js')
     <script src="../viewJs/ProyectoEncargado/InformacionProyectoEncargadoVista.js"></script>
     <script src="../viewJs/ProyectoEncargado/TabEstructuraVista.js"></script>
-
-
-    {{--<script src="../viewJs/ProyectoEncargado/TabGestionarTareaEntregableVista.js"></script>--}}
 @endpush
