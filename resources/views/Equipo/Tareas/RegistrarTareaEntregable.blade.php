@@ -60,7 +60,7 @@
                 </div>
             </div>
             <div class="text-right">
-                <button type="button" class="btn btn-primary btnRegistrar">Registrar Metodologia <i
+                <button type="button" class="btn btn-primary btnRegistrar">Registrar Tarea <i
                             class="icon-arrow-right14 position-right"></i></button>
             </div>
         </div>

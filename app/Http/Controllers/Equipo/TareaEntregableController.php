@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Equipo;
 
 use App\EntregableProyecto;
+use App\RelacionTareaEntregable;
 use App\TareaEntregable;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -100,9 +101,17 @@ class TareaEntregableController extends Controller
         return response()->json(['estado' => $resultado, 'data' => $tarea_entregable, 'mensaje' => $mensaje_error]);
     }
 
-    public function fncRegistrarRelacionTareaEntregable()
+    public function fncRegistrarRelacionTareaEntregable(Request $request)
     {
-
+        $resultado = false;
+        $mensaje_error = "";
+        try {
+            RelacionTareaEntregable::fncRegistrarRelacionTarea($request);
+            $resultado = true;
+        } catch (\Exception $ex) {
+            $mensaje_error = $ex;
+        }
+        return response()->json(['estado' => $resultado, 'mensaje' => $mensaje_error]);
     }
 
 

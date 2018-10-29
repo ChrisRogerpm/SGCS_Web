@@ -73,7 +73,55 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-warning" data-dismiss="modal"><i class="icon-cross"></i> Cerrar</button>
-                    <button class="btn btn-primary" id="sweet_combine"><i class="icon-check"></i> Guardar</button>
+                    <button class="btn btn-primary" id="GuardarRelacionTarea"><i class="icon-check"></i> Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="ModalAsignarTarea" class="modal fade">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-indigo-400">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h5 class="modal-title"><i class="icon-menu7"></i> &nbsp;Asignar Tarea Entregable</h5>
+                </div>
+
+                <div class="modal-body">
+                    <div class="alert alert-info alert-styled-left text-indigo-800 content-group">
+                        <span class="text-semibold">La asignación de tareas distribuye el trabajo realizado en un proyecto.</span>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input type="hidden" id="id_tarea_asignada">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label">Responsable</label>
+                                    <select id="txtResponsable" class="form-control input-sm">
+                                        <option value="">Seleccione</option>
+                                        <option value="1">1</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Fecha de Inicio</label>
+                                    <input type="date" class="form-control input-sm" id="txtFechaInicioTarea">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Fecha de Fin</label>
+                                    <input type="date" class="form-control input-sm" id="txtFechaFinTarea">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-warning" data-dismiss="modal"><i class="icon-cross"></i> Cerrar</button>
+                    <button class="btn btn-primary" id="BtnAsignarTarea"><i class="icon-check"></i> Guardar</button>
                 </div>
             </div>
         </div>
