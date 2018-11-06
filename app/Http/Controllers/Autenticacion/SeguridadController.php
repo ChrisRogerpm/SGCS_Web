@@ -40,10 +40,16 @@ class SeguridadController extends Controller
         return abort(500);
     }
 
-    public function fncCerrarSesion()
+    public function fncCerrarSesion(Request $request)
     {
-        Auth::logout();
-        Session::flash('Logout', 'Vuelva Pronto, lo esperamos');
-        return redirect('/');
+        $valor_cookie_session = $request->cookie('laravel_session');
+        if ($valor_cookie_session) {
+            Auth::logout();
+            Session::flash('Logout', 'Vuelva Pronto, lo esperamos');
+            return redirect('/');
+        } else {
+            return redirect('/');
+        }
+
     }
 }

@@ -69,14 +69,14 @@
                     </div>
                     {{csrf_field()}}
                     <div class="form-group has-feedback has-feedback-left">
-                        <input type="text" class="form-control border-slate-800 text-slate-800" id="Codigo" placeholder="Email">
+                        <input type="text" class="form-control border-slate-800 input-sm text-slate-800" id="Codigo" placeholder="Email">
                         <div class="form-control-feedback">
                             <i class="icon-user text-muted"></i>
                         </div>
                     </div>
 
                     <div class="form-group has-feedback has-feedback-left">
-                        <input type="password" class="form-control border-slate-800 text-slate-800" id="password" placeholder="Contraseña">
+                        <input type="password" class="form-control border-slate-800 input-sm text-slate-800" id="password" placeholder="Contraseña">
                         <div class="form-control-feedback">
                             <i class="icon-lock2 text-muted"></i>
                         </div>

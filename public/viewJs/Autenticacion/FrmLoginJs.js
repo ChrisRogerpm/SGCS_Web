@@ -27,10 +27,8 @@ function fncValidarLoginJs(basepath) {
             'password': $("#password").val(),
         },
         success: function (response) {
-            toastr.success('Bienvenido ' + response + '!', 'Mensaje Servidor', {timeOut: 2000});
-            setTimeout(function () {
-                window.location.replace(basepath + '/' + response);
-            }, 1500);
+            toastr.success('Bienvenido ' + response + '!', 'Mensaje Servidor');
+            window.location.replace(basepath + '/' + response);
         },
         error: function () {
             toastr.error('Usuario no encontrado', 'Mensaje Servidor');
