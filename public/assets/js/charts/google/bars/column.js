@@ -20,18 +20,16 @@ google.setOnLoadCallback(drawColumn);
 
 // Chart settings
 function drawColumn() {
-
-    // Data
     var data = google.visualization.arrayToDataTable([
-        ['Year', 'Sales', 'Expenses'],
-        ['2004',  1000,      400],
+        ['Yearx', 'Culminados', 'Pendientes'],
+        ['Tacna',  1000,      400],
         ['2005',  1170,      460],
         ['2006',  660,       2500],
-        ['20011',  1030,      540],
-        ['2004',  1000,      400],
-        ['2005',  1170,      460],
-        ['2006',  660,       1120],
-        ['20011',  1030,      540],
+        ['2007',  1030,      540],
+        ['2008',  1000,      400],
+        ['2009',  1170,      460],
+        ['2010',  660,       1120],
+        ['2011',  1030,      540],
     ]);
 
 

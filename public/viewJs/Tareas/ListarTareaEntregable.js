@@ -79,8 +79,8 @@ function fncListarTareasEntregables() {
                         });
 
                         $('.btnAsignar').click(function () {
-                            // var id_tarea_modal = $(this).data('id');
-                            // $('#id_tarea_modal').val(id_tarea_modal);
+                            var id_tarea_modal = $(this).data('id');
+                            $("#id_tarea_asignada").val(id_tarea_modal);
                             $(this).tooltip("hide");
                             $("#ModalAsignarTarea").modal({
                                 backdrop: 'static',
@@ -94,21 +94,51 @@ function fncListarTareasEntregables() {
                             });
 
                         });
-                        
+
                         $("#BtnAsignarTarea").click(function () {
+                            var IdTareaAsignada = $("#id_tarea_asignada").val();
                             var Responsable = $("#txtResponsable").val();
                             var FechaIni = $("#txtFechaInicioTarea").val();
                             var FechaFin = $("#txtFechaFinTarea").val();
-                            if (Responsable === ""){
-                                toastr.error('Seleccione un Responsable','Mensaje Servidor');
-                                return false;
-                            } if (FechaIni === ""){
-                                toastr.error('Seleccione una Fecha de Inicio','Mensaje Servidor');
-                                return false;
-                            } if (FechaFin === ""){
-                                toastr.error('Seleccione una Fecha de Fin','Mensaje Servidor');
+                            if (Responsable === "") {
+                                toastr.error('Seleccione un Responsable', 'Mensaje Servidor');
                                 return false;
                             }
+                            if (FechaIni === "") {
+                                toastr.error('Seleccione una Fecha de Inicio', 'Mensaje Servidor');
+                                return false;
+                            }
+                            if (FechaFin === "") {
+                                toastr.error('Seleccione una Fecha de Fin', 'Mensaje Servidor');
+                                return false;
+                            }
+                            swal({
+                                    title: "Esta Seguro de Continuar?",
+                                    text: "Se asignara la tarea seleccionada a " + $("#txtResponsable").find('option:selected').text(),
+                                    type: "warning",
+                                    showCancelButton: true,
+                                    confirmButtonColor: "#442593",
+                                    allowOutsideClick: false,
+                                    confirmButtonText: "Si, Asignar!",
+                                    cancelButtonText: "No, Cancelar!",
+                                    closeOnConfirm: false,
+                                    closeOnCancel: true
+                                },
+                                function (isConfirm) {
+                                    if (isConfirm) {
+                                        swal({
+                                            title: "Se ah registrado con éxito!",
+                                            text: "Tu tarea se ha asignado al miembro " + $("#txtResponsable").find('option:selected').text(),
+                                            confirmButtonColor: "#66BB6A",
+                                            type: "success"
+                                        }, function () {
+                                            $('#ModalAsignarTarea').modal('hide');
+                                            fncRegistrarAsignarTarea(IdTareaAsignada, Responsable, FechaIni, FechaFin);
+                                        });
+                                    }
+                                });
+
+
                         });
 
                         $("#FaseModal").change(function () {
@@ -117,7 +147,7 @@ function fncListarTareasEntregables() {
                             $.when(llenarSelect(basepath + "/servicio/ListarEntregableFaseProyecto", {
                                 '_token': $('input[name=_token]').val(),
                                 'PROid_proyecto': proyecto_id,
-                                'FAid_fase':fase_modal_id
+                                'FAid_fase': fase_modal_id
                             }, "EntregableModal", "ENTRPROid_entregableproyecto", "ENTRnombre_entregable", "")).then(function (response, textStatus) {
                                 $("#EntregableModal").select2('destroy');
                                 $("#EntregableModal").select2();
@@ -145,19 +175,21 @@ function fncListarTareasEntregables() {
 
                         });
 
-                        $('#GuardarRelacionTarea').on('click', function() {
+                        $('#GuardarRelacionTarea').on('click', function () {
                             var TareaModal = document.getElementById('TareaModal');
                             var EntregableModal = $("#EntregableModal").val();
                             var FaseModal = $("#FaseModal").val();
 
-                            if( FaseModal === ""){
-                                toastr.error('Seleccione una Fase','Mensaje Servidor');
+                            if (FaseModal === "") {
+                                toastr.error('Seleccione una Fase', 'Mensaje Servidor');
                                 return false;
-                            }if( EntregableModal === ""){
-                                toastr.error('Seleccione un Entregable','Mensaje Servidor');
+                            }
+                            if (EntregableModal === "") {
+                                toastr.error('Seleccione un Entregable', 'Mensaje Servidor');
                                 return false;
-                            }if( TareaModal.value === ""){
-                                toastr.error('Seleccione una Tarea','Mensaje Servidor');
+                            }
+                            if (TareaModal.value === "") {
+                                toastr.error('Seleccione una Tarea', 'Mensaje Servidor');
                                 return false;
                             }
                             swal({
@@ -172,14 +204,14 @@ function fncListarTareasEntregables() {
                                     closeOnConfirm: false,
                                     closeOnCancel: true
                                 },
-                                function(isConfirm){
+                                function (isConfirm) {
                                     if (isConfirm) {
                                         swal({
                                             title: "Se ah registrado con éxito!",
                                             text: "Tu tarea se ha relacionado con las demas Tareas.",
                                             confirmButtonColor: "#66BB6A",
                                             type: "success"
-                                        },function () {
+                                        }, function () {
                                             $('#ModalRelacionTarea').modal('hide');
                                             fncRegistrarRelacionTarea();
                                         });
@@ -194,7 +226,6 @@ function fncListarTareasEntregables() {
         },
     });
 }
-
 function fncRegistrarRelacionTarea() {
     var Tarea2 = $("#TareaModal").val();
     var url = basepath + '/servicio/RegistrarRelacionTareaEntregable';
@@ -208,6 +239,28 @@ function fncRegistrarRelacionTarea() {
         },
         success: function (response) {
             debugger
+            let est = response.estado;
+            if (est === true) {
+                toastr.success('Se registro satisfactoriamente', 'Mensaje Servidor');
+            } else {
+                toastr.error('Servicio no encontrado', 'Mensaje Servidor');
+            }
+        }
+    });
+}
+function fncRegistrarAsignarTarea(TareaId, UsuarioId, FechaIni, FechaFin) {
+    var url = basepath + '/servicio/RegistrarAsignarTareaEntregable';
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: {
+            '_token': $('input[name=_token]').val(),
+            'TAid_tarea': TareaId,
+            'USUPROid_usuarioproyecto': UsuarioId,
+            'ATEfecha_inicio_tareaproyecto': FechaIni,
+            'ATEfecha_fin_tareaproyecto': FechaFin,
+        },
+        success: function (response) {
             let est = response.estado;
             if (est === true) {
                 toastr.success('Se registro satisfactoriamente', 'Mensaje Servidor');

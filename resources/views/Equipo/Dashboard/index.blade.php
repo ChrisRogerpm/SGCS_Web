@@ -10,10 +10,14 @@
 
                 <div class="panel-body">
                     <div class="chart-container">
-                        <div class="chart" id="google-columsn"></div>
+                        <div class="chart" id="google-column"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 @stop
+
+@push('Js')
+    <script type="text/javascript" src="../assets/js/charts/google/bars/column.js"></script>
+@endpush

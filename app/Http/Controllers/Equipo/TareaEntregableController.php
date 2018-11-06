@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Equipo;
 
+use App\AsignarTareaEntregable;
 use App\EntregableProyecto;
 use App\RelacionTareaEntregable;
 use App\TareaEntregable;
@@ -114,5 +115,15 @@ class TareaEntregableController extends Controller
         return response()->json(['estado' => $resultado, 'mensaje' => $mensaje_error]);
     }
 
+    public function fncAsignarTareaEntregable(Request $request){
+        $resultado = false;
+        $mensaje_error = (string) NULL;
+        try {
+            $resultado = AsignarTareaEntregable::fncRegistrarAsignarTareaEntregable($request);
+        } catch (\Exception $ex) {
+            $mensaje_error = $ex;
+        }
+        return response()->json(['estado' => $resultado, 'mensaje' => $mensaje_error]);
+    }
 
 }

@@ -78,11 +78,10 @@
             </a>
         </div>
         <div class="col-sm-4 col-md-4">
-            <a href="#">
+            <a href="{{route('ComiteCambio',$PROid_proyecto)}}">
                 <div class="panel panel-body bg-primary-400 has-bg-image">
                     <div class="media no-margin">
                         <div class="media-body">
-                            
                             <span class="text-uppercase text-size-mini">Comite de Cambios</span>
                         </div>
                         <div class="media-right media-middle">

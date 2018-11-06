@@ -39,11 +39,14 @@
     <script type="text/javascript" src="../assets/js/plugins/tables/datatables/datatables.min.js"></script>
     <script type="text/javascript" src="../assets/js/plugins/forms/inputs/duallistbox.min.js"></script>
 
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
     <script type="text/javascript" src="../assets/js/core/app.js"></script>
     <script type="text/javascript" src="../assets/js/pages/datatables_basic.js"></script>
     <script type="text/javascript" src="../assets/js/pages/components_modals.js"></script>
     <script type="text/javascript" src="../assets/js/pages/form_dual_listboxes.js"></script>
+
+    {{--<script type="text/javascript" src="../assets/js/charts/google/bars/combo.js"></script>--}}
     <!-- /theme JS files -->
     <style>
         .sweet-alert button.cancel {
