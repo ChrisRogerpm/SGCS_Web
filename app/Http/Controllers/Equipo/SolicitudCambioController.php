@@ -8,9 +8,9 @@ use App\Http\Controllers\Controller;
 
 class SolicitudCambioController extends Controller
 {
-    public function fncSolicituCambioVista()
+    public function fncSolicituCambioVista($PROid_proyecto)
     {
-        return view('Equipo.SolicituCambio.SolicitudCambioVista');
+        return view('Equipo.SolicituCambio.SolicitudCambioVista',compact('PROid_proyecto'));
     }
 
     public function fncListarSolicitudCambio(Request $request)

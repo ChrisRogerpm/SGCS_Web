@@ -1,6 +1,5 @@
 $(document).ready(function () {
-
-    fncListarMetodologiasJs();
+    fncListarProyectosEncargadosJs();
     $(document).on('click', '.btnInfo', function () {
         var id = $(this).data("id");
         var url = '/ProyectoEncargadoMenuDetalle/' + id;
@@ -8,7 +7,7 @@ $(document).ready(function () {
     });
 });
 
-function fncListarMetodologiasJs() {
+function fncListarProyectosEncargadosJs() {
     $.ajax({
         type: 'GET',
         url: 'servicio/ProyectosEncargados',

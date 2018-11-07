@@ -73,6 +73,7 @@ Route::group(['namespace' => 'Equipo'], function () {
     Route::get('ComiteCambio/{id}','ComiteCambioController@fncComiteCambioVista')->name('ComiteCambio');
     Route::get('RegistrarTareaEntregable/{id}','TareaEntregableController@fncRegistrarTareaEntregableVista')->name('TareaEntregable.Registrar');
     Route::get('EditarTareaEntregable/{id}','TareaEntregableController@fncEditarTareaEntregableVista')->name('TareaEntregable.Editar');
+    Route::get('SolicitudCambio/{id}','SolicitudCambioController@fncSolicituCambioVista')->name('SolicitudCambio');
 
 
     Route::get('servicio/ProyectosEncargados','ProyectoEncargadoController@fncProyectoEncargadoJson');
@@ -101,6 +102,8 @@ Route::group(['namespace' => 'Equipo'], function () {
     Route::post('servicio/RegistrarComiteCambio','ComiteCambioController@fncRegistrarComiteCambioProyectoJson');
     Route::post('servicio/ListarComiteCambio','ComiteCambioController@fncListarComiteCambioJson');
     Route::post('servicio/CambiarEstadoComiteCambio','ComiteCambioController@fncCambiarEstadoComiteCambioProyectoJson');
+
+    Route::post('servicio/ListarSolicitudesCambio','SolicitudCambioController@fncListarSolicitudCambio');
 //    Route::get
 });
 
