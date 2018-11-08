@@ -37,14 +37,38 @@
             <div class="modal-content">
                 <div class="modal-header bg-indigo-400">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h5 class="modal-title"><i class="icon-menu7"></i> &nbsp;Asignar Tarea Entregable</h5>
+                    <h5 class="modal-title"><i class="icon-menu7"></i> &nbsp;Detalles de Solicitud de Cambio</h5>
                 </div>
 
                 <div class="modal-body">
                     <div class="alert alert-info alert-styled-left text-indigo-800 content-group">
-                        <span class="text-semibold">La asignación de tareas distribuye el trabajo realizado en un proyecto.</span>
+                        <span class="text-semibold">La aprobación de una solicitd de cambio puede o tiene repercusiones, tome en cuenta la magnitud del cambio.</span>
                     </div>
                     <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="txtCodigo">Codigo</label>
+                                <input type="text" class="form-control input-sm" id="txtCodigo">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="txtCodigo">Codigo</label>
+                                <input type="text" class="form-control input-sm" id="txtCodigo">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="txtSolicitante">Solicitante</label>
+                                <input type="text" class="form-control input-sm" id="txtSolicitante">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="txtTarea">Tarea</label>
+                                <input type="text" class="form-control input-sm" id="txtTarea">
+                            </div>
+                        </div>
                     </div>
                     <hr>
                 </div>

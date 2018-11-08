@@ -1,5 +1,8 @@
 $(document).ready(function () {
     ListarSolicitudesCambio();
+    $(".styled, .multiselect-container input").uniform({
+        radioClass: 'choice'
+    });
 });
 
 function ListarSolicitudesCambio() {
@@ -36,7 +39,8 @@ function ListarSolicitudesCambio() {
                             data: null, title: "Acción",
                             render: function (value) {
                                 return '<button type="button" class="btn btn-xs btn-success btnRevisar" data-id="' + value.SOLICAMid_solicitudcambio + '"><i class="icon-eye-plus"></i></button>';
-                            }
+                            },
+                            className: "text-center"
                         }
                     ],
                     "drawCallback": function () {
@@ -49,8 +53,7 @@ function ListarSolicitudesCambio() {
                                 backdrop: 'static',
                                 keyboard: false
                             });
-
-
+                            $(this).tooltip('hide');
                         });
                     }
                 });
