@@ -3,13 +3,22 @@ $(document).ready(function () {
     $(".styled, .multiselect-container input").uniform({
         radioClass: 'choice'
     });
+
+    $("#btnTareaRelacion").click(function () {
+        var TareaId = $("#txtTareaId").val();
+        $("#modal_theme_success").modal({
+            backdrop: 'static',
+            keyboard: false
+        });
+    })
+
 });
 
 function ListarSolicitudesCambio() {
     $.ajax({
         type: 'POST',
         url: basepath + "/servicio/ListarSolicitudesCambio",
-        data:{
+        data: {
             'PROid_proyecto': $("#txtPROid_proyecto").val()
         },
         success: function (response) {
@@ -38,7 +47,7 @@ function ListarSolicitudesCambio() {
                         {
                             data: null, title: "Acción",
                             render: function (value) {
-                                return '<button type="button" class="btn btn-xs btn-success btnRevisar" data-id="' + value.SOLICAMid_solicitudcambio + '"><i class="icon-eye-plus"></i></button>';
+                                return '<button type="button" class="btn btn-xs btn-success btnRevisar" data-id="' + value.SOLICAMid_solicitudcambio + '" data-tareaid="' + value.TAid_tarea + '"><i class="icon-eye-plus"></i></button>';
                             },
                             className: "text-center"
                         }
@@ -49,17 +58,39 @@ function ListarSolicitudesCambio() {
                         });
 
                         $('.btnRevisar').click(function () {
+                            var SolicitudId = $(this).data("id");
+                            var TareaId = $(this).data("tareaid");
                             $("#ModalRevisionSolicitudCambio").modal({
                                 backdrop: 'static',
                                 keyboard: false
                             });
                             $(this).tooltip('hide');
+                            ObtenerInfoSolicitudCambio(SolicitudId);
                         });
                     }
                 });
             } else {
                 toastr.error(msj, 'Mensaje Servidor');
             }
+        }
+    });
+}
+
+function ObtenerInfoSolicitudCambio(SOLICAMid_solicitudcambio) {
+    $.ajax({
+        type: 'POST',
+        url: basepath + "/servicio/ObtenerSolicitudCambio",
+        data: {
+            'SOLICAMid_solicitudcambio': SOLICAMid_solicitudcambio
+        },
+        success: function (response) {
+            var resp = response.data;
+            $("#txtCodigo").val(resp.SOLICAMcodigo_solicitudcambio);
+            $("#txtSolicitante").val(resp.USUnombre_usuario + ' ' + resp.USUapellido_usuario);
+            $("#txtTarea").val(resp.TAnombre_tarea);
+            $("#txtObjetivo").val(resp.SOLICAMobjetivo_solicitudcambio);
+            $("#txtDescripcion").val(resp.SOLICAMdescripcion_solicitudcambio);
+            // $("#txtCodigo").val();
         }
     });
 }

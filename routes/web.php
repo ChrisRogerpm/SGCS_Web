@@ -104,6 +104,7 @@ Route::group(['namespace' => 'Equipo'], function () {
     Route::post('servicio/CambiarEstadoComiteCambio','ComiteCambioController@fncCambiarEstadoComiteCambioProyectoJson');
 
     Route::post('servicio/ListarSolicitudesCambio','SolicitudCambioController@fncListarSolicitudCambio');
+    Route::post('servicio/ObtenerSolicitudCambio','SolicitudCambioController@fncObtenerSolicitudCambioJson');
 //    Route::get
 });
 

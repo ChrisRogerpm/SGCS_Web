@@ -23,4 +23,16 @@ class SolicitudCambio extends Model
             ->get();
         return $resultado;
     }
+
+    public static function fncObtenerSolicitudCambio(Request $request)
+    {
+        $solicitud_cambio_id = $request->input('SOLICAMid_solicitudcambio');
+
+        $resultado = DB::select(DB::raw("select soli.SOLICAMid_solicitudcambio,soli.SOLICAMcodigo_solicitudcambio,usu.USUnombre_usuario,usu.USUapellido_usuario,soli.SOLICAMobjetivo_solicitudcambio,soli.SOLICAMdescripcion_solicitudcambio,soli.SOLICAMfecha_solicitud_solicitudcambio,ta.TAnombre_tarea
+        from sgcssolicampsolicitudcambio soli
+        join sgcstaptareaentregable ta on ta.TAid_tarea = soli.TAid_tarea
+        join sgcsusutusuario usu on usu.USUid_usuario = soli.USUid_usuario
+        where soli.SOLICAMid_solicitudcambio = '$solicitud_cambio_id'"))[0];
+        return $resultado;
+    }
 }

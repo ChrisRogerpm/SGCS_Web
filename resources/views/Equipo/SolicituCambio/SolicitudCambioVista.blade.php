@@ -4,7 +4,8 @@
     <div class="page-header">
         <div class="page-header-content">
             <div class="page-title">
-                <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Mis Proyectos</span></h4>
+                <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Mis Proyectos</span>
+                </h4>
                 <ul class="breadcrumb breadcrumb-caret position-right">
                     <li><a href="#">Inicio</a></li>
                     <li><a href="#">Mis Proyectos</a></li>
@@ -13,7 +14,8 @@
             </div>
             <div class="heading-elements">
                 <div class="heading-btn-group">
-                    <a href="{{route('ProyectoEncargadoMenuDetalle',$PROid_proyecto)}}" class="btn btn-warning btnNuevo"><i
+                    <a href="{{route('ProyectoEncargadoMenuDetalle',$PROid_proyecto)}}"
+                       class="btn btn-warning btnNuevo"><i
                                 class="icon-arrow-left13 position-left"></i> Volver al Menu de Opciones</a>
                 </div>
             </div>
@@ -45,12 +47,8 @@
                         <span class="text-semibold">La aprobación de una solicitd de cambio puede o tiene repercusiones, tome en cuenta la magnitud del cambio.</span>
                     </div>
                     <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="txtCodigo">Codigo</label>
-                                <input type="text" class="form-control input-sm" id="txtCodigo">
-                            </div>
-                        </div>
+                        <input type="hidden" id="txtIdSolicitudCambio">
+                        <input type="hidden" id="txtTareaId">
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="txtCodigo">Codigo</label>
@@ -66,7 +64,25 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="txtTarea">Tarea</label>
-                                <input type="text" class="form-control input-sm" id="txtTarea">
+
+                                <div class="input-group">
+                                    <input type="text" class="form-control input-sm" id="txtTarea">
+                                    <span class="input-group-btn">
+                                        <button class="btn bg-teal btn-sm" id="btnTareaRelacion" type="button"><i class="icon-info22"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Objetivo</label>
+                                <textarea id="txtObjetivo" cols="30" rows="1" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Descripcion</label>
+                                <textarea id="txtDescripcion" cols="30" rows="1" class="form-control"></textarea>
                             </div>
                         </div>
                     </div>
@@ -75,6 +91,32 @@
                 <div class="modal-footer">
                     <button class="btn btn-warning" data-dismiss="modal"><i class="icon-cross"></i> Cerrar</button>
                     <button class="btn btn-primary" id="BtnAsignarTarea"><i class="icon-check"></i> Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modal_theme_success" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-success">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h6 class="modal-title">Success header</h6>
+                </div>
+
+                <div class="modal-body">
+                    <h6 class="text-semibold">Text in a modal</h6>
+                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+
+                    <hr>
+
+                    <h6 class="text-semibold">Another paragraph</h6>
+                    <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success">Save changes</button>
                 </div>
             </div>
         </div>
