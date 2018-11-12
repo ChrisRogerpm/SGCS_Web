@@ -1,17 +1,38 @@
 $(document).ready(function () {
-    ListarSolicitudesCambio();
-    $(".styled, .multiselect-container input").uniform({
-        radioClass: 'choice'
-    });
 
+    ListarSolicitudesCambio();
     $("#btnTareaRelacion").click(function () {
         var TareaId = $("#txtTareaId").val();
         $("#modal_theme_success").modal({
             backdrop: 'static',
             keyboard: false
         });
-    })
+    });
 
+    $(".styled, .multiselect-container input").uniform({
+        radioClass: 'choice'
+    });
+
+    $(document).on('click', '#btnEvaluarSolicitudCambio', function () {
+        $.ajax({
+            type: 'POST',
+            url: basepath + "/servicio/EvaluarSolicitudCambio",
+            data: {
+                'SOLICAMid_solicitudcambio': $("#txtCodigo").val(),
+                'SOLICAMestado_solicitudcambio': $(".EstadoSolicitudCambio").val()
+            },
+            success: function (response) {
+                var resp = response.respuesta;
+                var msj = response.mensaje;
+                if (resp === true) {
+                    toastr.success('Se ha evaluado satisfactoriamente', 'Mensaje Servidor');
+                    $("#ModalRevisionSolicitudCambio").modal('hide');
+                } else {
+                    toastr.error(msj, 'Mensaje Servidor');
+                }
+            }
+        });
+    });
 });
 
 function ListarSolicitudesCambio() {

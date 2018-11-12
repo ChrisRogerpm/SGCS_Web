@@ -17,10 +17,10 @@ class SolicitudCambioController extends Controller
     public function fncListarSolicitudCambio(Request $request)
     {
         $resultado = false;
-        $SolicitudCambio = "";
-        $mensaje_error = "";
+        $SolicitudCambio = '';
+        $mensaje_error = '';
         try {
-            $SolicitudCambio = SolicitudCambio::fncListarComiteCambio($request);
+            $SolicitudCambio = SolicitudCambio::fncListarSolicitudCambio($request);
             $resultado = true;
         } catch (QueryException $ex) {
             $mensaje_error = $ex->errorInfo;
@@ -30,8 +30,8 @@ class SolicitudCambioController extends Controller
 
     public function fncObtenerSolicitudCambioJson(Request $request)
     {
-        $resultado = "";
-        $mensaje_error = "";
+        $resultado = '';
+        $mensaje_error = '';
         try {
             $resultado = SolicitudCambio::fncObtenerSolicitudCambio($request);
         } catch (QueryException $ex) {
@@ -39,5 +39,17 @@ class SolicitudCambioController extends Controller
         }
 
         return response()->json(['data' => $resultado, 'mensaje' => $mensaje_error]);
+    }
+
+    public function fncEvaluarSolicitudCambioJson(Request $request)
+    {
+        $resultado = '';
+        $mensaje_error = '';
+        try {
+            $resultado = SolicitudCambio::fncEvaluarSolicitudCambio($request);
+        } catch (QueryException $ex) {
+            $mensaje_error = $ex->errorInfo;
+        }
+        return response()->json(['respuesta' => $resultado, 'mensaje' => $mensaje_error]);
     }
 }

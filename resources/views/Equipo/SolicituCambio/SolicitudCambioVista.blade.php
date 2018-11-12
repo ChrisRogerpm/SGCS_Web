@@ -73,24 +73,42 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <label for="">Objetivo</label>
-                                <textarea id="txtObjetivo" cols="30" rows="1" class="form-control"></textarea>
+                                <label for="txtObjetivo">Objetivo</label>
+                                <textarea id="txtObjetivo" cols="30" rows="1" style="resize: none;" class="form-control"></textarea>
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <label for="">Descripcion</label>
-                                <textarea id="txtDescripcion" cols="30" rows="1" class="form-control"></textarea>
+                                <label for="txtDescripcion">Descripcion</label>
+                                <textarea id="txtDescripcion" cols="30" rows="1" style="resize: none;" class="form-control"></textarea>
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="display-block text-semibold">Estado de Solicitud</label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="radio-inline-left EstadoSolicitudCambio" class="styled" value="2">
+                                    Aprobar
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="radio-inline-left EstadoSolicitudCambio" class="styled" value="3">
+                                    Desaprobar
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="radio-inline-left EstadoSolicitudCambio" class="styled" value="4">
+                                    Comite de Cambio
+                                </label>
+                            </div>
+                        </div>
+
                     </div>
                     <hr>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-warning" data-dismiss="modal"><i class="icon-cross"></i> Cerrar</button>
-                    <button class="btn btn-primary" id="BtnAsignarTarea"><i class="icon-check"></i> Guardar</button>
+                    <button class="btn btn-primary" id="btnEvaluarSolicitudCambio"><i class="icon-check"></i> Guardar</button>
                 </div>
             </div>
         </div>
