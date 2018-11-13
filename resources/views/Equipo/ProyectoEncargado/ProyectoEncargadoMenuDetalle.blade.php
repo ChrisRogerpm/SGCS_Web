@@ -107,7 +107,7 @@
             </a>
         </div>
         <div class="col-sm-4 col-md-4">
-            <a href="#">
+            <a href="{{route('SolicitudRevision',$PROid_proyecto)}}">
                 <div class="panel panel-body bg-indigo-800 has-bg-image">
                     <div class="media no-margin">
                         <div class="media-body">

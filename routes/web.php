@@ -6,7 +6,7 @@
 
 Route::get('/', 'Autenticacion\SeguridadController@fncMostrarLogin')->name('login');
 Route::post('Autenticacion/ValidarLogin', 'Autenticacion\SeguridadController@fncValidarLoginJson')->name('ValidarLogin');
-Route::post('CerrarSesion','Autenticacion\SeguridadController@fncCerrarSesion')->name('CerrarSesion');
+Route::post('CerrarSesion', 'Autenticacion\SeguridadController@fncCerrarSesion')->name('CerrarSesion');
 
 Route::group(['namespace' => 'Administrador'], function () {
     //Rutas de Vistas
@@ -47,13 +47,13 @@ Route::group(['namespace' => 'Administrador'], function () {
     Route::post('servicio/RegistrarFase', 'FaseController@fncRegistrarFaseJson');
     Route::post('servicio/EditarFase', 'FaseController@fncEditarFaseJson');
     Route::post('servicio/ModificarFase', 'FaseController@fncModificarFaseJson');
-    Route::post('servicio/ListarFasesFiltro','FaseController@fncListarFasesFiltroJson');
+    Route::post('servicio/ListarFasesFiltro', 'FaseController@fncListarFasesFiltroJson');
 
     Route::get('servicio/ListarEntregables', 'EntregableController@fncListarEntregablesJson');
     Route::post('servicio/RegistrarEntregable', 'EntregableController@fncRegistrarEntregableJson');
     Route::post('servicio/EditarEntregable', 'EntregableController@fncEditarEntregableJson');
     Route::post('servicio/ModificarEntregable', 'EntregableController@fncModificarEntregableJson');
-    Route::post('servicio/ListarEntregablesFaseFiltro','EntregableController@fncListarEntregableFaseFiltroJson');
+    Route::post('servicio/ListarEntregablesFaseFiltro', 'EntregableController@fncListarEntregableFaseFiltroJson');
 
     Route::get('servicio/ListarUsuarios', 'UsuarioController@fncListarUsuariosJson');
     Route::post('servicio/RegistrarUsuario', 'UsuarioController@fncRegistrarUsuarioJson');
@@ -64,48 +64,50 @@ Route::group(['namespace' => 'Administrador'], function () {
 
 Route::group(['namespace' => 'Equipo'], function () {
     Route::get('Equipo', 'EquipoController@fncMostrarEquipo')->name('Equipo');
-    Route::get('ProyectosEncargados','ProyectoEncargadoController@fncProyectoEncargadoVista')->name('ProyectosEncargados');
-    Route::get('ProyectoEncargadoMenuDetalle/{id}','ProyectoEncargadoController@fncProyectoEncargadoMenuDetalleVista')->name('ProyectoEncargadoMenuDetalle');
-    Route::get('InformacionProyectoEncargado/{id}','ProyectoEncargadoController@fncInformacionProyectoEncargadoVista')->name('ProyectoEncargado.Informacion');
-    Route::get('EquipoTrabajo/{id}','UsuarioProyectoController@fncEquipoTrabajoVista')->name('EquipoTrabajo');
-    Route::get('EntregableProyecto/{id}','EntregableProyectoController@fncEntregableProyectoVista')->name('EntregableProyecto');
-    Route::get('TareaEntregable/{id}','TareaEntregableController@fncTareaEntregableVista')->name('TareaEntregable');
-    Route::get('ComiteCambio/{id}','ComiteCambioController@fncComiteCambioVista')->name('ComiteCambio');
-    Route::get('RegistrarTareaEntregable/{id}','TareaEntregableController@fncRegistrarTareaEntregableVista')->name('TareaEntregable.Registrar');
-    Route::get('EditarTareaEntregable/{id}','TareaEntregableController@fncEditarTareaEntregableVista')->name('TareaEntregable.Editar');
-    Route::get('SolicitudCambio/{id}','SolicitudCambioController@fncSolicituCambioVista')->name('SolicitudCambio');
+    Route::get('ProyectosEncargados', 'ProyectoEncargadoController@fncProyectoEncargadoVista')->name('ProyectosEncargados');
+    Route::get('ProyectoEncargadoMenuDetalle/{id}', 'ProyectoEncargadoController@fncProyectoEncargadoMenuDetalleVista')->name('ProyectoEncargadoMenuDetalle');
+    Route::get('InformacionProyectoEncargado/{id}', 'ProyectoEncargadoController@fncInformacionProyectoEncargadoVista')->name('ProyectoEncargado.Informacion');
+    Route::get('EquipoTrabajo/{id}', 'UsuarioProyectoController@fncEquipoTrabajoVista')->name('EquipoTrabajo');
+    Route::get('EntregableProyecto/{id}', 'EntregableProyectoController@fncEntregableProyectoVista')->name('EntregableProyecto');
+    Route::get('TareaEntregable/{id}', 'TareaEntregableController@fncTareaEntregableVista')->name('TareaEntregable');
+    Route::get('ComiteCambio/{id}', 'ComiteCambioController@fncComiteCambioVista')->name('ComiteCambio');
+    Route::get('RegistrarTareaEntregable/{id}', 'TareaEntregableController@fncRegistrarTareaEntregableVista')->name('TareaEntregable.Registrar');
+    Route::get('EditarTareaEntregable/{id}', 'TareaEntregableController@fncEditarTareaEntregableVista')->name('TareaEntregable.Editar');
+    Route::get('SolicitudCambio/{id}', 'SolicitudCambioController@fncSolicituCambioVista')->name('SolicitudCambio');
+    Route::get('SolicitudRevision/{id}', 'SolicitudRevisionController@fncSolicitudRevisionVista')->name('SolicitudRevision');
 
 
-    Route::get('servicio/ProyectosEncargados','ProyectoEncargadoController@fncProyectoEncargadoJson');
-    Route::post('servicio/InformacionProyectosEncargado','ProyectoEncargadoController@fncInformacionProyectoEncargadoJson');
+    Route::get('servicio/ProyectosEncargados', 'ProyectoEncargadoController@fncProyectoEncargadoJson');
+    Route::post('servicio/InformacionProyectosEncargado', 'ProyectoEncargadoController@fncInformacionProyectoEncargadoJson');
     Route::get('servicio/ListarMetodologiasPro', 'ProyectoEncargadoController@fncListarMetodologiasProyectoJson');
-    Route::post('servicio/ListarUsuarioProyecto','UsuarioProyectoController@fncListarUsuarioProyectoJson');
-    Route::post('servicio/RegistrarMetodologiaProyecto','MetodologiaProyectoController@fncRegistrarMetodologiaProyecto');
-    Route::post('servicio/RegistrarUsuarioProyecto','UsuarioProyectoController@fncRegistrarUsuarioProyectoJson');
-    Route::post('servicio/CambiarEstadoUsuarioProyecto','UsuarioProyectoController@fncCambiarEstadoUsuarioProyectoJson');
-    Route::post('servicio/ListarFasesProyecto','EntregableProyectoController@fncListarFasesProyectoJson');
-    Route::post('servicio/ListarEntregableProyecto','EntregableProyectoController@fncListarEntregableProyectoJson');
-    Route::post('servicio/RegistrarEntregableProyecto','EntregableProyectoController@fncRegistrarEntregableProyectoJson');
-    Route::post('servicio/CambiarEstadoEntregableProyecto','EntregableProyectoController@fncCambiarEstadoEntregableProyectoJson');
-    Route::post('servicio/ListarEntregableFaseProyecto','EntregableProyectoController@fncListarEntregableFaseProyectoJson');
+    Route::post('servicio/ListarUsuarioProyecto', 'UsuarioProyectoController@fncListarUsuarioProyectoJson');
+    Route::post('servicio/RegistrarMetodologiaProyecto', 'MetodologiaProyectoController@fncRegistrarMetodologiaProyecto');
+    Route::post('servicio/RegistrarUsuarioProyecto', 'UsuarioProyectoController@fncRegistrarUsuarioProyectoJson');
+    Route::post('servicio/CambiarEstadoUsuarioProyecto', 'UsuarioProyectoController@fncCambiarEstadoUsuarioProyectoJson');
+    Route::post('servicio/ListarFasesProyecto', 'EntregableProyectoController@fncListarFasesProyectoJson');
+    Route::post('servicio/ListarEntregableProyecto', 'EntregableProyectoController@fncListarEntregableProyectoJson');
+    Route::post('servicio/RegistrarEntregableProyecto', 'EntregableProyectoController@fncRegistrarEntregableProyectoJson');
+    Route::post('servicio/CambiarEstadoEntregableProyecto', 'EntregableProyectoController@fncCambiarEstadoEntregableProyectoJson');
+    Route::post('servicio/ListarEntregableFaseProyecto', 'EntregableProyectoController@fncListarEntregableFaseProyectoJson');
 
-    Route::post('servicio/TareaEntregable','TareaEntregableController@fncListarTareaEntregableJson');
-    Route::post('servicio/RegistrarTareaEntregable','TareaEntregableController@fncRegistrarTareaEntregableJson');
-    Route::post('servicio/ModificarTareaEntregable','TareaEntregableController@fncModificarTareaEntregableJson');
-    Route::post('servicio/ObtenerTareaEntregable','TareaEntregableController@fncObtenerTareaEntregableJson');
-    Route::get('servicio/MostrarRegistrarTareaVista','TareaEntregableController@fncRegistrarTareaVista');
-    Route::get('servicio/MostrarEditarTareaVista','TareaEntregableController@fncEditarTareaVista');
-    Route::post('servicio/ListarTareaFiltroEntregble','TareaEntregableController@fncListarTareaFiltroEntregbleJson');
-    Route::post('servicio/RegistrarRelacionTareaEntregable','TareaEntregableController@fncRegistrarRelacionTareaEntregable');
-    Route::post('servicio/RegistrarAsignarTareaEntregable','TareaEntregableController@fncAsignarTareaEntregable');
+    Route::post('servicio/TareaEntregable', 'TareaEntregableController@fncListarTareaEntregableJson');
+    Route::post('servicio/RegistrarTareaEntregable', 'TareaEntregableController@fncRegistrarTareaEntregableJson');
+    Route::post('servicio/ModificarTareaEntregable', 'TareaEntregableController@fncModificarTareaEntregableJson');
+    Route::post('servicio/ObtenerTareaEntregable', 'TareaEntregableController@fncObtenerTareaEntregableJson');
+    Route::get('servicio/MostrarRegistrarTareaVista', 'TareaEntregableController@fncRegistrarTareaVista');
+    Route::get('servicio/MostrarEditarTareaVista', 'TareaEntregableController@fncEditarTareaVista');
+    Route::post('servicio/ListarTareaFiltroEntregble', 'TareaEntregableController@fncListarTareaFiltroEntregbleJson');
+    Route::post('servicio/RegistrarRelacionTareaEntregable', 'TareaEntregableController@fncRegistrarRelacionTareaEntregable');
+    Route::post('servicio/RegistrarAsignarTareaEntregable', 'TareaEntregableController@fncAsignarTareaEntregable');
 
-    Route::post('servicio/RegistrarComiteCambio','ComiteCambioController@fncRegistrarComiteCambioProyectoJson');
-    Route::post('servicio/ListarComiteCambio','ComiteCambioController@fncListarComiteCambioJson');
-    Route::post('servicio/CambiarEstadoComiteCambio','ComiteCambioController@fncCambiarEstadoComiteCambioProyectoJson');
+    Route::post('servicio/RegistrarComiteCambio', 'ComiteCambioController@fncRegistrarComiteCambioProyectoJson');
+    Route::post('servicio/ListarComiteCambio', 'ComiteCambioController@fncListarComiteCambioJson');
+    Route::post('servicio/CambiarEstadoComiteCambio', 'ComiteCambioController@fncCambiarEstadoComiteCambioProyectoJson');
 
-    Route::post('servicio/ListarSolicitudesCambio','SolicitudCambioController@fncListarSolicitudCambio');
-    Route::post('servicio/ObtenerSolicitudCambio','SolicitudCambioController@fncObtenerSolicitudCambioJson');
-    Route::post('servicio/EvaluarSolicitudCambio','SolicitudCambioController@fncEvaluarSolicitudCambioJson');
+    Route::post('servicio/ListarSolicitudesCambio', 'SolicitudCambioController@fncListarSolicitudCambio');
+    Route::post('servicio/ObtenerSolicitudCambio', 'SolicitudCambioController@fncObtenerSolicitudCambioJson');
+    Route::post('servicio/EvaluarSolicitudCambio', 'SolicitudCambioController@fncEvaluarSolicitudCambioJson');
+    Route::post('servicio/ListarTareaRelacion','TareaEntregableController@fncListarTareaRelacionJson');
 //    Route::get
 });
 

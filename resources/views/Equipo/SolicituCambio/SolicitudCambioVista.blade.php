@@ -89,15 +89,15 @@
                             <div class="form-group">
                                 <label class="display-block text-semibold">Estado de Solicitud</label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="radio-inline-left EstadoSolicitudCambio" class="styled" value="2">
+                                    <input type="radio" name="radio-inline-left" class="styled EstadoSolicitudCambio" value="2">
                                     Aprobar
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="radio-inline-left EstadoSolicitudCambio" class="styled" value="3">
+                                    <input type="radio" name="radio-inline-left" class="styled EstadoSolicitudCambio" value="3">
                                     Desaprobar
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="radio-inline-left EstadoSolicitudCambio" class="styled" value="4">
+                                    <input type="radio" name="radio-inline-left" class="styled EstadoSolicitudCambio" value="4">
                                     Comite de Cambio
                                 </label>
                             </div>
@@ -118,23 +118,15 @@
             <div class="modal-content">
                 <div class="modal-header bg-success">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h6 class="modal-title">Success header</h6>
+                    <h6 class="modal-title">Tareas Involucradas</h6>
                 </div>
 
                 <div class="modal-body">
-                    <h6 class="text-semibold">Text in a modal</h6>
-                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-
-                    <hr>
-
-                    <h6 class="text-semibold">Another paragraph</h6>
-                    <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                    <table class="table table-bordered" id="tablarelacion"></table>
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success">Save changes</button>
+                    <button type="button" class="btn btn-link" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>

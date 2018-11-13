@@ -50,11 +50,12 @@ class SolicitudCambio extends Model
     {
         $IdEstadoSolicitudCambio = $request->input('SOLICAMid_solicitudcambio');
         $EstadoSolicitudCambio = $request->input('SOLICAMestado_solicitudcambio');
+        $resultado = false;
         try {
-            $resultado = DB::select(DB::raw("Update sgcssolicampsolicitudcambio as soli set soli.SOLICAMestado_solicitudcambio = '$EstadoSolicitudCambio' 
+            DB::select(DB::raw("Update sgcssolicampsolicitudcambio as soli set soli.SOLICAMestado_solicitudcambio = '$EstadoSolicitudCambio' 
                         where soli.SOLICAMid_solicitudcambio = '$IdEstadoSolicitudCambio'"));
+            $resultado = true;
         } catch (QueryException $ex) {
-            //$resultado = $ex->errorInfo;
         }
         return $resultado;
     }

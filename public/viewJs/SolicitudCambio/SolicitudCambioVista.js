@@ -14,12 +14,15 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '#btnEvaluarSolicitudCambio', function () {
+
+        var CodigoId = $("#txtIdSolicitudCambio").val();
+        var EstadoSoli = $(".EstadoSolicitudCambio").val();
         $.ajax({
             type: 'POST',
             url: basepath + "/servicio/EvaluarSolicitudCambio",
             data: {
-                'SOLICAMid_solicitudcambio': $("#txtCodigo").val(),
-                'SOLICAMestado_solicitudcambio': $(".EstadoSolicitudCambio").val()
+                'SOLICAMid_solicitudcambio': CodigoId,
+                'SOLICAMestado_solicitudcambio': EstadoSoli
             },
             success: function (response) {
                 var resp = response.respuesta;
@@ -27,12 +30,36 @@ $(document).ready(function () {
                 if (resp === true) {
                     toastr.success('Se ha evaluado satisfactoriamente', 'Mensaje Servidor');
                     $("#ModalRevisionSolicitudCambio").modal('hide');
+                    ListarSolicitudesCambio();
                 } else {
                     toastr.error(msj, 'Mensaje Servidor');
                 }
             }
         });
     });
+
+    $(document).on('click', '#btnTareaRelacion', function () {
+        debugger
+        var TareaId = $("#txtTareaId").val();
+        $.ajax({
+            type: 'POST',
+            url: basepath + "/servicio/ListarTareaRelacion",
+            data: {
+                'TAid_tarea1': TareaId
+            },
+            success: function (response) {
+                var resp = response.data;
+                $(".modal-body").empty().append('<table class="table table-bordered" id="tablarelacion"></table>');
+                $("#tablarelacion").DataTable({
+                    data: resp,
+                    columns: [
+                        {data: "ENTRnombre_entregable", title: "Entregable"},
+                        {data: "TAnombre_tarea", title: 'Tarea'},
+                    ]
+                });
+            }
+        });
+    })
 });
 
 function ListarSolicitudesCambio() {
@@ -46,6 +73,7 @@ function ListarSolicitudesCambio() {
             var resp = response.data;
             var estado = response.estado;
             var msj = response.mensaje;
+            $(".panel-body").empty().append('<table class="table table-bordered" id="tabla"></table>');
             if (estado === true) {
                 $("#tabla").DataTable({
                     data: resp,
@@ -62,7 +90,7 @@ function ListarSolicitudesCambio() {
                         {
                             data: "SOLICAMestado_solicitudcambio", title: 'Estado',
                             render: function (value) {
-                                return '<span class="label label-primary">Habilitado</span>';
+                                return '<span class="label label-primary">Pendiente</span>';
                             }
                         },
                         {
@@ -86,6 +114,8 @@ function ListarSolicitudesCambio() {
                                 keyboard: false
                             });
                             $(this).tooltip('hide');
+
+                            $("#txtIdSolicitudCambio").val(SolicitudId);
                             ObtenerInfoSolicitudCambio(SolicitudId);
                         });
                     }

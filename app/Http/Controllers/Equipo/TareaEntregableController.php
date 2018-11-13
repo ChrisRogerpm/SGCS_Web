@@ -6,6 +6,7 @@ use App\AsignarTareaEntregable;
 use App\EntregableProyecto;
 use App\RelacionTareaEntregable;
 use App\TareaEntregable;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -115,15 +116,29 @@ class TareaEntregableController extends Controller
         return response()->json(['estado' => $resultado, 'mensaje' => $mensaje_error]);
     }
 
-    public function fncAsignarTareaEntregable(Request $request){
+    public function fncAsignarTareaEntregable(Request $request)
+    {
         $resultado = false;
-        $mensaje_error = (string) NULL;
+        $mensaje_error = (string)NULL;
         try {
             $resultado = AsignarTareaEntregable::fncRegistrarAsignarTareaEntregable($request);
         } catch (\Exception $ex) {
             $mensaje_error = $ex;
         }
         return response()->json(['estado' => $resultado, 'mensaje' => $mensaje_error]);
+    }
+
+    public function fncListarTareaRelacionJson(Request $request)
+    {
+        $result = emptyString();
+        $message_error = emptyString();
+        try{
+            $result = RelacionTareaEntregable::fncListarTareaRelacion($request);
+        }catch (QueryException $ex){
+            $message_error = $ex->errorInfo;
+        }
+        return response()->json(['data' => $result, 'mensaje' => $message_error]);
+
     }
 
 }
