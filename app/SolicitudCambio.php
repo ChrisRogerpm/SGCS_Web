@@ -22,7 +22,7 @@ class SolicitudCambio extends Model
             ->join('sgcstaptareaentregable as ta', 'ta.TAid_tarea', 'soli.TAid_tarea')
             ->join('sgcsusutusuario as usu', 'usu.USUid_usuario', 'soli.USUid_usuario')
             ->where('soli.PROid_proyecto', $proyecto_id)
-            ->where('soli.SOLICAMestado_solicitudcambio', 1)
+//            ->where('soli.SOLICAMestado_solicitudcambio', 1)
             ->get();
         return $resultado;
     }

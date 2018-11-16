@@ -90,13 +90,22 @@ function ListarSolicitudesCambio() {
                         {
                             data: "SOLICAMestado_solicitudcambio", title: 'Estado',
                             render: function (value) {
-                                return '<span class="label label-primary">Pendiente</span>';
+                                if(value === 1){
+                                    return '<span class="label label-primary">Pendiente</span>';
+                                }else if(value === 2){
+                                    return '<span class="label label-success">Aprobado</span>';
+                                }
                             }
                         },
                         {
                             data: null, title: "Acción",
                             render: function (value) {
-                                return '<button type="button" class="btn btn-xs btn-success btnRevisar" data-id="' + value.SOLICAMid_solicitudcambio + '" data-tareaid="' + value.TAid_tarea + '"><i class="icon-eye-plus"></i></button>';
+
+                                if(value.SOLICAMestado_solicitudcambio === 1){
+                                    return '<button type="button" class="btn btn-xs btn-success btnRevisar" data-id="' + value.SOLICAMid_solicitudcambio + '" data-tareaid="' + value.TAid_tarea + '"><i class="icon-eye-plus"></i></button>';
+                                }else{
+                                    return '<button type="button" class="btn btn-xs btn-success btnRevisar" disabled><i class="icon-eye-plus"></i></button>';
+                                }
                             },
                             className: "text-center"
                         }
