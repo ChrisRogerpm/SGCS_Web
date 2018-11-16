@@ -81,4 +81,20 @@ class TareaEntregable extends Model
             ->get();
         return $resultado;
     }
+
+    public static function fncListarTareaEquipo()
+    {
+        $IdUsuarioLogeado = Auth()->user()->USUid_usuario;
+
+        $lista = DB::table('sgcsatepasignartareaentregable as ata')
+            ->select('ata.ATEid_asignartareaproyecto', 'ta.TAnombre_tarea', 'ata.ATEfecha_inicio_tareaproyecto', 'ata.ATEfecha_fin_tareaproyecto', 'ata.ATEestado_tareaproyecto')
+            ->join('sgcstaptareaentregable as ta', 'ta.TAid_tarea', 'ata.TAid_tarea')
+            ->join('sgcsentrpropentregableproyecto as entre', 'entre.ENTRPROid_entregableproyecto', 'ta.ENTPROid_entregableproyecto')
+            ->join('sgcsprotproyecto as pro', 'pro.PROid_proyecto', 'entre.PROid_proyecto')
+            ->join('sgcsusupropusuarioproyecto as usupro', 'usupro.USUPROid_usuarioproyecto', 'ata.USUPROid_usuarioproyecto')
+            ->join('sgcsusutusuario as usu', ' usu.USUid_usuario', 'usupro.USUid_usuario')
+            ->where('usu.USUid_usuario', $IdUsuarioLogeado)
+            ->get();
+        return $lista;
+    }
 }

@@ -108,6 +108,8 @@ Route::group(['namespace' => 'Equipo'], function () {
     Route::post('servicio/ObtenerSolicitudCambio', 'SolicitudCambioController@fncObtenerSolicitudCambioJson');
     Route::post('servicio/EvaluarSolicitudCambio', 'SolicitudCambioController@fncEvaluarSolicitudCambioJson');
     Route::post('servicio/ListarTareaRelacion','TareaEntregableController@fncListarTareaRelacionJson');
+
+    Route::post('servicio/ListarTareaEquipo','TareaEntregableController@fncListarTareaEquipoJson');
 //    Route::get
 });
 

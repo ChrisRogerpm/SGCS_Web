@@ -37,6 +37,25 @@ class TareaEntregableController extends Controller
         return view('Equipo.Tareas.GestionTareas.EditarTareaVista');
     }
 
+    public function fncTareaEquipoVista()
+    {
+        return view('Equipo.Tareas.TareaEquipoVista');
+    }
+
+    public function fncListarTareaEquipoJson()
+    {
+        $resultado = false;
+        $tarea_equipo = "";
+        $mensaje_error = "";
+        try {
+            $tarea_equipo = TareaEntregable::fncListarTareaEquipo();
+            $resultado = true;
+        } catch (QueryException $ex) {
+            $mensaje_error = $ex->errorInfo;
+        }
+        return response()->json(['estado' => $resultado, 'data' => $tarea_equipo, 'mensaje' => $mensaje_error]);
+    }
+
     public function fncListarTareaEntregableJson(Request $request)
     {
         $resultado = false;
@@ -132,9 +151,9 @@ class TareaEntregableController extends Controller
     {
         $result = emptyString();
         $message_error = emptyString();
-        try{
+        try {
             $result = RelacionTareaEntregable::fncListarTareaRelacion($request);
-        }catch (QueryException $ex){
+        } catch (QueryException $ex) {
             $message_error = $ex->errorInfo;
         }
         return response()->json(['data' => $result, 'mensaje' => $message_error]);
