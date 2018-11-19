@@ -75,6 +75,8 @@ Route::group(['namespace' => 'Equipo'], function () {
     Route::get('EditarTareaEntregable/{id}', 'TareaEntregableController@fncEditarTareaEntregableVista')->name('TareaEntregable.Editar');
     Route::get('SolicitudCambio/{id}', 'SolicitudCambioController@fncSolicituCambioVista')->name('SolicitudCambio');
     Route::get('SolicitudRevision/{id}', 'SolicitudRevisionController@fncSolicitudRevisionVista')->name('SolicitudRevision');
+    Route::get('TareaEquipo','TareaEntregableController@fncTareaEquipoVista')->name('TareaEquipo');
+    Route::get('RegistrarSolicitudCambio','SolicitudCambioController@fncRegistrarSolicitudCambioVista')->name('RegistrarSolicitudCambio');
 
 
     Route::get('servicio/ProyectosEncargados', 'ProyectoEncargadoController@fncProyectoEncargadoJson');
@@ -110,6 +112,13 @@ Route::group(['namespace' => 'Equipo'], function () {
     Route::post('servicio/ListarTareaRelacion','TareaEntregableController@fncListarTareaRelacionJson');
 
     Route::post('servicio/ListarTareaEquipo','TareaEntregableController@fncListarTareaEquipoJson');
+
+    Route::post('servicio/ListarTareaAsignadaProyecto','SolicitudCambioController@fncListarTareaAsignadaProyectoJson');
+    Route::post('servicio/ListarProyectosTareaAsignada','SolicitudCambioController@fncListarProyectosTareaAsignadaJson');
+    Route::post('servicio/RegistrarSolicitudCambio','SolicitudCambioController@fncRegistrarSolicitudCambioJson');
+    Route::post('servicio/ListarSolicitudCambioUsuario','SolicitudCambioController@fncListarSolicitudCambioUsuarioJson');
+
+
 //    Route::get
 });
 

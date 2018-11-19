@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Administrador;
 
 use App\Metodologia;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -32,7 +33,7 @@ class MetodologiaController extends Controller
         try {
             $Metodologia_lista = Metodologia::fncListarMetodologias();
             $resultado = true;
-        } catch (\Exception $ex) {
+        } catch (QueryException $ex) {
             $mensaje_error = $ex;
         }
         return response()->json(['estado' => $resultado, 'data' => $Metodologia_lista, 'mensaje' => $mensaje_error]);
@@ -46,8 +47,8 @@ class MetodologiaController extends Controller
         try {
             $Metodologias = Metodologia::fncRegistrarMetodologia($request);
             $resultado = true;
-        } catch (\Exception $ex) {
-            $mensaje_error = $ex;
+        } catch (QueryException $ex) {
+            $mensaje_error = $ex->getMessage();
         }
         return response()->json(['estado' => $resultado, 'data' => $Metodologias, 'mensaje' => $mensaje_error]);
 

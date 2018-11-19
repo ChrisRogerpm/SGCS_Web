@@ -6,6 +6,7 @@ namespace App;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class AsignarTareaEntregable extends Model
@@ -15,8 +16,6 @@ class AsignarTareaEntregable extends Model
     protected $primaryKey = 'ATEid_asignartareaproyecto';
     protected $fillable = ['TAid_tarea', 'USUPROid_usuarioproyecto', 'ATEfecha_inicio_tareaproyecto', 'ATEfecha_fin_tareaproyecto', 'ATEestado_tareaproyecto'];
 
-    //
-    public static $Usuario;
     public static function fncRegistrarAsignarTareaEntregable(Request $request): bool
     {
         $respuesta = false;
@@ -33,7 +32,8 @@ class AsignarTareaEntregable extends Model
                 $asignar_tarea->save();
                 $respuesta = true;
             }
-        } catch (\Exception $ex) {
+        } catch (QueryException $ex) {
+            
         }
         return $respuesta;
     }
@@ -49,8 +49,51 @@ class AsignarTareaEntregable extends Model
             if ($contenido < 1) {
                 $respuesta = true;
             }
-        } catch (\Exception $ex) {
+        } catch (QueryException $ex) {
+            
         }
         return $respuesta;
+    }
+
+    public static function fncProyectoTareaAsignadaUsuario()
+    {
+        $USUid_usuario = auth()->user()->USUid_usuario;
+        $resultado = "";
+        try {
+            $resultado = DB::select(DB::raw("
+            select pro.PROid_proyecto, pro.PROnombre_proyecto
+            from sgcsatepasignartareaentregable ata
+            join sgcsusupropusuarioproyecto usupro on usupro.USUPROid_usuarioproyecto = ata.USUPROid_usuarioproyecto
+            join sgcsusutusuario usu on usu.USUid_usuario = usupro.USUid_usuario
+            join sgcstaptareaentregable ta on ta.TAid_tarea = ata.TAid_tarea
+            join sgcsentrpropentregableproyecto entrepro on entrepro.ENTRPROid_entregableproyecto = ta.ENTPROid_entregableproyecto
+            join sgcsprotproyecto pro on pro.PROid_proyecto = entrepro.PROid_proyecto
+            where usu.USUid_usuario = '$USUid_usuario'
+            group by pro.PROid_proyecto, pro.PROnombre_proyecto"));
+        } catch (QueryException $ex) {
+            
+        }
+        return $resultado;
+    }
+
+    public static function fncTareasAsignadaUsuario(Request $request)
+    {
+        $USUid_usuario = auth()->user()->USUid_usuario;
+        $PROid_proyecto = $request->input('PROid_proyecto');
+        $resultado = "";
+        try {
+            $resultado = DB::select(DB::raw("
+            select ta.TAid_tarea, ta.TAnombre_tarea
+            from sgcsatepasignartareaentregable ata
+            join sgcsusupropusuarioproyecto usupro on usupro.USUPROid_usuarioproyecto = ata.USUPROid_usuarioproyecto
+            join sgcsusutusuario usu on usu.USUid_usuario = usupro.USUid_usuario
+            join sgcstaptareaentregable ta on ta.TAid_tarea = ata.TAid_tarea
+            join sgcsentrpropentregableproyecto entrepro on entrepro.ENTRPROid_entregableproyecto = ta.ENTPROid_entregableproyecto
+            join sgcsprotproyecto pro on pro.PROid_proyecto = entrepro.PROid_proyecto
+            where usu.USUid_usuario = '$USUid_usuario' and pro.PROid_proyecto = '$PROid_proyecto'"));
+        } catch (QueryException $ex) {
+            
+        }
+        return $resultado;
     }
 }

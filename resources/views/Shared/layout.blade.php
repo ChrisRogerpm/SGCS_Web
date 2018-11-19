@@ -59,7 +59,7 @@
 <body>
 <div class="navbar navbar-inverse bg-indigo-800">
     <div class="navbar-header">
-        <a class="navbar-brand" href="#"><img src="../assets/images/logo_light.png" alt=""></a>
+        {{--<a class="navbar-brand" href="#"><img src="../assets/images/logo_light.png" alt=""></a>--}}
         <ul class="nav navbar-nav pull-right visible-xs-block">
             <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
         </ul>
@@ -101,8 +101,8 @@
             @else
                 <li><a href="{{route('Equipo')}}"><i class="icon-display4 position-left"></i> Equipo</a></li>
                 <li><a href="{{route('ProyectosEncargados')}}"><i class="icon-display4 position-left"></i> Mis Proyectos</a></li>
-                <li><a href="#"><i class="icon-display4 position-left"></i> Mis Tareas</a></li>
-                <li><a href="#"><i class="icon-display4 position-left"></i> Mis Solicitudes</a></li>
+                <li><a href="{{route('TareaEquipo')}}"><i class="icon-display4 position-left"></i> Mis Tareas</a></li>
+                <li><a href="{{route('RegistrarSolicitudCambio')}}"><i class="icon-display4 position-left"></i> Mis Solicitudes</a></li>
             @endif
         </ul>
     </div>

@@ -91,9 +91,13 @@ function ListarSolicitudesCambio() {
                             data: "SOLICAMestado_solicitudcambio", title: 'Estado',
                             render: function (value) {
                                 if(value === 1){
-                                    return '<span class="label label-primary">Pendiente</span>';
+                                    return '<span class="label label-warning">Pendiente</span>';
                                 }else if(value === 2){
                                     return '<span class="label label-success">Aprobado</span>';
+                                }else if(value === 3){
+                                    return '<span class="label label-danger">Rechazado</span>';
+                                }else if(value === 4){
+                                    return '<span class="label bg-slate-300">Comite de Cambios</span>';
                                 }
                             }
                         },
