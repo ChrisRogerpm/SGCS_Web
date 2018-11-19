@@ -18,15 +18,14 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="panel panel-flat">
-                <div class="panel-body">
-                    <table class="table table-bordered" id="tabla"></table>
+                <div class="panel-body contenedor">
                 </div>
             </div>
         </div>
 
         {{--Modal Revision--}}
         <div id="ModalRevision" class="modal fade">
-            <div class="modal-dialog modal-lg">
+            <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header bg-indigo-400">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -35,31 +34,33 @@
 
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-md-12">
-                                <input type="hidden" id="id_tarea_modal">
-                                <div class="col-md-6">
+                            <form id="frmNuevo">
+                                <div class="col-md-12">
+                                    <input type="hidden" name="ATPid_asignartareaproyecto"
+                                           id="txtATPid_asignartareaproyecto">
                                     <div class="form-group">
-                                        <label class="control-label">Fases</label>
-                                        <input type="text" class="form-control input-xs">
+                                        <label class="control-label">Link Documento (*)</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="icon-chrome"></i></span>
+                                            <input type="text" class="form-control input-xs"
+                                                   name="TAREurl_tarearevision">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Entregable</label>
-                                        <select id="EntregableModal" class="form-control input-xs">
-                                            <option value="">--Seleccione--</option>
-                                        </select>
+                                        <textarea name="TAREobservacion_tarearevision" style="resize: none" cols="30" rows="3"
+                                                  class="form-control"></textarea>
                                     </div>
+                                    <span class="help-block">(*) Campo Obligatorio</span>
                                 </div>
-                                <div class="col-md-12 contenedor_tareas_entregable">
-                                </div>
-                            </div>
+                            </form>
                         </div>
                         <hr>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-warning" data-dismiss="modal"><i class="icon-cross"></i> Cerrar</button>
-                        <button class="btn btn-primary" id="GuardarRelacionTarea"><i class="icon-check"></i> Guardar</button>
+                        <button class="btn btn-primary" id="btnGuardar"><i class="icon-check"></i> Guardar
+                        </button>
                     </div>
                 </div>
             </div>

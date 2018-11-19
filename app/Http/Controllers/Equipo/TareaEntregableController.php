@@ -6,6 +6,7 @@ use App\AsignarTareaEntregable;
 use App\EntregableProyecto;
 use App\RelacionTareaEntregable;
 use App\TareaEntregable;
+use App\TareaEntregableRevision;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -158,6 +159,21 @@ class TareaEntregableController extends Controller
         }
         return response()->json(['data' => $result, 'mensaje' => $message_error]);
 
+    }
+
+    public function fncRegistrarRevisionTareEntregableJson(Request $request)
+    {
+        $resultado_actualizar_tarea = false;
+        $mensaje_error = "";
+        try {
+            $resultado = TareaEntregableRevision::fncRegistrarRevisionTareEntregable($request);
+            if($resultado){
+                $resultado_actualizar_tarea = AsignarTareaEntregable::fncActualizarEstadoTareaAsignada($request);
+            }
+        } catch (QueryException $ex) {
+            $mensaje_error = $ex->errorInfo;
+        }
+        return response()->json(['respuesta' => $resultado_actualizar_tarea, 'mensaje' => $mensaje_error]);
     }
 
 }

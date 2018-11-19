@@ -36,7 +36,9 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="">Tarea</label>
-                                    <select class="form-control input-xs" name="TAid_tarea" id="cboTareas"></select>
+                                    <select class="form-control input-xs" name="TAid_tarea" id="cboTareas">
+                                        <option value="">--Seleccione--</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Descripcion</label>

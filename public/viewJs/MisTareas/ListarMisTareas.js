@@ -1,8 +1,38 @@
 $(document).ready(function () {
     fncListarMisTareasJson();
-    $(document).on('click','.btnRevisar',function () {
-        $("#ModalRevision").modal();
-    })
+    $(document).on('click', '.btnRevisar', function () {
+        var ATPid_asignartareaproyecto = $(this).data("id");
+        $("#ModalRevision").modal({
+            backdrop: 'static',
+            keyboard: false
+        });
+        $("#frmNuevo")[0].reset();
+        $("#txtATPid_asignartareaproyecto").val(ATPid_asignartareaproyecto);
+    });
+
+    $("#btnGuardar").click(function () {
+        var url = basepath + "/servicio/RegistrarRevisionTareEntregable";
+        var dataForm = $('#frmNuevo').serializeFormJSON();
+        $.ajax({
+            url: url,
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(dataForm),
+            success: function (response) {
+                var respuesta = response.respuesta;
+                if (respuesta === true) {
+                    toastr.success("Se Registro Correctamente", "Mensaje Servidor");
+                    $("#frmNuevo")[0].reset();
+                    $("#ModalRevision").modal("hide");
+                    fncListarMisTareasJson();
+                } else {
+                    toastr.error(response.mensaje, "Mensaje Servidor");
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+            }
+        });
+    });
 });
 
 function fncListarMisTareasJson() {
@@ -14,6 +44,7 @@ function fncListarMisTareasJson() {
         success: function (response) {
             let est = response.estado;
             let resp = response.data;
+            $(".contenedor").empty().append('<table class="table table-bordered" id="tabla"></table>');
             if (est === true) {
                 $("#tabla").DataTable({
                     data: resp,
@@ -33,28 +64,36 @@ function fncListarMisTareasJson() {
                             data: "ATEestado_tareaproyecto", title: "Estado",
                             render: function (value) {
                                 if (value === 1) {
-                                    return '<span class="label label-primary">Habilitado</span>'
-
-                                } else {
-                                    return '<span class="label label-danger">Deshabilitado</span>'
+                                    return '<span class="label label-warning">En progreso</span>'
+                                } else if (value === 2) {
+                                    return '<span class="label label-info">En Revision</span>'
+                                } else if (value === 3) {
+                                    return '<span class="label label-success">Aprobado</span>'
                                 }
                             }
                         },
                         {
                             data: null, title: "Acción",
                             render: function (value) {
-                                return '<button type="button" class="btn btn-xs btn-success btnRevisar" data-id="' + value.ATEid_asignartareaproyecto + '"><i class="glyphicon glyphicon-eye-open"></i></button> ' +
-                                    '<button type="button" class="btn btn-xs btn-info btnHistorial" data-id="' + value.ATEid_asignartareaproyecto + '"><i class="glyphicon glyphicon-calendar"></i></button>';
+
+                                var EstadoId = value.ATEestado_tareaproyecto;
+                                if (EstadoId !== 1) {
+                                    return '<button type="button" class="btn btn-xs btn-success" disabled><i class="glyphicon glyphicon-eye-open"></i></button> ' +
+                                        '<button type="button" class="btn btn-xs btn-info btnHistorial" data-id="' + value.ATEid_asignartareaproyecto + '"><i class="glyphicon glyphicon-calendar"></i></button>';
+                                } else {
+                                    return '<button type="button" class="btn btn-xs btn-success btnRevisar" data-id="' + value.ATEid_asignartareaproyecto + '"><i class="glyphicon glyphicon-eye-open"></i></button> ' +
+                                        '<button type="button" class="btn btn-xs btn-info btnHistorial" data-id="' + value.ATEid_asignartareaproyecto + '"><i class="glyphicon glyphicon-calendar"></i></button>';
+                                }
                             }
                         }
 
                     ],
                     "drawCallback": function () {
                         $('.btnRevisar').tooltip({
-                            title:'Revisar Tarea'
+                            title: 'Revisar Tarea'
                         });
                         $('.btnHistorial').tooltip({
-                            title:'Versiones'
+                            title: 'Versiones'
                         })
                     }
                 });

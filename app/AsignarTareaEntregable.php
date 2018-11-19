@@ -33,7 +33,7 @@ class AsignarTareaEntregable extends Model
                 $respuesta = true;
             }
         } catch (QueryException $ex) {
-            
+
         }
         return $respuesta;
     }
@@ -50,7 +50,7 @@ class AsignarTareaEntregable extends Model
                 $respuesta = true;
             }
         } catch (QueryException $ex) {
-            
+
         }
         return $respuesta;
     }
@@ -71,7 +71,7 @@ class AsignarTareaEntregable extends Model
             where usu.USUid_usuario = '$USUid_usuario'
             group by pro.PROid_proyecto, pro.PROnombre_proyecto"));
         } catch (QueryException $ex) {
-            
+
         }
         return $resultado;
     }
@@ -92,8 +92,22 @@ class AsignarTareaEntregable extends Model
             join sgcsprotproyecto pro on pro.PROid_proyecto = entrepro.PROid_proyecto
             where usu.USUid_usuario = '$USUid_usuario' and pro.PROid_proyecto = '$PROid_proyecto'"));
         } catch (QueryException $ex) {
-            
+
         }
         return $resultado;
+    }
+
+    public static function fncActualizarEstadoTareaAsignada(Request $request)
+    {
+        $ATEid_asignartareaproyecto = $request->input('ATPid_asignartareaproyecto');
+        $respuesta = false;
+        try {
+            $tarea_asignada = AsignarTareaEntregable::findorfail($ATEid_asignartareaproyecto);
+            $tarea_asignada->ATEestado_tareaproyecto = 2;
+            $tarea_asignada->save();
+            $respuesta = true;
+        } catch (QueryException $ex) {
+        }
+        return $respuesta;
     }
 }
