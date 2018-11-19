@@ -3,6 +3,7 @@
 namespace App;
 
 use Carbon\Carbon;
+use DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -24,7 +25,7 @@ class TareaEntregableRevision extends Model
     public static function fncRegistrarRevisionTareEntregable(Request $request)
     {
         $TAREfecha_emitida_tarearevision = Carbon::now();
-        $TAREestado_tarearevision = 1;
+        $TAREestado_tarearevision = 2;
         $respuesta = false;
         try{
             $revision = new TareaEntregableRevision();
@@ -38,6 +39,24 @@ class TareaEntregableRevision extends Model
         }catch (QueryException $ex){
         }
         return $respuesta;
+    }
+
+    public static function fncListarTareaRevisionProyecto(Request $request)
+    {
+        $PROid_proyecto = $request->input('PROid_proyecto');
+        $resultado = "";
+        try {
+            $resultado = DB::select(DB::raw("
+            select re.TAREid_tarearevision,ta.TAnombre_tarea,re.TAREurl_tarearevision,re.TAREfecha_emitida_tarearevision,re.TAREestado_tarearevision
+            from sgcstareptareaentregablerevision re
+            join sgcsatepasignartareaentregable ata on ata.ATEid_asignartareaproyecto = re.ATPid_asignartareaproyecto
+            join sgcstaptareaentregable ta on ta.TAid_tarea = ata.TAid_tarea
+            join sgcsentrpropentregableproyecto entre on entre.ENTRPROid_entregableproyecto = ta.ENTPROid_entregableproyecto
+            join sgcsprotproyecto pro on pro.PROid_proyecto = entre.PROid_proyecto
+            where pro.PROid_proyecto = '$PROid_proyecto'"));
+        } catch (QueryException $ex) {
+        }
+        return $resultado;
     }
 
 }

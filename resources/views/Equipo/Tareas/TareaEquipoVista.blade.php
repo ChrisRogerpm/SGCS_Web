@@ -47,7 +47,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label">Entregable</label>
+                                        <label class="control-label">Observación</label>
                                         <textarea name="TAREobservacion_tarearevision" style="resize: none" cols="30" rows="3"
                                                   class="form-control"></textarea>
                                     </div>
