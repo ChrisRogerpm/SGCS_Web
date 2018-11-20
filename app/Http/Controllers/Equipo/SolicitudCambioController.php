@@ -20,7 +20,9 @@ class SolicitudCambioController extends Controller
     {
         return view('Equipo.SolicituCambio.RegistrarSolicitudCambio');
     }
-    public function fncRegistrarSolicitudCambioJson(Request $request){
+
+    public function fncRegistrarSolicitudCambioJson(Request $request)
+    {
         $resultado = false;
         $mensaje_error = "";
         try {
@@ -28,7 +30,7 @@ class SolicitudCambioController extends Controller
         } catch (QueryException $ex) {
             $mensaje_error = $ex->getMessage();
         }
-        return response()->json(['respuesta' => $resultado,  'mensaje' => $mensaje_error]);
+        return response()->json(['respuesta' => $resultado, 'mensaje' => $mensaje_error]);
     }
 
     public function fncListarSolicitudCambioUsuarioJson()

@@ -47,8 +47,8 @@ class TareaEntregableRevision extends Model
         $resultado = "";
         try {
             $resultado = DB::select(DB::raw("
-            select re.TAREid_tarearevision,ta.TAnombre_tarea,re.TAREurl_tarearevision,re.TAREfecha_emitida_tarearevision,re.TAREestado_tarearevision
-            from sgcstareptareaentregablerevision re
+            select re.TAREid_tarearevision,ta.TAnombre_tarea,re.TAREurl_tarearevision,re.TAREfecha_emitida_tarearevision,re.TAREestado_tarearevision,
+            re.TAREobservacion_tarearevision from sgcstareptareaentregablerevision re
             join sgcsatepasignartareaentregable ata on ata.ATEid_asignartareaproyecto = re.ATPid_asignartareaproyecto
             join sgcstaptareaentregable ta on ta.TAid_tarea = ata.TAid_tarea
             join sgcsentrpropentregableproyecto entre on entre.ENTRPROid_entregableproyecto = ta.ENTPROid_entregableproyecto

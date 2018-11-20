@@ -119,6 +119,7 @@ Route::group(['namespace' => 'Equipo'], function () {
     Route::post('servicio/ListarSolicitudCambioUsuario','SolicitudCambioController@fncListarSolicitudCambioUsuarioJson');
     Route::post('servicio/RegistrarRevisionTareEntregable','TareaEntregableController@fncRegistrarRevisionTareEntregableJson');
     Route::post('servicio/ListarSolicitudRevision','SolicitudRevisionController@fncListarSolicitudRevisionJson');
+    Route::post('servicio/RegistrarTareaEntregableHistorial','SolicitudRevisionController@fncRegistrarTareaEntregableHistorialJson');
 
 
 
