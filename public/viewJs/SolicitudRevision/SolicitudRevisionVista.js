@@ -1,6 +1,6 @@
 $(document).ready(function () {
     ListarSolicitudRevision();
-    $(document).on('click','.btnAprobar',function () {
+    $(document).on('click', '.btnAprobar', function () {
         $("#ModalRevision").modal();
     })
 });
@@ -26,28 +26,25 @@ function ListarSolicitudRevision() {
                         {
                             data: "TAREurl_tarearevision", title: "Documento",
                             render: function (value) {
-                                return '<a href="' + value + '">Documento</a>'
-                            }
+                                return '<a href="' + value + '" class="btn btn-info btn-xs"><i class="icon-file-word"></i></a>'
+                            },
+                            className: "text-center"
                         },
                         {
                             data: "TAREestado_tarearevision", title: "Estado",
                             render: function (value) {
                                 if (value === 1) {
-                                    return '<span class="label label-info">En Revision</span>'
+                                    return '<span class="label label-warning">En Revision</span>'
                                 } else if (value === 2) {
                                     return '<span class="label label-success">Aprobado</span>'
                                 }
-                            }
+                            },
+                            className: "text-center"
                         },
                         {
                             data: null, title: "Acción",
                             render: function (value) {
-                                // if (value.TAREestado_tarearevision === 2) {
-                                //     return '<button type="button" class="btn btn-xs btn-success btnVersion" data-id="' + value.TAREid_tarearevision + '"><i class="icon-calendar2"></i></button>';
-                                // } else {
-                                //     return '<button type="button" class="btn btn-xs btn-success btnAprobar" disabled><i class="icon-eye-plus"></i></button>';
-                                // }
-                                return '<button type="button" class="btn btn-xs btn-success btnAprobar"><i class="glyphicon glyphicon-hand-right"></i></button>';
+                                return '<button type="button" class="btn btn-xs btn-success btnAprobar"><i class="icon-checkmark2"></i></button>';
                             },
                             className: "text-center"
                         }

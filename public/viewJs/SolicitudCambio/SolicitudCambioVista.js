@@ -16,7 +16,7 @@ $(document).ready(function () {
     $(document).on('click', '#btnEvaluarSolicitudCambio', function () {
 
         var CodigoId = $("#txtIdSolicitudCambio").val();
-        var EstadoSoli = $(".EstadoSolicitudCambio").val();
+        var EstadoSoli = $("input[name='EstadoSolicitudCambio']:checked").val();
         $.ajax({
             type: 'POST',
             url: basepath + "/servicio/EvaluarSolicitudCambio",
@@ -39,7 +39,6 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '#btnTareaRelacion', function () {
-        debugger
         var TareaId = $("#txtTareaId").val();
         $.ajax({
             type: 'POST',
@@ -49,11 +48,12 @@ $(document).ready(function () {
             },
             success: function (response) {
                 var resp = response.data;
-                $(".modal-body").empty().append('<table class="table table-bordered" id="tablarelacion"></table>');
+                $(".contenedor_relacion").empty().append('<table class="table table-bordered" id="tablarelacion"></table>');
                 $("#tablarelacion").DataTable({
                     data: resp,
                     columns: [
-                        {data: "ENTRnombre_entregable", title: "Entregable"},
+                        {data: "RETAid_relaciontarea", title: "Id"},
+                        {data: "ENTRnombre_entregable", title: 'Entregable'},
                         {data: "TAnombre_tarea", title: 'Tarea'},
                     ]
                 });
@@ -90,13 +90,13 @@ function ListarSolicitudesCambio() {
                         {
                             data: "SOLICAMestado_solicitudcambio", title: 'Estado',
                             render: function (value) {
-                                if(value === 1){
-                                    return '<span class="label label-warning">Pendiente</span>';
-                                }else if(value === 2){
-                                    return '<span class="label label-success">Aprobado</span>';
-                                }else if(value === 3){
+                                if (value === 1) {
+                                    return '<span class="label bg-orange-300">Pendiente</span>';
+                                } else if (value === 2) {
+                                    return '<span class="label label-primary">Aprobado</span>';
+                                } else if (value === 3) {
                                     return '<span class="label label-danger">Rechazado</span>';
-                                }else if(value === 4){
+                                } else if (value === 4) {
                                     return '<span class="label bg-slate-300">Comite de Cambios</span>';
                                 }
                             }
@@ -105,9 +105,9 @@ function ListarSolicitudesCambio() {
                             data: null, title: "Acción",
                             render: function (value) {
 
-                                if(value.SOLICAMestado_solicitudcambio === 1){
+                                if (value.SOLICAMestado_solicitudcambio === 1) {
                                     return '<button type="button" class="btn btn-xs btn-success btnRevisar" data-id="' + value.SOLICAMid_solicitudcambio + '" data-tareaid="' + value.TAid_tarea + '"><i class="icon-eye-plus"></i></button>';
-                                }else{
+                                } else {
                                     return '<button type="button" class="btn btn-xs btn-success btnRevisar" disabled><i class="icon-eye-plus"></i></button>';
                                 }
                             },
@@ -122,6 +122,7 @@ function ListarSolicitudesCambio() {
                         $('.btnRevisar').click(function () {
                             var SolicitudId = $(this).data("id");
                             var TareaId = $(this).data("tareaid");
+                            $("#txtTareaId").val(TareaId);
                             $("#ModalRevisionSolicitudCambio").modal({
                                 backdrop: 'static',
                                 keyboard: false

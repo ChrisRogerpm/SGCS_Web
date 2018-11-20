@@ -38,7 +38,7 @@
                 <div class="modal-content">
                     <div class="modal-header bg-indigo-400">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h5 class="modal-title"><i class="icon-menu7"></i> &nbsp;Relacionar Tarea Entregable</h5>
+                        <h5 class="modal-title"><i class="icon-menu7"></i> &nbsp;Generar Versión - Revisión de Tarea</h5>
                     </div>
 
                     <div class="modal-body">

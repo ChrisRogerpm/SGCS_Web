@@ -150,8 +150,8 @@ class TareaEntregableController extends Controller
 
     public function fncListarTareaRelacionJson(Request $request)
     {
-        $result = emptyString();
-        $message_error = emptyString();
+        $result = "";
+        $message_error = "";
         try {
             $result = RelacionTareaEntregable::fncListarTareaRelacion($request);
         } catch (QueryException $ex) {

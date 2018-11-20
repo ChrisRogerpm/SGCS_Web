@@ -89,15 +89,15 @@
                             <div class="form-group">
                                 <label class="display-block text-semibold">Estado de Solicitud</label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="radio-inline-left" class="styled EstadoSolicitudCambio" value="2">
+                                    <input type="radio" name="EstadoSolicitudCambio" class="styled" value="2">
                                     Aprobar
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="radio-inline-left" class="styled EstadoSolicitudCambio" value="3">
+                                    <input type="radio" name="EstadoSolicitudCambio" class="styled" value="3">
                                     Desaprobar
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="radio-inline-left" class="styled EstadoSolicitudCambio" value="4">
+                                    <input type="radio" name="EstadoSolicitudCambio" class="styled" value="4">
                                     Comite de Cambio
                                 </label>
                             </div>
@@ -121,7 +121,7 @@
                     <h6 class="modal-title">Tareas Involucradas</h6>
                 </div>
 
-                <div class="modal-body">
+                <div class="modal-body contenedor_relacion">
                     <table class="table table-bordered" id="tablarelacion"></table>
                 </div>
 

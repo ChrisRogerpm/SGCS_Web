@@ -34,7 +34,7 @@
 
                     <div class="modal-body">
                         <div class="row">
-                            <form id="frmNuevo">
+                            <form id="frmNuevo" autocomplete="off">
                                 <div class="col-md-12">
                                     <input type="hidden" name="ATPid_asignartareaproyecto"
                                            id="txtATPid_asignartareaproyecto">

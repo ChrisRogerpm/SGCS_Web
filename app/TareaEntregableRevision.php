@@ -25,7 +25,7 @@ class TareaEntregableRevision extends Model
     public static function fncRegistrarRevisionTareEntregable(Request $request)
     {
         $TAREfecha_emitida_tarearevision = Carbon::now();
-        $TAREestado_tarearevision = 2;
+        $TAREestado_tarearevision = 1;
         $respuesta = false;
         try{
             $revision = new TareaEntregableRevision();
