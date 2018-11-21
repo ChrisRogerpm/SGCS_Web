@@ -110,4 +110,29 @@ class AsignarTareaEntregable extends Model
         }
         return $respuesta;
     }
+
+    public static function fncActualizarEstadoTareaAsignadaAprobado($ATEid_asignartareaproyecto)
+    {
+        $respuesta = false;
+        try {
+            $tarea_asignada = AsignarTareaEntregable::findorfail($ATEid_asignartareaproyecto);
+            $tarea_asignada->ATEestado_tareaproyecto = 3;
+            $tarea_asignada->save();
+            $respuesta = true;
+        } catch (QueryException $ex) {
+        }
+        return $respuesta;
+    }
+    public static function fncActualizarEstadoTareaAsignadaProgreso($ATEid_asignartareaproyecto)
+    {
+        $respuesta = false;
+        try {
+            $tarea_asignada = AsignarTareaEntregable::findorfail($ATEid_asignartareaproyecto);
+            $tarea_asignada->ATEestado_tareaproyecto = 1;
+            $tarea_asignada->save();
+            $respuesta = true;
+        } catch (QueryException $ex) {
+        }
+        return $respuesta;
+    }
 }

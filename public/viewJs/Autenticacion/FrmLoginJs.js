@@ -1,22 +1,28 @@
 $(document).ready(function () {
+    // $(document).on('click','.btnIniciarSesion',function () {
+    //     console.log('click');
+    //     let basepath = window.location.origin;
+    //     fncValidarLoginJs(basepath);
+    // });
     $(".btnIniciarSesion").click(function () {
         let basepath = window.location.origin;
         fncValidarLoginJs(basepath);
     });
 
-    $( "#Codigo" ).keypress(function(e) {
-        if(e.which == 13) {
+    $("#Codigo").keypress(function (e) {
+        if (e.which == 13) {
             let basepath = window.location.origin;
             fncValidarLoginJs(basepath)
         }
     });
     $("#password").keypress(function (e) {
-        if (e.which == 13){
+        if (e.which == 13) {
             let basepath = window.location.origin;
             fncValidarLoginJs(basepath)
         }
     })
 });
+
 function fncValidarLoginJs(basepath) {
     $.ajax({
         type: 'POST',

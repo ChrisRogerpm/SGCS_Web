@@ -7,9 +7,8 @@ $(document).ready(function () {
         var Link = $(this).data("link");
         var Obs = $(this).data("obs");
         var Id = $(this).data("id");
-
-        $("#txtTAHIenlace_tareaversion").val(Link);
-        $("#txtTAHIenlace_tareaversion_").val(Link);
+        $("#txtenlace").val(Link);
+        $("#TAHIenlace_tareaversion_").val(Link);
         $("#txtTAREid_revision").val(Id);
         $("#txtObservacion").val(Obs);
         $("#txtAbrirLink").attr("href", Link);
@@ -22,17 +21,19 @@ $(document).ready(function () {
     });
 
     $("#btnGuardar").click(function () {
-        Estado = $("input[name='TAHIestado_tareaversion']:checked").val();
-        if (Estado = 'undefined') {
+
+        var Estado = $("input[name='TAHIestado_tareaversion']:checked").val();
+        console.log(Estado);
+        if (Estado === 'undefined') {
             toastr.error('Seleccione un estado', 'Mensaje Servidor');
         } else {
-            
+            fncGenerarRevision();
         }
     });
 });
 
 function fncGenerarRevision() {
-    var url = basepath + "/servicio/RegistrarSolicitudCambio";
+    var url = basepath + "/servicio/RegistrarTareaEntregableHistorial";
     var dataForm = $('#frmNuevo').serializeFormJSON();
     $.ajax({
         url: url,
@@ -40,11 +41,13 @@ function fncGenerarRevision() {
         contentType: "application/json",
         data: JSON.stringify(dataForm),
         success: function (response) {
+            debugger
             var respuesta = response.respuesta;
             if (respuesta === true) {
-                toastr.success("Se Registro Correctamente", "Mensaje Servidor");
+                toastr.success("Se reviso Correctamente", "Mensaje Servidor");
                 $("#frmNuevo")[0].reset();
-                fncListarSolicitudCambioUsuario();
+                ListarSolicitudRevision();
+                $("#ModalRevision").modal("hide");
             } else {
                 toastr.error(response.mensaje, "Mensaje Servidor");
             }
@@ -85,6 +88,8 @@ function ListarSolicitudRevision() {
                                     return '<span class="label label-warning">En Revision</span>'
                                 } else if (value === 2) {
                                     return '<span class="label label-success">Aprobado</span>'
+                                } else if (value === 3) {
+                                    return '<span class="label label-danger">Desaprobado</span>'
                                 }
                             },
                             className: "text-center"
@@ -92,7 +97,13 @@ function ListarSolicitudRevision() {
                         {
                             data: null, title: "Acción",
                             render: function (value) {
-                                return '<button type="button" class="btn btn-xs btn-success btnAprobar" data-obs="' + value.TAREobservacion_tarearevision + '" data-id="' + value.TAREid_tarearevision + '" data-link="' + value.TAREurl_tarearevision + '"><i class="icon-checkmark2"></i></button>';
+                                var EstadoRevision = value.TAREestado_tarearevision;
+                                if (EstadoRevision !== 1){
+                                    return '<button type="button" class="btn btn-xs btn-info" disabled><i class="icon-checkmark2"></i></button>';
+                                }else{
+                                    return '<button type="button" class="btn btn-xs btn-default btnAprobar" data-obs="' + value.TAREobservacion_tarearevision + '" data-id="' + value.TAREid_tarearevision + '" data-link="' + value.TAREurl_tarearevision + '"><i class="icon-checkmark2"></i></button>';
+                                }
+
                             },
                             className: "text-center"
                         }

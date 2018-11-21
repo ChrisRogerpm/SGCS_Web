@@ -3,6 +3,7 @@
 namespace App;
 
 use Carbon\Carbon;
+use DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -15,20 +16,56 @@ class TareaEntregableHistorial extends Model
 
     public static function fncRegistrarTareaEntregableHistorial(Request $request)
     {
-        $respuesta = false;
-        $TAHIfecha_emitida_tareaversion = Carbon::now();
+        $FechaActual = Carbon::now();
+        $VersionAgregada = 0.1;
+        $VersionNueva = 1;
+        $TAREid_revision = $request->input('TAREid_revision');
+        $EstadoTareaversion = $request->input('TAHIestado_tareaversion');
+        $TAid_tarea = TareaEntregableRevision::fncObtenerDetalleTareaRevision($TAREid_revision);
         try {
-            $historial = new TareaEntregableHistorial();
-            $historial->TAREid_revision = $request->input('TAREid_revision');
-            $historial->TAHInumeroversion = $request->input('TAHInumeroversion');
-            $historial->TAHIenlace_tareaversion = $request->input('TAHIenlace_tareaversion');
-            $historial->TAHIfecha_emitida_tareaversion = $TAHIfecha_emitida_tareaversion;
-            $historial->TAHIestado_tareaversion = $request->input('TAHIestado_tareaversion');
-            $historial->save();
-            $respuesta = true;
+            $data = TareaEntregableHistorial::fncObtenerVersionTareaEntregableHistorial($TAid_tarea->TAid_tarea);
+            if ($data != null) {
+                $EstadoRevision = 2;
+                $VersionActualizada = $data[0]->TAHInumeroversion + $VersionAgregada;
+                $TareaEntregableHistorial = new TareaEntregableHistorial();
+                $TareaEntregableHistorial->TAREid_revision = $TAREid_revision;
+                $TareaEntregableHistorial->TAHInumeroversion = $VersionActualizada;
+                $TareaEntregableHistorial->TAHIenlace_tareaversion = $request->input('TAHIenlace_tareaversion');
+                $TareaEntregableHistorial->TAHIfecha_emitida_tareaversion = $FechaActual;
+                $TareaEntregableHistorial->TAHIestado_tareaversion = $request->input('TAHIestado_tareaversion');
+                $TareaEntregableHistorial->save();
+                if ($request->input('TAHIestado_tareaversion') == 1) {
+                    AsignarTareaEntregable::fncActualizarEstadoTareaAsignadaAprobado($TAid_tarea->ATEid_asignartareaproyecto);
+                    TareaEntregableRevision::fncActualizarEstadoTareaEntregableRevision($TAREid_revision, 2);
+                } else {
+                    AsignarTareaEntregable::fncActualizarEstadoTareaAsignadaProgreso($TAid_tarea->ATEid_asignartareaproyecto);
+                    TareaEntregableRevision::fncActualizarEstadoTareaEntregableRevision($TAREid_revision, 3);
+                }
+
+                $resultado = true;
+            } else {
+                $TareaEntregableHistorial = new TareaEntregableHistorial();
+                $TareaEntregableHistorial->TAREid_revision = $TAREid_revision;
+                $TareaEntregableHistorial->TAHInumeroversion = $VersionNueva;
+                $TareaEntregableHistorial->TAHIenlace_tareaversion = $request->input('TAHIenlace_tareaversion');
+                $TareaEntregableHistorial->TAHIfecha_emitida_tareaversion = $FechaActual;
+                $TareaEntregableHistorial->TAHIestado_tareaversion = $request->input('TAHIestado_tareaversion');
+                $TareaEntregableHistorial->save();
+                if ($request->input('TAHIestado_tareaversion') == 1) {
+                    AsignarTareaEntregable::fncActualizarEstadoTareaAsignadaAprobado($TAid_tarea->ATEid_asignartareaproyecto);
+                    TareaEntregableRevision::fncActualizarEstadoTareaEntregableRevision($TAREid_revision, 2);
+                } else {
+                    AsignarTareaEntregable::fncActualizarEstadoTareaAsignadaProgreso($TAid_tarea->ATEid_asignartareaproyecto);
+                    TareaEntregableRevision::fncActualizarEstadoTareaEntregableRevision($TAREid_revision, 3);
+                }
+//                TareaEntregableRevision::fncActualizarEstadoTareaEntregableRevision($TAREid_revision,);
+                $resultado = true;
+
+            }
         } catch (QueryException $ex) {
+            $resultado = $ex->errorInfo;
         }
-        return $respuesta;
+        return $resultado;
     }
 
     public function ObtenerUltimaVersionTareaRevision($TAREid_revision)
@@ -36,9 +73,21 @@ class TareaEntregableHistorial extends Model
         $resultado = 0;
         try {
             $data = TareaEntregableHistorial::where('TAREid_revision', $TAREid_revision)->first();
-            $resultado = $data->TAHInumeroversion;
+            if ($data != null) {
+                $resultado = $data->TAHInumeroversion;
+            }
         } catch (QueryException $ex) {
         }
+        return $resultado;
+    }
+
+    public static function fncObtenerVersionTareaEntregableHistorial($TAid_tarea)
+    {
+        $resultado = DB::select(DB::raw("select * from sgcstahiptareaentregablehistorial th
+                        join sgcstareptareaentregablerevision rev on rev.TAREid_tarearevision = th.TAREid_revision
+                        join sgcsatepasignartareaentregable ata on ata.ATEid_asignartareaproyecto = rev.ATPid_asignartareaproyecto
+                        where ata.TAid_tarea = '$TAid_tarea'
+                        order by th.TAHInumeroversion desc limit 1"));
         return $resultado;
     }
 }

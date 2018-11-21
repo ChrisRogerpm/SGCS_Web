@@ -83,7 +83,7 @@
                     </div>
 
                     <div class="form-group">
-                        <button type="button" class="btn btn-primary btn-block">Iniciar Sesión <i
+                        <button type="button" class="btn btn-primary btn-block btnIniciarSesion">Iniciar Sesión <i
                                     class="icon-circle-right2 position-right"></i></button>
                     </div>
                 </div>

@@ -51,7 +51,7 @@
                                     <div class="form-group">
                                         <label class="control-label">Link de Documento</label>
                                         <div class="input-group">
-                                            <input type="text" disabled class="form-control input-sm" id="txtTAHIenlace_tareaversion">
+                                            <input type="text" disabled class="form-control input-sm" id="txtenlace">
                                             <span class="input-group-addon" id="btnUrl"><a href="#" target="_blank" id="txtAbrirLink"><i class="icon-chrome"></i></a></span>
                                         </div>
                                     </div>

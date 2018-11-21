@@ -26,8 +26,7 @@ class TareaEntregableRevision extends Model
     {
         $TAREfecha_emitida_tarearevision = Carbon::now();
         $TAREestado_tarearevision = 1;
-        $respuesta = false;
-        try{
+        try {
             $revision = new TareaEntregableRevision();
             $revision->ATPid_asignartareaproyecto = $request->input('ATPid_asignartareaproyecto');
             $revision->TAREurl_tarearevision = $request->input('TAREurl_tarearevision');
@@ -36,7 +35,8 @@ class TareaEntregableRevision extends Model
             $revision->TAREestado_tarearevision = $TAREestado_tarearevision;
             $revision->save();
             $respuesta = true;
-        }catch (QueryException $ex){
+        } catch (QueryException $ex) {
+            $respuesta = $ex->errorInfo;
         }
         return $respuesta;
     }
@@ -57,6 +57,37 @@ class TareaEntregableRevision extends Model
         } catch (QueryException $ex) {
         }
         return $resultado;
+    }
+
+    public static function fncObtenerDetalleTareaRevision($TAREid_revision)
+    {
+        $resultado = 0;
+        try {
+            $data = DB::select(DB::raw("
+                        select ta.TAid_tarea,ta.TAnombre_tarea,ata.ATEid_asignartareaproyecto
+                        from sgcstareptareaentregablerevision tare
+                        join sgcsatepasignartareaentregable ata on ata.ATEid_asignartareaproyecto = tare.ATPid_asignartareaproyecto
+                        join sgcstaptareaentregable ta on ta.TAid_tarea = ata.TAid_tarea
+                        where tare.TAREid_tarearevision = '$TAREid_revision'"))[0];
+            if ($data != null) {
+                $resultado = $data;
+            }
+        } catch (QueryException $ex) {
+        }
+        return $resultado;
+    }
+
+    public static function fncActualizarEstadoTareaEntregableRevision($TAREid_revision,$EstadoTarearevision)
+    {
+        $respuesta = false;
+        try {
+            $revision = TareaEntregableRevision::findorfail($TAREid_revision);
+            $revision->TAREestado_tarearevision = $EstadoTarearevision;
+            $revision->save();
+            $respuesta = $revision;
+        } catch (QueryException $ex) {
+        }
+        return $respuesta;
     }
 
 }
