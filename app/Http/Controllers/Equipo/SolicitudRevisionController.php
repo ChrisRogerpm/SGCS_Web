@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Equipo;
 
 use App\TareaEntregableHistorial;
 use App\TareaEntregableRevision;
+use DB;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -35,10 +36,19 @@ class SolicitudRevisionController extends Controller
         $mensaje_error = "";
         try {
 //            $resultado = TareaEntregableHistorial::fncRegistrarTareaEntregableHistorial($request);
-            $TAREid_revision = $request->input('TAREid_revision');
+            $TAid_tarea = $request->input('TAid_tarea');
             try {
-                $data = TareaEntregableHistorial::where('TAREid_revision', $TAREid_revision)->first();
-                $resultado = $data->TAREid_revision;
+                $data = DB::select(DB::raw("select * from sgcstahiptareaentregablehistorial th
+                        join sgcstareptareaentregablerevision rev on rev.TAREid_tarearevision = th.TAREid_revision
+                        join sgcsatepasignartareaentregable ata on ata.ATEid_asignartareaproyecto = rev.ATPid_asignartareaproyecto
+                        where ata.TAid_tarea = 5
+                        order by th.TAHInumeroversion desc limit 1"))[0];
+                if($data != null){
+                    $resultado = $data->TAHInumeroversion;
+                }else{
+                    $resultado = false;
+                }
+
             } catch (QueryException $ex) {
             }
         } catch (QueryException $ex) {
