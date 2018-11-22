@@ -33,18 +33,27 @@ function fncListarTareasEntregables() {
                             render: function (value) {
                                 if (value === 1) {
                                     return '<span class="label label-primary">Habilitado</span>';
-
-                                } else {
-                                    return '<span class="label label-danger">Deshabilitado</span>';
+                                }else if (value === 2) {
+                                    return '<span class="label label-success">Deshabilitado</span>';
+                                }else if (value === 3) {
+                                    return '<span class="label label-danger">Finalizado</span>';
                                 }
                             }
                         },
                         {
                             data: null, title: "Acción",
                             render: function (value) {
-                                return '<button type="button" class="btn btn-sm btn-success btnEditar" data-id="' + value.TAid_tarea + '"><i class="glyphicon glyphicon-edit"></i></button> ' +
-                                    '<button type="button" class="btn btn-sm btn-info btnRelacionar" data-id="' + value.TAid_tarea + '"><i class="icon  icon-spinner9"></i></button> ' +
-                                    '<button type="button" class="btn btn-sm btn-primary btnAsignar" data-id="' + value.TAid_tarea + '"><i class="icon icon-user-check"></i></button>';
+                                var EstadoId = value.TAestado_tarea;
+
+                                if (EstadoId !== 3){
+                                    return '<button type="button" class="btn btn-sm btn-success btnEditar" data-id="' + value.TAid_tarea + '"><i class="glyphicon glyphicon-edit"></i></button> ' +
+                                        '<button type="button" class="btn btn-sm btn-info btnRelacionar" data-id="' + value.TAid_tarea + '"><i class="icon  icon-spinner9"></i></button> ' +
+                                        '<button type="button" class="btn btn-sm btn-primary btnAsignar" data-id="' + value.TAid_tarea + '"><i class="icon icon-user-check"></i></button>';
+                                } else{
+                                    return '<button type="button" class="btn btn-sm btn-success" disabled ><i class="glyphicon glyphicon-edit"></i></button> ' +
+                                        '<button type="button" class="btn btn-sm btn-info" disabled ><i class="icon  icon-spinner9"></i></button> ' +
+                                        '<button type="button" class="btn btn-sm btn-primary" disabled ><i class="icon icon-user-check"></i></button>';
+                                }
                             }
                         }
                     ],

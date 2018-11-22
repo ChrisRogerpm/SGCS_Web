@@ -4,6 +4,7 @@ namespace App;
 
 use DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class TareaEntregable extends Model
@@ -95,5 +96,18 @@ class TareaEntregable extends Model
             ->where('usu.USUid_usuario', $IdUsuarioLogeado)
             ->get();
         return $lista;
+    }
+
+    public static function fncActualizarEstadoTareaEntregable($TAid_tarea,$TAestado_tarea)
+    {
+        $respuesta = false;
+        try {
+            $tarea_entregable = TareaEntregable::find($TAid_tarea);
+            $tarea_entregable->TAestado_tarea = $TAestado_tarea;
+            $tarea_entregable->save();
+            $respuesta = true;
+        } catch (QueryException $ex) {
+        }
+        return $respuesta;
     }
 }

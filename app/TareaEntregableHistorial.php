@@ -36,9 +36,11 @@ class TareaEntregableHistorial extends Model
                 $TareaEntregableHistorial->save();
                 if ($request->input('TAHIestado_tareaversion') == 1) {
                     AsignarTareaEntregable::fncActualizarEstadoTareaAsignadaAprobado($TAid_tarea->ATEid_asignartareaproyecto);
-                    TareaEntregableRevision::fncActualizarEstadoTareaEntregableRevision($TAREid_revision, 2);
+                    TareaEntregable::fncActualizarEstadoTareaEntregable($TAid_tarea->TAid_tarea,3);
+                    TareaEntregableRevision::fncActualizarEstadoTareaEntregableRevision($TAREid_revision, 3);
                 } else {
                     AsignarTareaEntregable::fncActualizarEstadoTareaAsignadaProgreso($TAid_tarea->ATEid_asignartareaproyecto);
+                    TareaEntregable::fncActualizarEstadoTareaEntregable($TAid_tarea->TAid_tarea,1);
                     TareaEntregableRevision::fncActualizarEstadoTareaEntregableRevision($TAREid_revision, 3);
                 }
 
@@ -53,12 +55,13 @@ class TareaEntregableHistorial extends Model
                 $TareaEntregableHistorial->save();
                 if ($request->input('TAHIestado_tareaversion') == 1) {
                     AsignarTareaEntregable::fncActualizarEstadoTareaAsignadaAprobado($TAid_tarea->ATEid_asignartareaproyecto);
+                    TareaEntregable::fncActualizarEstadoTareaEntregable($TAid_tarea->TAid_tarea,2);
                     TareaEntregableRevision::fncActualizarEstadoTareaEntregableRevision($TAREid_revision, 2);
                 } else {
                     AsignarTareaEntregable::fncActualizarEstadoTareaAsignadaProgreso($TAid_tarea->ATEid_asignartareaproyecto);
+                    TareaEntregable::fncActualizarEstadoTareaEntregable($TAid_tarea->TAid_tarea,3);
                     TareaEntregableRevision::fncActualizarEstadoTareaEntregableRevision($TAREid_revision, 3);
                 }
-//                TareaEntregableRevision::fncActualizarEstadoTareaEntregableRevision($TAREid_revision,);
                 $resultado = true;
 
             }
