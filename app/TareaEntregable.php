@@ -110,4 +110,20 @@ class TareaEntregable extends Model
         }
         return $respuesta;
     }
+
+    public static function fncObtenerTareasAvance(Request $request)
+    {
+        $FAid_fase = $request->input('FAid_fase');
+        $PROid_proyecto = $request->input('PROid_proyecto');
+        try {
+            $resultado = DB::select(DB::raw("select ta.TAid_tarea,ta.TAnombre_tarea,ta.TAestado_tarea
+                    from sgcstaptareaentregable ta
+                    join sgcsentrpropentregableproyecto entre on entre.ENTRPROid_entregableproyecto = ta.ENTPROid_entregableproyecto
+                    join sgcsprotproyecto pro on pro.PROid_proyecto = entre.PROid_proyecto
+                    where ta.FAid_fase = '$FAid_fase' and pro.PROid_proyecto = '$PROid_proyecto'"));
+        } catch (QueryException $ex) {
+            $resultado = $ex->errorInfo;
+        }
+        return $resultado;
+    }
 }

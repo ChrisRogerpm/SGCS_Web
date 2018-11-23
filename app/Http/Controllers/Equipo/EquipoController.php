@@ -27,7 +27,18 @@ class EquipoController extends Controller
         }
         return response()->json(['data' => $data, 'respuesta' => $respuesta, 'mensaje' => $resultado]);
     }
-    public function fncObtenerTotalTareasFinalizadasJson(Request $request){
 
+    public function fncObtenerTotalTareasFinalizadasJson(Request $request)
+    {
+        $respuesta = false;
+        $resultado = '';
+        $data = '';
+        try {
+            $data = Reporte::fncObtenerTotalTareasFinalizadas($request);
+            $respuesta = true;
+        } catch (QueryException $ex) {
+            $resultado = $ex->errorInfo;
+        }
+        return response()->json(['data' => $data, 'respuesta' => $respuesta, 'mensaje' => $resultado]);
     }
 }

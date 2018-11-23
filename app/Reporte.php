@@ -50,7 +50,7 @@ class Reporte extends Model
                     from sgcstaptareaentregable ta
                     join sgcsentrpropentregableproyecto entrepro on entrepro.ENTRPROid_entregableproyecto = ta.ENTPROid_entregableproyecto
                     join sgcsprotproyecto pro on pro.PROid_proyecto = entrepro.PROid_proyecto
-                    where pro.PROid_proyecto = '$PROid_proyecto' and entrepro.FAid_fase = '$FAid_fase' and ta.TAestado_tarea = 1"));
+                    where pro.PROid_proyecto = '$PROid_proyecto' and entrepro.FAid_fase = '$FAid_fase' and ta.TAestado_tarea = 2"));
         } catch (QueryException $ex) {
             $resultado = $ex->errorInfo;
         }

@@ -77,6 +77,8 @@ Route::group(['namespace' => 'Equipo'], function () {
     Route::get('SolicitudRevision/{id}', 'SolicitudRevisionController@fncSolicitudRevisionVista')->name('SolicitudRevision');
     Route::get('TareaEquipo','TareaEntregableController@fncTareaEquipoVista')->name('TareaEquipo');
     Route::get('RegistrarSolicitudCambio','SolicitudCambioController@fncRegistrarSolicitudCambioVista')->name('RegistrarSolicitudCambio');
+    Route::get('AvanceProyectoVista/{id}','AvanceProyectoController@AvanceControllerVista')->name('AvanceProyecto');
+
 
 
     Route::get('servicio/ProyectosEncargados', 'ProyectoEncargadoController@fncProyectoEncargadoJson');
@@ -120,7 +122,10 @@ Route::group(['namespace' => 'Equipo'], function () {
     Route::post('servicio/RegistrarRevisionTareEntregable','TareaEntregableController@fncRegistrarRevisionTareEntregableJson');
     Route::post('servicio/ListarSolicitudRevision','SolicitudRevisionController@fncListarSolicitudRevisionJson');
     Route::post('servicio/RegistrarTareaEntregableHistorial','SolicitudRevisionController@fncRegistrarTareaEntregableHistorialJson');
+    Route::post('servicio/ObtenerTotalTareasFinalizadas','EquipoController@fncObtenerTotalTareasFinalizadasJson');
+    Route::post('servicio/ObtenerTareasAvance','AvanceProyectoController@fncObtenerTareasAvanceJson');
     Route::get('servicio/ListarDataReporteDashboard','EquipoController@fncListarDataReporteDashboardJson');
+
 
 
 
