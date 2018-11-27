@@ -12,11 +12,19 @@ class RelacionTareaEntregable extends Model
     protected $primaryKey = "RETAid_relaciontarea";
     protected $fillable = ['TAid_tarea1', 'TAid_tarea2'];
 
+    public static function fncValidarTareaRelacionEntregable($TAid_tarea1, $TAid_tarea2){
+        $resultado = DB::table('sgcsretaprelaciontareaentregable')
+            ->where('TAid_tarea1', $TAid_tarea1)
+            ->where('TAid_tarea2', $TAid_tarea2)
+            ->count();
+        return $resultado;
+    }
     public static function fncValidarTareaEntregableSimilitud($TAid_tarea1, $TAid_tarea2): bool
     {
         $resultado = false;
+        $registros = RelacionTareaEntregable::fncValidarTareaRelacionEntregable($TAid_tarea1,$TAid_tarea2);
         try {
-            if ($TAid_tarea1 === $TAid_tarea2) {
+            if ($TAid_tarea1 === $TAid_tarea2 || $registros > 0) {
                 $resultado = false;
             } else {
                 $resultado = true;
