@@ -28,7 +28,7 @@ function MostrarData(data) {
             text: ''
         },
         tooltip: {
-            pointFormat: '{series.name}: {series.data}'
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
         },
         plotOptions: {
             pie: {

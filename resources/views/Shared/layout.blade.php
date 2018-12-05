@@ -60,7 +60,7 @@
 <body>
 <div class="navbar navbar-inverse bg-indigo-800">
     <div class="navbar-header">
-        {{--<a class="navbar-brand" href="#"><img src="../assets/images/logo_light.png" alt=""></a>--}}
+        <a class="navbar-brand" href="#"><img src="../assets/LogoProyecto.png" alt=""></a>
         <ul class="nav navbar-nav pull-right visible-xs-block">
             <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
         </ul>
