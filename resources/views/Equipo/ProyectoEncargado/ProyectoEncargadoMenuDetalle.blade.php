@@ -92,7 +92,7 @@
             </a>
         </div>
         <div class="col-sm-4 col-md-4">
-            <a href="#">
+            <a href="{{route('AvanceProyecto',$PROid_proyecto)}}">
                 <div class="panel panel-body bg-warning-300 has-bg-image">
                     <div class="media no-margin">
                         <div class="media-body">

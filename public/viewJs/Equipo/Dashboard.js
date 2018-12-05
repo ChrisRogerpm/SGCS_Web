@@ -28,7 +28,11 @@ function MostrarData(data) {
             text: ''
         },
         tooltip: {
+// <<<<<<< HEAD
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+// =======
+//             pointFormat: '{series.name}: {point.y}'
+// >>>>>>> e8c33043712e2ef727fb974c4d43b426bd92fd67
         },
         plotOptions: {
             pie: {
@@ -76,13 +80,20 @@ function ListarFasesProyecto(ProyectoId) {
             let resp = response.data;
             var data = [];
             $.each(resp, function (key, value) {
-                var ProyectoId = ProyectoId;
-                var FaseId = value.FAestado_fase;
+
+                var ProyectoId = 0;
+                var FaseId = 0;
+                var TareasTotales = 0;
+                ProyectoId = $("#cboProyectos").val();
+                FaseId = value.FAid_fase;
+                TareasTotales = fncObtenerTotalTareasFinalizadas(ProyectoId,FaseId);
                 data.push({
                     name: value.FAnombre_fase,
-                    y : 2
+                    y: TareasTotales
                 });
             });
+
+
             MostrarData(data);
         }
     })
@@ -91,7 +102,7 @@ function ListarFasesProyecto(ProyectoId) {
 function fncListarProyectosEncargadosJs() {
     $.ajax({
         type: 'GET',
-        url: 'servicio/ProyectosEncargados',
+        url: basepath + '/servicio/ProyectosEncargados',
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (response) {
@@ -106,6 +117,22 @@ function fncListarProyectosEncargadosJs() {
     });
 }
 
-function fncObtenerTotalTareasFinalizadas(ProyectoId,FaseId) {
-    
+function fncObtenerTotalTareasFinalizadas(ProyectoId, FaseId) {
+    //var tareas;
+    $.ajax({
+        type: 'POST',
+        async: false,
+        url: basepath+ '/servicio/ObtenerTotalTareasFinalizadas',
+        // contentType: "application/json; charset=utf-8",
+        // dataType: "json",
+        data: {
+            'PROid_proyecto': ProyectoId,
+            'FAid_fase': FaseId
+        },
+        success: function (response) {
+            var resp = response.data;
+            tareas = resp[0].TotalTareas;
+        },
+    });
+    return tareas;
 }
