@@ -98,7 +98,7 @@ class TareaEntregable extends Model
         return $lista;
     }
 
-    public static function fncActualizarEstadoTareaEntregable($TAid_tarea,$TAestado_tarea)
+    public static function fncActualizarEstadoTareaEntregable($TAid_tarea, $TAestado_tarea)
     {
         $respuesta = false;
         try {
@@ -125,5 +125,15 @@ class TareaEntregable extends Model
             $resultado = $ex->errorInfo;
         }
         return $resultado;
+    }
+
+    public static function fncTareaEntregableInfo($TAid_tarea)
+    {
+        $data = DB::select(DB::raw("SELECT t.TAnombre_tarea,pro.PROnombre_proyecto
+        FROM sgcstaptareaentregable t
+        JOIN sgcsentrpropentregableproyecto entrepro ON entrepro.ENTRPROid_entregableproyecto = t.ENTPROid_entregableproyecto
+        JOIN sgcsprotproyecto pro ON pro.PROid_proyecto = entrepro.PROid_proyecto
+        WHERE t.TAid_tarea =$TAid_tarea"))[0];
+        return $data;
     }
 }

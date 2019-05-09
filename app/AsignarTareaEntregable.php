@@ -3,11 +3,13 @@
 namespace App;
 
 
+use App\Mail\NotificarTarea;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Mail;
 
 class AsignarTareaEntregable extends Model
 {
@@ -30,6 +32,17 @@ class AsignarTareaEntregable extends Model
                 $asignar_tarea->ATEfecha_fin_tareaproyecto = Carbon::parse($request->input('ATEfecha_fin_tareaproyecto'));
                 $asignar_tarea->ATEestado_tareaproyecto = 1;
                 $asignar_tarea->save();
+
+                $tareaDetalle = TareaEntregable::fncTareaEntregableInfo($TAid_tarea);
+                $usuarioDetalle = UsuarioProyecto::UsuarioProyectoInfo($USUPROid_usuarioproyecto);
+
+                $data = array(
+                    'tarea'=>$tareaDetalle->TAnombre_tarea,
+                    'proyecto'=>$tareaDetalle->PROnombre_proyecto
+                );
+                $correo_receptor = $usuarioDetalle->USUemail_usuario;
+                Mail::to($correo_receptor)->send(new NotificarTarea($data));
+
                 $respuesta = true;
             }
         } catch (QueryException $ex) {

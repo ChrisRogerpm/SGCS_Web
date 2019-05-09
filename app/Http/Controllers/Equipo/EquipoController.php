@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Equipo;
 
+use App\Mail\NotificarTarea;
 use App\Reporte;
+use App\TareaEntregable;
+use App\UsuarioProyecto;
 use Illuminate\Database\QueryException;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Mail;
 
 class EquipoController extends Controller
 {

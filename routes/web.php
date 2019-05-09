@@ -8,6 +8,7 @@ Route::get('/', 'Autenticacion\SeguridadController@fncMostrarLogin')->name('logi
 Route::post('Autenticacion/ValidarLogin', 'Autenticacion\SeguridadController@fncValidarLoginJson')->name('ValidarLogin');
 Route::post('CerrarSesion', 'Autenticacion\SeguridadController@fncCerrarSesion')->name('CerrarSesion');
 
+
 Route::group(['namespace' => 'Administrador'], function () {
     //Rutas de Vistas
 //    Route::get('Administrador', 'AdministradorController@fncAdministradorVista')->name('Administrador');

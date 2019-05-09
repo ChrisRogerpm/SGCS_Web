@@ -76,4 +76,13 @@ class UsuarioProyecto extends Model
         }
         return $resultado;
     }
+
+    public static function UsuarioProyectoInfo($IdUsuarioProyecto){
+        $data = DB::select(DB::raw("SELECT usu.*
+                FROM sgcsusupropusuarioproyecto usupro
+                JOIN sgcsusutusuario usu ON usu.USUid_usuario = usupro.USUid_usuario
+                WHERE usupro.USUPROid_usuarioproyecto =$IdUsuarioProyecto"))[0];
+
+        return $data;
+    }
 }
