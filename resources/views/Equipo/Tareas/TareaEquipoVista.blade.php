@@ -39,12 +39,8 @@
                                     <input type="hidden" name="ATPid_asignartareaproyecto"
                                            id="txtATPid_asignartareaproyecto">
                                     <div class="form-group">
-                                        <label class="control-label">Link Documento (*)</label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="icon-chrome"></i></span>
-                                            <input type="text" class="form-control input-xs"
-                                                   name="TAREurl_tarearevision">
-                                        </div>
+                                        <label for="">Documento</label>
+                                        <input type="file" name="TAREurl_tarearevision" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label">Observación</label>

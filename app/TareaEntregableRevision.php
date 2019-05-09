@@ -26,14 +26,20 @@ class TareaEntregableRevision extends Model
     {
         $TAREfecha_emitida_tarearevision = Carbon::now();
         $TAREestado_tarearevision = 1;
+        $ArchivoDocumento = $request->file('TAREurl_tarearevision');
+        $NombreArchivoDocumento = $ArchivoDocumento->getClientOriginalName();
         try {
             $revision = new TareaEntregableRevision();
             $revision->ATPid_asignartareaproyecto = $request->input('ATPid_asignartareaproyecto');
-            $revision->TAREurl_tarearevision = $request->input('TAREurl_tarearevision');
+            $revision->TAREurl_tarearevision = $NombreArchivoDocumento;
             $revision->TAREobservacion_tarearevision = $request->input('TAREobservacion_tarearevision');
             $revision->TAREfecha_emitida_tarearevision = $TAREfecha_emitida_tarearevision;
             $revision->TAREestado_tarearevision = $TAREestado_tarearevision;
             $revision->save();
+
+            $directorio = 'assets/Archivos';
+            $ArchivoDocumento->move($directorio,$ArchivoDocumento->getClientOriginalName());
+
             $respuesta = true;
         } catch (QueryException $ex) {
             $respuesta = $ex->errorInfo;

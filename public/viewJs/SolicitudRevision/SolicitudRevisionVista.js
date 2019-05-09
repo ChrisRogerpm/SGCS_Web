@@ -11,7 +11,7 @@ $(document).ready(function () {
         $("#TAHIenlace_tareaversion_").val(Link);
         $("#txtTAREid_revision").val(Id);
         $("#txtObservacion").val(Obs);
-        $("#txtAbrirLink").attr("href", Link);
+        $("#txtAbrirLink").attr("href", basepath + "/assets/Archivos/" + Link);
     });
     $(".styled, .multiselect-container input").uniform({
         radioClass: 'choice'
@@ -56,6 +56,7 @@ function fncGenerarRevision() {
         }
     });
 }
+
 function ListarSolicitudRevision() {
     $.ajax({
         type: 'POST',
@@ -98,9 +99,9 @@ function ListarSolicitudRevision() {
                             data: null, title: "Acción",
                             render: function (value) {
                                 var EstadoRevision = value.TAREestado_tarearevision;
-                                if (EstadoRevision !== 1){
+                                if (EstadoRevision !== 1) {
                                     return '<button type="button" class="btn btn-xs btn-info" disabled><i class="icon-checkmark2"></i></button>';
-                                }else{
+                                } else {
                                     return '<button type="button" class="btn btn-xs btn-default btnAprobar" data-obs="' + value.TAREobservacion_tarearevision + '" data-id="' + value.TAREid_tarearevision + '" data-link="' + value.TAREurl_tarearevision + '"><i class="icon-checkmark2"></i></button>';
                                 }
 

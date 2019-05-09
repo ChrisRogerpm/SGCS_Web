@@ -11,26 +11,49 @@ $(document).ready(function () {
     });
 
     $("#btnGuardar").click(function () {
+        // var url = basepath + "/servicio/RegistrarRevisionTareEntregable";
+        // var dataForm = $('#frmNuevo').serializeFormJSON();
+        // $.ajax({
+        //     url: url,
+        //     type: "POST",
+        //     contentType: "application/json",
+        //     data: JSON.stringify(dataForm),
+        //     success: function (response) {
+        //         var respuesta = response.respuesta;
+        //         if (respuesta === true) {
+        //             toastr.success("Se Registro Correctamente", "Mensaje Servidor");
+        //             $("#frmNuevo")[0].reset();
+        //             $("#ModalRevision").modal("hide");
+        //             fncListarMisTareasJson();
+        //         } else {
+        //             toastr.error(response.mensaje, "Mensaje Servidor");
+        //         }
+        //     },
+        //     error: function (jqXHR, textStatus, errorThrown) {
+        //     }
+        // });
         var url = basepath + "/servicio/RegistrarRevisionTareEntregable";
-        var dataForm = $('#frmNuevo').serializeFormJSON();
+        var dataForm = new FormData($("#frmNuevo")[0]);
         $.ajax({
+            async: false,
+            type: 'POST',
             url: url,
-            type: "POST",
-            contentType: "application/json",
-            data: JSON.stringify(dataForm),
+            mimeType: "multipart/form-data",
+            contentType: false,
+            cache: false,
+            processData: false,
+            data: dataForm,
+            dataType: "json",
             success: function (response) {
                 var respuesta = response.respuesta;
                 if (respuesta === true) {
                     toastr.success("Se Registro Correctamente", "Mensaje Servidor");
                     $("#frmNuevo")[0].reset();
                     $("#ModalRevision").modal("hide");
-                    fncListarMisTareasJson();
                 } else {
                     toastr.error(response.mensaje, "Mensaje Servidor");
                 }
             },
-            error: function (jqXHR, textStatus, errorThrown) {
-            }
         });
     });
 });
@@ -102,4 +125,28 @@ function fncListarMisTareasJson() {
             }
         },
     })
+}
+
+function SubirArchivoRevision() {
+    var url = basepath + "/servicio/RegistrarRevisionTareEntregable";
+    var dataForm = new FormData($("#frmNuevo")[0]);
+    $.ajax({
+        async: false,
+        type: 'POST',
+        url: url,
+        mimeType: "multipart/form-data",
+        contentType: false,
+        cache: false,
+        processData: false,
+        data: dataForm,
+        dataType: "json",
+        success: function (response) {
+            var respuesta = response.respuesta;
+            if (respuesta === true) {
+                toastr.success("Se Registro Correctamente", "Mensaje Servidor");
+            } else {
+                toastr.error(response.mensaje, "Mensaje Servidor");
+            }
+        },
+    });
 }
